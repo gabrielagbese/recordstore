@@ -7,7 +7,9 @@ import { EcctrlJoystick } from "ecctrl";
 import { Physics, RigidBody } from '@react-three/rapier'
 import { ArrowUp, ArrowDown, ArrowLeft, ArrowRight } from 'lucide-react'
 import { Arcademodel } from './Arcademodel'
+import { useTexture } from '@react-three/drei'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { TextureLoader } from 'three'
 
 function VinylTile({ position, color }) {
     return (
@@ -229,60 +231,7 @@ function Door({ position }) {
 }
 
 
-// Update Room to receive shadows
-function Room() {
-    return (
-        <RigidBody type="fixed" colliders="trimesh">
-            <group>
-                {/* Floor */}
-                <Box args={[50, 0.1, 30]} position={[0, -2, 0]} receiveShadow>
-                    <meshStandardMaterial color="#708090" />
-                </Box>
-                {/* Ceiling */}
-                <Box args={[50, 0.1, 30]} position={[0, 8, 0]} receiveShadow>
-                    <meshStandardMaterial color="#DCDCDC" />
-                </Box>
-                {/* Walls with windows */}
-                {[[-25, 0], [25, Math.PI]].map(([x, rotation], index) => (
-                    <group key={index} position={[x, 3, 0]} rotation={[0, rotation, 0]}>
-                        <Box args={[0.1, 10, 30]} receiveShadow>
-                            <meshStandardMaterial color="#F5F5F5" />
-                        </Box>
-                        {/* Windows */}
-                        {[-10, 0, 10].map((z, i) => (
-                            <Box key={i} args={[0.2, 4, 4]} position={[0, 1, z]} receiveShadow>
-                                <meshStandardMaterial color="#87CEEB00" transparent opacity={1} />
-                            </Box>
-                        ))}
-                    </group>
-                ))}
-                {/* Front and back walls */}
-                {/* Front wall with door and posters */}
-                <Box args={[50, 10, 0.1]} position={[0, 3, -15]}>
-                    <meshStandardMaterial color="#F5F5F5" />
 
-                </Box>
-
-                <Door position={[0, 1.5, -14.9]} />
-                <Poster position={[-15, 3, -14.8]} color="#FF6347" />
-                <Poster position={[15, 3, -14.8]} color="#4682B4" />
-                {/* Back wall */}
-                <Box args={[50, 10, 0.1]} position={[0, 3, 15]}>
-                    <meshStandardMaterial color="#F5F5F5" />
-                </Box>
-                {/* Tables */}
-                <TableOne position={[-16.5, -1.5, 0]} />
-
-
-
-                <TableTwo position={[16.5, -1.5, 0]} />
-                <FloatingShelves />
-                {/* Welcome Sign */}
-                {/* <WelcomeSign /> */}
-            </group>
-        </RigidBody>
-    )
-}
 
 // Update Sun to cast shadows
 function Sun() {
@@ -350,6 +299,68 @@ function FloatingShelves() {
     )
 }
 
+// Update Room to receive shadows
+function Room() {
+
+    const texture = useLoader(TextureLoader, 'textures/wood2.jpg')
+
+    texture.wrapS = THREE.RepeatWrapping
+    texture.wrapT = THREE.RepeatWrapping
+    texture.repeat.set(8, 8)
+
+    return (
+        <RigidBody type="fixed" colliders="trimesh">
+            <group>
+                {/* Floor */}
+                <Box args={[50, 0.1, 30]} position={[0, -2, 0]} receiveShadow>
+                    <meshStandardMaterial map={texture} />
+                </Box>
+                {/* Ceiling */}
+                <Box args={[50, 0.1, 30]} position={[0, 8, 0]} receiveShadow>
+                    <meshStandardMaterial color="#DCDCDC" />
+                </Box>
+                {/* Walls with windows */}
+                {[[-25, 0], [25, Math.PI]].map(([x, rotation], index) => (
+                    <group key={index} position={[x, 3, 0]} rotation={[0, rotation, 0]}>
+                        <Box args={[0.1, 10, 30]} receiveShadow>
+                            <meshStandardMaterial color="#F5F5F5" />
+                        </Box>
+                        {/* Windows */}
+                        {[-10, 0, 10].map((z, i) => (
+                            <Box key={i} args={[0.2, 4, 4]} position={[0, 1, z]} receiveShadow>
+                                <meshStandardMaterial color="#87CEEB00" transparent opacity={1} />
+                            </Box>
+                        ))}
+                    </group>
+                ))}
+                {/* Front and back walls */}
+                {/* Front wall with door and posters */}
+                <Box args={[50, 10, 0.1]} position={[0, 3, -15]}>
+                    <meshStandardMaterial color="#F5F5F5" />
+
+                </Box>
+
+                <Door position={[0, 1.5, -14.9]} />
+                <Poster position={[-15, 3, -14.8]} color="#FF6347" />
+                <Poster position={[15, 3, -14.8]} color="#4682B4" />
+                {/* Back wall */}
+                <Box args={[50, 10, 0.1]} position={[0, 3, 15]}>
+                    <meshStandardMaterial color="#F5F5F5" />
+                </Box>
+                {/* Tables */}
+                <TableOne position={[-16.5, -1.5, 0]} />
+
+
+
+                <TableTwo position={[16.5, -1.5, 0]} />
+                <FloatingShelves />
+                {/* Welcome Sign */}
+                {/* <WelcomeSign /> */}
+            </group>
+        </RigidBody>
+    )
+}
+
 
 
 function Player() {
@@ -377,7 +388,7 @@ function Player() {
                 turnVelMultiplier={1} // Turning speed same as moving speed
                 turnSpeed={100} // give it big turning speed to prevent turning wait time
                 mode="CameraBasedMovement"
-                camTargetPos={{ x: 0, y: 1.9, z: 0 }}
+                camTargetPos={{ x: 0, y: 3, z: 0 }}
 
 
 
@@ -406,7 +417,7 @@ function Player() {
 
 export default function StoreScene({ openModal }) {
 
-    const model = useGLTF("models/acd3.glb")
+    const model = useGLTF("models/acd4.glb")
 
     const handleArcadeClick = () => {
         openModal(
@@ -417,10 +428,28 @@ export default function StoreScene({ openModal }) {
 
     return (
         <>
-            <EcctrlJoystick />
+            <EcctrlJoystick
+                buttonNumber={0}
+                joystickPositionLeft={80}
+                joystickPositionBottom={-20}
+                joystickBaseProps={{
+                    receiveShadow: true,
+                    scale: [0.55, 0.55, 0.55],
+                    material: new THREE.MeshBasicMaterial({ color: "#8f8f8f" })  // Medium grey
+                }}
+                joystickStickProps={{
+                    castShadow: true,
+                    scale: [0.65, 0.65, 0.65],
+                    material: new THREE.MeshBasicMaterial({ color: "#A9A9A9" })  // Darker grey
+                }}
+                joystickHandleProps={{
+                    scale: [0.7, 0.7, 0.7],
+                    material: new THREE.MeshBasicMaterial({ color: "#D3D3D3" })  // Lighter grey
+                }}
+            />
             <Canvas
                 camera={{
-                    position: [0, 5, -15], fov: 60,
+                    position: [0, 5, -15], fov: 75,
 
                 }}
                 style={{ width: '100vw', height: '100vh' }} className="relative"
@@ -460,7 +489,8 @@ export default function StoreScene({ openModal }) {
                             object={model.scene}
                             position={[0, -2, 11.5]}
                             rotation={[0, Math.PI / -2, 0]} // Rotate 90 degrees along the Y-axis
-                            scale={2}                     // Scale uniformly by 2
+                            scale={[2.25, 2.25, 2.5]}
+                            onClick={handleArcadeClick}                     // Scale uniformly by 2
                         />
 
                         {/* <Till /> */}
