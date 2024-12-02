@@ -1,16 +1,14 @@
 import { Canvas, useThree, useFrame, useLoader } from '@react-three/fiber'
-import { FirstPersonControls, useHelper, PivotControls, OrbitControls, Box, Text, Html, Sky, Cylinder, AccumulativeShadows, RandomizedLight, SoftShadows, Text3D, KeyboardControls, useGLTF } from '@react-three/drei'
+import { FirstPersonControls, useHelper, PivotControls, OrbitControls, Box, Text, Html, Sky, Cylinder, AccumulativeShadows, RandomizedLight, SoftShadows, Text3D, KeyboardControls, useGLTF, Environment, Edges } from '@react-three/drei'
 import { useState, useRef, useCallback, useEffect, Children, Suspense } from 'react'
 import * as THREE from 'three'
 import Ecctrl from 'ecctrl'
 import { EcctrlJoystick } from "ecctrl";
 import { Physics, RigidBody } from '@react-three/rapier'
-import { ArrowUp, ArrowDown, ArrowLeft, ArrowRight } from 'lucide-react'
-import { Arcademodel } from './Arcademodel'
+
 import { useTexture } from '@react-three/drei'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { TextureLoader } from 'three'
-import { Reflector } from '@react-three/drei';
 import Arcade from './modal-components/Arcade'
 import Shelf1 from './modal-components/Shelf1'
 import Shelf6 from './modal-components/Shelf6'
@@ -411,8 +409,23 @@ function Room() {
 
     const bSpeaker1 = useLoader(GLTFLoader, "models/Speaker2.glb")
     const bSpeaker2 = useLoader(GLTFLoader, "models/Speaker3.glb")
-    const grammy = useLoader(GLTFLoader, "models/grammy_award.glb")
-    const recordPlayer = useLoader(GLTFLoader, "models/record_player.glb")
+    const tree = useLoader(GLTFLoader, "models/Palmtree.glb")
+    tree.scene.traverse((child) => {
+        if (child.isMesh) { // Check if the child is a Mesh (i.e., a 3D object with geometry and material)
+            child.castShadow = true; // Enable shadow casting
+            child.receiveShadow = true; // Enable shadow receiving
+        }
+    });
+    const grass = useLoader(TextureLoader, 'textures/grass.jpg')
+    grass.wrapS = THREE.RepeatWrapping; // Repeat wrapping in S direction
+    grass.wrapT = THREE.RepeatWrapping; // Repeat wrapping in T direction
+    grass.repeat.set(1, 1); // Repeat 4x4 times
+    const rconc = useLoader(TextureLoader, 'textures/rconc.jpg')
+    rconc.wrapS = THREE.RepeatWrapping; // Repeat wrapping in S direction
+    rconc.wrapT = THREE.RepeatWrapping; // Repeat wrapping in T direction
+    rconc.repeat.set(0.6, 0.1); // Repeat 4x4 times
+    // const grammy = useLoader(GLTFLoader, "models/grammy_award.glb")
+    //const recordPlayer = useLoader(GLTFLoader, "models/record_player.glb")
 
     const texture = useLoader(TextureLoader, 'textures/wood3.jpg')
     texture.wrapS = THREE.MirroredRepeatWrapping; // Repeat wrapping in S direction
@@ -454,13 +467,22 @@ function Room() {
         <RigidBody type="fixed" colliders="trimesh">
             <group>
                 {/* Floor */}
-                <Box args={[50, 0.1, 30]} position={[0, -2, 0]} receiveShadow>
-                    <meshStandardMaterial metalness={0} {...dpProps} reflectivity={1} color={[1, 1, 1]} />
-                </Box>
+                <RigidBody type="fixed" colliders="trimesh">
+                    <Box args={[100, 0.1, 60]} position={[0, -2, 0]} receiveShadow>
+                        <meshStandardMaterial  {...dpProps} reflectivity={0} color={[1, 1, 1]} />
+                    </Box>
+                </RigidBody>
                 {/*Carpet*/}
-                <Box args={[25, 0.1, 25]} position={[0, -1.9, 0]} receiveShadow>
-                    <meshStandardMaterial  {...carpetProps} color={[1.2, 1.2, 1.2]} normalScale={[2, 2]} />
+                <RigidBody type="fixed" colliders="trimesh">
+                    <Box args={[25, 0.1, 25]} position={[0, -1.9, 0]} receiveShadow>
+                        <meshStandardMaterial  {...carpetProps} color={[1.2, 1.2, 1.2]} normalScale={[2, 2]} />
+                    </Box>
+                </RigidBody>
+
+                <Box args={[20, 0.1, 32]} position={[-35, -1.5, 0]} receiveShadow>
+                    <meshStandardMaterial map={grass} color={[1.2, 1.2, 1.2]} normalScale={[2, 2]} />
                 </Box>
+
                 {/* Ceiling */}
                 <Box args={[50, 0.1, 30]} position={[0, 8, 0]} receiveShadow>
                     <meshStandardMaterial color="#DCDCDC" />
@@ -476,39 +498,57 @@ function Room() {
                 <SmallFlatLight position={[-7, 7.5, -12.5]} tpx={-7} tpz={-12.5} />
 
 
-                {/* <SmallFlatLight position={[0, 7.5, 12.5]} tpx={7} tpz={12.5} /> */}
+
+                {/* Wall with window */}
+                <group position={[-25, -1.5, 0]} rotation={[0, 0, 0]}>
+                    <Box args={[2, 3, 30]} receiveShadow castShadow>
+                        <meshStandardMaterial color="#F5F5F5" />
+                    </Box>
+                </group>
+                <group position={[-25, 3, 0]} rotation={[0, 0, 0]}>
+                    <Box args={[0.1, 6.5, 25]} receiveShadow castShadow>
+                        <meshPhysicalMaterial transmission={1} thickness={0.25} depthWrite={false} roughness={0} clearcoat={1} color={"#aaaabb"} />
+                    </Box>
+
+                </group>
+                <group position={[-25, 7.5, 0]} rotation={[0, 0, 0]}>
+                    <Box args={[2, 3, 30]} receiveShadow castShadow>
+                        <meshStandardMaterial color="#F5F5F5" />
+                    </Box>
+                </group>
+                <group position={[-25, 5, -15]} rotation={[0, 0, 0]}>
+                    <Box args={[1, 10, 5]} receiveShadow castShadow>
+                        <meshStandardMaterial color="#F5F5F5" />
+                    </Box>
+                </group>
+                <group position={[-25, 5, 15]} rotation={[0, 0, 0]}>
+                    <Box args={[1, 10, 5]} receiveShadow castShadow>
+                        <meshStandardMaterial color="#F5F5F5" />
+                    </Box>
+                </group>
+                <group position={[25, 3, 0]} rotation={[0, Math.PI, 0]}>
+                    <Box args={[0.1, 10, 30]} receiveShadow castShadow>
+                        <meshStandardMaterial color="#F5F5F5" />
+                    </Box>
+                </group>
+
+                {/*external garden wall*/}
+                <Box args={[26, 5, 0.1]} position={[-32, 0, -16]} receiveShadow castShadow>
+                    <meshStandardMaterial color="#eeeeee" opacity={0} />
+                </Box>
+                <Box args={[26, 5, 0.1]} position={[-32, 0, 16]} receiveShadow castShadow>
+                    <meshStandardMaterial color="#dddddd" />
+                </Box>
+
+                <Box args={[0.1, 5, 32]} position={[-45, 0, 0]} receiveShadow castShadow>
+                    <meshStandardMaterial color="#ffffff" />
+                </Box>
 
 
-
-                <SmallFlatLight position={[-19.5, 7, -8]} tpx={-19.5} tpz={-8} />
-                <SmallFlatLight position={[19.5, 7, -8]} tpx={19.5} tpz={-8} />
-                <SmallFlatLight position={[-19.5, 7, 8]} tpx={-19.5} tpz={8} />
-                <SmallFlatLight position={[19.5, 7, 8]} tpx={19.5} tpz={8} />
-
-                {/* <NeonTube position={[-3, 5.85, 14]} tpx={0} tpz={12} />
-                <NeonTube position={[-1, 5.85, 14]} tpx={0} tpz={14} />
-                <NeonTube position={[1, 5.85, 14]} tpx={0} tpz={12} />
-                <NeonTube position={[3, 5.85, 14]} tpx={0} tpz={12} /> */}
-
-                {/* Walls with windows */}
-                {[[-25, 0], [25, Math.PI]].map(([x, rotation], index) => (
-                    <group key={index} position={[x, 3, 0]} rotation={[0, rotation, 0]}>
-                        <Box args={[0.1, 10, 30]} receiveShadow>
-                            <meshStandardMaterial color="#F5F5F5" />
-                        </Box>
-                        {/* Windows */}
-                        {[-10, 0, 10].map((z, i) => (
-                            <Box key={i} args={[0.2, 4, 4]} position={[0, 1, z]} receiveShadow>
-                                <meshStandardMaterial color="#87CEEB00" transparent opacity={1} />
-                            </Box>
-                        ))}
-                    </group>
-                ))}
                 {/* Front and back walls */}
                 {/* Front wall with door and posters */}
                 <Box args={[50, 10, 0.1]} position={[0, 3, -15]}>
                     <meshStandardMaterial color="#F5F5F5" />
-
                 </Box>
 
                 <Door position={[0, 1.5, -14.9]} />
@@ -530,11 +570,15 @@ function Room() {
                     castShadow
                     receiveShadow
                 />
-
-
-
-
-
+                {/*Tree*/}
+                <primitive
+                    object={tree.scene}
+                    position={[-37, -1, 11]}
+                    rotation={[0, Math.PI / -1, 0]} // Rotate 90 degrees along the Y-axis
+                    scale={[0.50, 0.50, 0.50]}
+                    castShadow
+                    receiveShadow
+                />
                 <primitive
                     object={bSpeaker2.scene}
                     position={[-12.2, 4, 14.25]}
@@ -543,6 +587,8 @@ function Room() {
                     castShadow
                     receiveShadow
                 />
+
+
                 {/* Tables */}
                 <TableOne position={[-19.5, -1.5, 0]} />
                 <TableTwo position={[19.5, -1.5, 0]} />
@@ -571,39 +617,42 @@ function Player() {
         { name: "action4", keys: ["KeyF"] },
     ];
     return (
-        <KeyboardControls map={keyboardMap}>
-            <Ecctrl
-                camCollision={true} // disable camera collision detect (useless in FP mode)
-                camInitDis={-0.1} // camera intial position
-                camMinDis={-0.01} // camera zoom in closest position
-                camFollowMult={1000} // give a big number here, so the camera follows the target (character) instantly
-                camLerpMult={1000} // give a big number here, so the camera lerp to the followCam position instantly
-                turnVelMultiplier={1} // Turning speed same as moving speed
-                turnSpeed={100} // give it big turning speed to prevent turning wait time
-                mode="CameraBasedMovement"
-                camTargetPos={{ x: 0, y: 3, z: 0 }}
+        <>
+            <KeyboardControls map={keyboardMap}>
+                <Ecctrl
+                    camCollision={true} // disable camera collision detect (useless in FP mode)
+                    camInitDis={-0.1} // camera intial position
+                    camMinDis={-0.01} // camera zoom in closest position
+                    camFollowMult={1000} // give a big number here, so the camera follows the target (character) instantly
+                    camLerpMult={1000} // give a big number here, so the camera lerp to the followCam position instantly
+                    turnVelMultiplier={1} // Turning speed same as moving speed
+                    turnSpeed={100} // give it big turning speed to prevent turning wait time
+                    mode="CameraBasedMovement"
+                    floatHeight={0}
+                    camTargetPos={{ x: 0, y: 3, z: 0 }}
 
 
 
-                // Keyboard control configuration
-                keyboardControls={{
-                    forward: 'ArrowUp',
-                    backward: 'ArrowDown',
-                    leftward: 'ArrowLeft',
-                    rightward: 'ArrowRight',
-                    jump: 'Space',
-                    sprint: 'Shift'
-                }}
-            >
-                {/* Adjust mesh to be taller */}
-                <RigidBody type="fixed" colliders="trimesh">
-                    <mesh visible={false} >
-                        <cylinderGeometry args={[0.5, 0.5, 2, 16]} />  // Doubled height from 2 to 4
-                        <meshStandardMaterial color="red" />
-                    </mesh>
-                </RigidBody>
-            </Ecctrl>
-        </KeyboardControls >
+                    // Keyboard control configuration
+                    keyboardControls={{
+                        forward: 'ArrowUp',
+                        backward: 'ArrowDown',
+                        leftward: 'ArrowLeft',
+                        rightward: 'ArrowRight',
+                        jump: 'Space',
+                        sprint: 'Shift'
+                    }}
+                >
+                    {/* Adjust mesh to be taller */}
+                    <RigidBody type="fixed" colliders="trimesh">
+                        <mesh visible={false} >
+                            <cylinderGeometry args={[0.5, 0.5, 2, 16]} />  // Doubled height from 2 to 4
+                            <meshStandardMaterial color="red" />
+                        </mesh>
+                    </RigidBody>
+                </Ecctrl>
+            </KeyboardControls >
+        </>
     )
 }
 
@@ -625,6 +674,13 @@ export default function StoreScene({ openModal }) {
     }, []);
 
     const model = useGLTF("models/cashregister.glb")
+    model.scene.traverse((child) => {
+        if (child.isMesh) { // Check if the child is a Mesh (i.e., a 3D object with geometry and material)
+            child.castShadow = true; // Enable shadow casting
+            child.receiveShadow = true; // Enable shadow receiving
+        }
+    });
+
 
     const handleArcadeClick = () => {
         openModal(
@@ -675,6 +731,9 @@ export default function StoreScene({ openModal }) {
         );
     };
 
+    console.log(model.scene.children);
+
+
 
     return (
         <>
@@ -707,9 +766,10 @@ export default function StoreScene({ openModal }) {
             >
                 {/* <CameraController /> */}
                 <Suspense fallback={null}>
-                    <ambientLight intensity={0.5} color={0xffbbff} />
-                    {/* <directionalLight
-                        position={[0, 25, 5]}
+                    <ambientLight intensity={0.5} color={0xffffff} />
+                    {/* <Environment files={"textures/lim4.hdr"} background intensity={0.5} /> */}
+                    <directionalLight
+                        position={[-10, 10, 0]}
                         intensity={2}
                         castShadow
                         shadow-mapSize-width={2048}
@@ -720,7 +780,7 @@ export default function StoreScene({ openModal }) {
                         shadow-camera-right={20}
                         shadow-camera-top={20}
                         shadow-camera-bottom={-20}
-                    /> */}
+                    />
                     <Physics>
                         <Player />
                         <hemisphereLight intensity={0.3} color="#ffffff" groundColor="#bbbbff" />
@@ -733,8 +793,7 @@ export default function StoreScene({ openModal }) {
                         <Shelf position={[6.5, 0, -6.5]} name="Shelf 4" color="yellow" onClick={handleShelf4Click} />
                         <Shelf position={[6.5, 0, 0]} name="Shelf 5" color="purple" onClick={handleShelf5Click} />
                         <Shelf position={[6.5, 0, 6.5]} name="Shelf 6" color="orange" onClick={handleShelf6Click} />
-                        {/* <ArcadeGame position={[0, -2, 7]} onClick={handleArcadeClick} /> */}
-                        {/* <Arcademodel /> */}
+
                         <RigidBody type="fixed" colliders="trimesh">
                             <primitive
                                 object={model.scene}
