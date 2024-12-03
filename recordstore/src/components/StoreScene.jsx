@@ -97,15 +97,69 @@ function ArcadeGame({ position, onClick }) {
 
 
 
-function Shelf({ position, name, color, onClick }) {
+// function Shelf({ position, name, color, onClick }) {
 
+
+//     return (
+//         <RigidBody type="fixed" colliders="trimesh">
+//             <group position={position} onClick={(e) => {
+//                 e.stopPropagation()
+//                 onClick();
+//             }}>
+//                 <Box args={[0.1, 4, 0.1]} position={[-1.45, 0, 0]} castShadow receiveShadow>
+//                     <meshStandardMaterial color="#8B4513" />
+//                 </Box>
+//                 <Box args={[0.1, 4, 0.1]} position={[1.45, 0, 0]} castShadow receiveShadow>
+//                     <meshStandardMaterial color="#8B4513" />
+//                 </Box>
+
+//                 {[-1.8, -0.6, 0.6, 1.8].map((y, index) => (
+//                     <group key={index}>
+//                         <Box args={[3, 0.1, 1]} position={[0, y, 0]} castShadow receiveShadow>
+//                             <meshStandardMaterial color="#A0522D" />
+//                         </Box>
+//                         {[-1, 0, 1].map((x, i) => (
+//                             <VinylTile key={i} position={[x, y + 0.4, -0.2]} color={color} />
+//                         ))}
+//                     </group>
+//                 ))}
+
+//                 <group position={[0, 2.7, 0]}>
+//                     <Box args={[1.5, 0.5, 0.05]} castShadow receiveShadow>
+//                         <meshStandardMaterial color="white" />
+//                     </Box>
+//                     {[0, Math.PI].map((rotation, index) => (
+//                         <Text key={index} position={[0, 0, 0.03 * (index === 0 ? 1 : -1)]} fontSize={0.2} color="black" rotation={[0, rotation, 0]}>
+//                             {name}
+//                         </Text>
+//                     ))}
+//                 </group>
+
+
+//             </group>
+//         </RigidBody>
+//     )
+// }
+
+
+
+function Shelf({ position, name, folderName, onClick }) {
+    // Load textures dynamically from the specified folder
+    const textures = useLoader(
+        THREE.TextureLoader,
+        Array.from({ length: 12 }, (_, i) => `/${folderName}/image${i + 1}.jpg`)
+    );
 
     return (
         <RigidBody type="fixed" colliders="trimesh">
-            <group position={position} onClick={(e) => {
-                e.stopPropagation()
-                onClick();
-            }}>
+            <group
+                position={position}
+                onClick={(e) => {
+                    e.stopPropagation();
+                    onClick();
+                }}
+            >
+                {/* Vertical Supports */}
                 <Box args={[0.1, 4, 0.1]} position={[-1.45, 0, 0]} castShadow receiveShadow>
                     <meshStandardMaterial color="#8B4513" />
                 </Box>
@@ -113,33 +167,49 @@ function Shelf({ position, name, color, onClick }) {
                     <meshStandardMaterial color="#8B4513" />
                 </Box>
 
-                {[-1.8, -0.6, 0.6, 1.8].map((y, index) => (
-                    <group key={index}>
+                {/* Shelves with Tiles */}
+                {[-1.8, -0.6, 0.6, 1.8].map((y, shelfIndex) => (
+                    <group key={shelfIndex}>
+                        {/* Shelf Plank */}
                         <Box args={[3, 0.1, 1]} position={[0, y, 0]} castShadow receiveShadow>
                             <meshStandardMaterial color="#A0522D" />
                         </Box>
-                        {[-1, 0, 1].map((x, i) => (
-                            <VinylTile key={i} position={[x, y + 0.4, -0.2]} color={color} />
-                        ))}
+
+                        {/* Vinyl Tiles */}
+                        {[-1, 0, 1].map((x, tileIndex) => {
+                            const textureIndex = shelfIndex * 3 + tileIndex; // Calculate texture index
+                            return (
+                                <Box key={tileIndex} args={[0.8, 0.8, 0.025]} position={[x, y + 0.4, -0.2]}>
+                                    <meshStandardMaterial map={textures[textureIndex]} />
+                                </Box>
+                            );
+                        })}
                     </group>
                 ))}
 
+                {/* Label */}
                 <group position={[0, 2.7, 0]}>
                     <Box args={[1.5, 0.5, 0.05]} castShadow receiveShadow>
                         <meshStandardMaterial color="white" />
                     </Box>
                     {[0, Math.PI].map((rotation, index) => (
-                        <Text key={index} position={[0, 0, 0.03 * (index === 0 ? 1 : -1)]} fontSize={0.2} color="black" rotation={[0, rotation, 0]}>
+                        <Text
+                            key={index}
+                            position={[0, 0, 0.03 * (index === 0 ? 1 : -1)]}
+                            fontSize={0.2}
+                            color="black"
+                            rotation={[0, rotation, 0]}
+                        >
                             {name}
                         </Text>
                     ))}
                 </group>
-
-
             </group>
         </RigidBody>
-    )
+    );
 }
+
+
 
 
 
@@ -406,16 +476,39 @@ function NeonTube({ position, tpx, tpz }) {
 
 // Update Room to receive shadows
 function Room() {
-
+    {/* Loaded Models, Textures, and resizes */ }
     const bSpeaker1 = useLoader(GLTFLoader, "models/Speaker2.glb")
     const bSpeaker2 = useLoader(GLTFLoader, "models/Speaker3.glb")
-    const tree = useLoader(GLTFLoader, "models/Palmtree.glb")
+
+    const pBig1 = useLoader(GLTFLoader, "models/potted_big.gltf")
+    pBig1.scene.traverse((child) => {
+        if (child.isMesh) { // Check if the child is a Mesh (i.e., a 3D object with geometry and material)
+            child.castShadow = true; // Enable shadow casting
+            child.receiveShadow = true; // Enable shadow receiving
+        }
+    });
+
+    const outside = useLoader(GLTFLoader, "models/outside.glb")
+    outside.scene.traverse((child) => {
+        if (child.isMesh) { // Check if the child is a Mesh (i.e., a 3D object with geometry and material)
+            child.castShadow = true; // Enable shadow casting
+            child.receiveShadow = true; // Enable shadow receiving
+        }
+    });
+
+    const pBigClone1 = pBig1.scene.clone();
+    const pBigClone2 = pBig1.scene.clone();
+    const pBigClone3 = pBig1.scene.clone();
+
+    const tree = useLoader(GLTFLoader, "models/tree2.gltf")
     tree.scene.traverse((child) => {
         if (child.isMesh) { // Check if the child is a Mesh (i.e., a 3D object with geometry and material)
             child.castShadow = true; // Enable shadow casting
             child.receiveShadow = true; // Enable shadow receiving
         }
     });
+    console.log(tree.scene)
+
     const grass = useLoader(TextureLoader, 'textures/grass.jpg')
     grass.wrapS = THREE.RepeatWrapping; // Repeat wrapping in S direction
     grass.wrapT = THREE.RepeatWrapping; // Repeat wrapping in T direction
@@ -424,8 +517,6 @@ function Room() {
     rconc.wrapS = THREE.RepeatWrapping; // Repeat wrapping in S direction
     rconc.wrapT = THREE.RepeatWrapping; // Repeat wrapping in T direction
     rconc.repeat.set(0.6, 0.1); // Repeat 4x4 times
-    // const grammy = useLoader(GLTFLoader, "models/grammy_award.glb")
-    //const recordPlayer = useLoader(GLTFLoader, "models/record_player.glb")
 
     const texture = useLoader(TextureLoader, 'textures/wood3.jpg')
     texture.wrapS = THREE.MirroredRepeatWrapping; // Repeat wrapping in S direction
@@ -472,6 +563,7 @@ function Room() {
                         <meshStandardMaterial  {...dpProps} reflectivity={0} color={[1, 1, 1]} />
                     </Box>
                 </RigidBody>
+
                 {/*Carpet*/}
                 <RigidBody type="fixed" colliders="trimesh">
                     <Box args={[25, 0.1, 25]} position={[0, -1.9, 0]} receiveShadow>
@@ -479,6 +571,7 @@ function Room() {
                     </Box>
                 </RigidBody>
 
+                {/*Courtyard Grass*/}
                 <Box args={[20, 0.1, 32]} position={[-35, -1.5, 0]} receiveShadow>
                     <meshStandardMaterial map={grass} color={[1.2, 1.2, 1.2]} normalScale={[2, 2]} />
                 </Box>
@@ -487,9 +580,12 @@ function Room() {
                 <Box args={[50, 0.1, 30]} position={[0, 8, 0]} receiveShadow>
                     <meshStandardMaterial color="#DCDCDC" />
                 </Box>
+
+                {/*POP*/}
                 <Box args={[30, 1, 20]} position={[0, 8, 0]} receiveShadow>
                     <meshStandardMaterial color="#efefef" />
                 </Box>
+
                 {/*Central Bulb*/}
                 <HangingBulb position={[0, 7, 12]} />
                 {/* <FlatLight position={[7, 7, -12.5]} tp={10} /> */}
@@ -498,70 +594,89 @@ function Room() {
                 <SmallFlatLight position={[-7, 7.5, -12.5]} tpx={-7} tpz={-12.5} />
 
 
-
                 {/* Wall with window */}
+                {/*Bottom Window Wall*/}
                 <group position={[-25, -1.5, 0]} rotation={[0, 0, 0]}>
                     <Box args={[2, 3, 30]} receiveShadow castShadow>
                         <meshStandardMaterial color="#F5F5F5" />
                     </Box>
                 </group>
+
+                {/*Glass Window Wall*/}
                 <group position={[-25, 3, 0]} rotation={[0, 0, 0]}>
                     <Box args={[0.1, 6.5, 25]} receiveShadow castShadow>
-                        <meshPhysicalMaterial transmission={1} thickness={0.25} depthWrite={false} roughness={0} clearcoat={1} color={"#aaaabb"} />
+                        <meshPhysicalMaterial transmission={1} thickness={0} depthWrite={false} roughness={0} clearcoat={1} color={"#aaaabb"} />
                     </Box>
-
                 </group>
+
+                {/*Top Window Wall*/}
                 <group position={[-25, 7.5, 0]} rotation={[0, 0, 0]}>
                     <Box args={[2, 3, 30]} receiveShadow castShadow>
                         <meshStandardMaterial color="#F5F5F5" />
                     </Box>
                 </group>
+
+                {/*Inner Right*/}
                 <group position={[-25, 5, -15]} rotation={[0, 0, 0]}>
                     <Box args={[1, 10, 5]} receiveShadow castShadow>
                         <meshStandardMaterial color="#F5F5F5" />
                     </Box>
                 </group>
+
+                {/*Inner Left*/}
                 <group position={[-25, 5, 15]} rotation={[0, 0, 0]}>
                     <Box args={[1, 10, 5]} receiveShadow castShadow>
                         <meshStandardMaterial color="#F5F5F5" />
                     </Box>
                 </group>
+
+                {/*Poster Wall*/}
                 <group position={[25, 3, 0]} rotation={[0, Math.PI, 0]}>
                     <Box args={[0.1, 10, 30]} receiveShadow castShadow>
                         <meshStandardMaterial color="#F5F5F5" />
                     </Box>
                 </group>
 
-                {/*external garden wall*/}
+                {/*external garden walls*/}
                 <Box args={[26, 5, 0.1]} position={[-32, 0, -16]} receiveShadow castShadow>
                     <meshStandardMaterial color="#eeeeee" opacity={0} />
                 </Box>
                 <Box args={[26, 5, 0.1]} position={[-32, 0, 16]} receiveShadow castShadow>
                     <meshStandardMaterial color="#dddddd" />
                 </Box>
-
                 <Box args={[0.1, 5, 32]} position={[-45, 0, 0]} receiveShadow castShadow>
                     <meshStandardMaterial color="#ffffff" />
                 </Box>
-
+                {/*Tree*/}
+                <primitive
+                    object={tree.scene}
+                    position={[-33, -1, 0]}
+                    rotation={[0, Math.PI / -1, 0]} // Rotate 90 degrees along the Y-axis
+                    scale={[1.5, 1.5, 1.5]}
+                    castShadow
+                    receiveShadow
+                />
 
                 {/* Front and back walls */}
                 {/* Front wall with door and posters */}
                 <Box args={[50, 10, 0.1]} position={[0, 3, -15]}>
                     <meshStandardMaterial color="#F5F5F5" />
                 </Box>
-
                 <Door position={[0, 1.5, -14.9]} />
                 <Poster position={[-15, 3, -14.8]} color="#FF6347" />
                 <Poster position={[15, 3, -14.8]} color="#4682B4" />
+
                 {/* Back wall */}
                 <Box args={[50, 10, 0.1]} position={[0, 3, 15]}>
                     <meshStandardMaterial color="#F5F5F5" />
                 </Box>
+
                 {/*shelf panel*/}
                 <Box args={[27.5, 8, 0.1]} position={[0, 2, 14.9]}>
                     <meshStandardMaterial map={texture} />
                 </Box>
+
+                {/*Speaker*/}
                 <primitive
                     object={bSpeaker1.scene}
                     position={[12.2, 4, 14.25]}
@@ -570,15 +685,7 @@ function Room() {
                     castShadow
                     receiveShadow
                 />
-                {/*Tree*/}
-                <primitive
-                    object={tree.scene}
-                    position={[-37, -1, 11]}
-                    rotation={[0, Math.PI / -1, 0]} // Rotate 90 degrees along the Y-axis
-                    scale={[0.50, 0.50, 0.50]}
-                    castShadow
-                    receiveShadow
-                />
+                {/*Speaker*/}
                 <primitive
                     object={bSpeaker2.scene}
                     position={[-12.2, 4, 14.25]}
@@ -588,13 +695,50 @@ function Room() {
                     receiveShadow
                 />
 
+                {/*Big Plant*/}
+                <primitive
+                    object={pBig1.scene}
+                    position={[-22, -2, -13]}
+                    rotation={[0, Math.PI / -3, 0]} // Rotate 90 degrees along the Y-axis
+                    scale={[4, 4, 4]}
+                    castShadow
+                    receiveShadow
+                />
+
+                {/*Big Plant Clone 1*/}
+                <primitive
+                    object={pBigClone1}
+                    position={[22, -2, -13]}
+                    rotation={[0, Math.PI / -2, 0]} // Rotate 90 degrees along the Y-axis
+                    scale={[4, 4, 4]}
+                    castShadow
+                    receiveShadow
+                />
+
+                {/*Big Plant Clone 2*/}
+                <primitive
+                    object={pBigClone2}
+                    position={[22, -2, 13]}
+                    rotation={[0, Math.PI / -7, 0]} // Rotate 90 degrees along the Y-axis
+                    scale={[4, 4, 4]}
+                    castShadow
+                    receiveShadow
+                />
+
+                {/*Big Plant Clone 3*/}
+                <primitive
+                    object={pBigClone3}
+                    position={[-22, -2, 13]}
+                    rotation={[0, Math.PI / -2, 0]} // Rotate 90 degrees along the Y-axis
+                    scale={[4, 4, 4]}
+                    castShadow
+                    receiveShadow
+                />
 
                 {/* Tables */}
                 <TableOne position={[-19.5, -1.5, 0]} />
                 <TableTwo position={[19.5, -1.5, 0]} />
                 <FloatingShelves />
-                {/* Welcome Sign */}
-                {/* <WelcomeSign /> */}
             </group>
         </RigidBody>
     )
@@ -657,8 +801,8 @@ function Player() {
 }
 
 
-export default function StoreScene({ openModal }) {
 
+export default function StoreScene({ openModal }) {
     const [cFov, setCFov] = useState(65); // Default FOV
 
     useEffect(() => {
@@ -674,66 +818,32 @@ export default function StoreScene({ openModal }) {
     }, []);
 
     const model = useGLTF("models/cashregister.glb")
+
+    // Traverse and set shadow properties for the model
     model.scene.traverse((child) => {
-        if (child.isMesh) { // Check if the child is a Mesh (i.e., a 3D object with geometry and material)
-            child.castShadow = true; // Enable shadow casting
-            child.receiveShadow = true; // Enable shadow receiving
+        if (child.isMesh) {
+            child.castShadow = true;
+            child.receiveShadow = true;
         }
     });
 
-
+    // Click handlers for different interactive elements
     const handleArcadeClick = () => {
-        openModal(
-            "Arcade Game",
-            Arcade
-        );
+        openModal("Arcade Game", Arcade);
     };
 
-    const handleShelf1Click = () => {
-        openModal(
-            "Shelf 1",
-            Shelf1
-        );
+    const handleShelfClick = (shelfNumber) => {
+        const shelfModals = {
+            1: Shelf1,
+            2: Shelf2,
+            3: Shelf3,
+            4: Shelf4,
+            5: Shelf5,
+            6: Shelf6
+        };
+
+        openModal(`Shelf ${shelfNumber}`, shelfModals[shelfNumber]);
     };
-
-    const handleShelf2Click = () => {
-        openModal(
-            "Shelf 2",
-            Shelf2
-        );
-    };
-
-    const handleShelf3Click = () => {
-        openModal(
-            "Shelf 3",
-            Shelf3
-        );
-    };
-
-    const handleShelf4Click = () => {
-        openModal(
-            "Shelf 4",
-            Shelf4
-        );
-    };
-
-    const handleShelf5Click = () => {
-        openModal(
-            "Shelf 5",
-            Shelf5
-        );
-    };
-
-    const handleShelf6Click = () => {
-        openModal(
-            "Shelf 6",
-            Shelf6
-        );
-    };
-
-    console.log(model.scene.children);
-
-
 
     return (
         <>
@@ -744,32 +854,32 @@ export default function StoreScene({ openModal }) {
                 joystickBaseProps={{
                     receiveShadow: true,
                     scale: [0.55, 0.55, 0.55],
-                    material: new THREE.MeshBasicMaterial({ color: "#8f8f8f" })  // Medium grey
+                    material: new THREE.MeshBasicMaterial({ color: "#8f8f8f" })
                 }}
                 joystickStickProps={{
                     castShadow: true,
                     scale: [0.65, 0.65, 0.65],
-                    material: new THREE.MeshBasicMaterial({ color: "#A9A9A9" })  // Darker grey
+                    material: new THREE.MeshBasicMaterial({ color: "#A9A9A9" })
                 }}
                 joystickHandleProps={{
                     scale: [0.7, 0.7, 0.7],
-                    material: new THREE.MeshBasicMaterial({ color: "#D3D3D3" })  // Lighter grey
+                    material: new THREE.MeshBasicMaterial({ color: "#D3D3D3" })
                 }}
             />
             <Canvas
                 camera={{
-                    position: [0, 5, -15], fov: cFov,
-
+                    position: [0, 5, -15],
+                    fov: cFov,
                 }}
-                style={{ width: '100vw', height: '100vh' }} className="relative"
+                style={{ width: '100vw', height: '100vh' }}
+                className="relative"
                 shadows
             >
-                {/* <CameraController /> */}
                 <Suspense fallback={null}>
                     <ambientLight intensity={0.5} color={0xffffff} />
-                    {/* <Environment files={"textures/lim4.hdr"} background intensity={0.5} /> */}
+
                     <directionalLight
-                        position={[-10, 10, 0]}
+                        position={[-10, 10, 4]}
                         intensity={2}
                         castShadow
                         shadow-mapSize-width={2048}
@@ -781,40 +891,81 @@ export default function StoreScene({ openModal }) {
                         shadow-camera-top={20}
                         shadow-camera-bottom={-20}
                     />
+
                     <Physics>
                         <Player />
-                        <hemisphereLight intensity={0.3} color="#ffffff" groundColor="#bbbbff" />
-                        <Sky sunPosition={[20, 5, 0]} turbidity={0.1} rayleigh={0.5} />
+
+                        <hemisphereLight
+                            intensity={0.3}
+                            color="#ffffff"
+                            groundColor="#bbbbff"
+                        />
+
+                        <Sky
+                            sunPosition={[20, 5, 0]}
+                            turbidity={0.1}
+                            rayleigh={0.5}
+                        />
 
                         <Room />
-                        <Shelf position={[-6.5, 0, -6.5]} name="Shelf 1" color="red" onClick={handleShelf1Click} />
-                        <Shelf position={[-6.5, 0, 0]} name="Shelf 2" color="blue" onClick={handleShelf2Click} />
-                        <Shelf position={[-6.5, 0, 6.5]} name="Shelf 3" color="green" onClick={handleShelf3Click} />
-                        <Shelf position={[6.5, 0, -6.5]} name="Shelf 4" color="yellow" onClick={handleShelf4Click} />
-                        <Shelf position={[6.5, 0, 0]} name="Shelf 5" color="purple" onClick={handleShelf5Click} />
-                        <Shelf position={[6.5, 0, 6.5]} name="Shelf 6" color="orange" onClick={handleShelf6Click} />
+
+                        {/* Shelves with dynamic click handling */}
+                        <Shelf
+                            position={[-6.5, 0, -6.5]}
+                            name="Shelf 1"
+                            folderName="testA"
+                            onClick={() => handleShelfClick(1)}
+                        />
+                        <Shelf
+                            position={[-6.5, 0, 0]}
+                            name="Shelf 2"
+                            folderName="testA"
+                            onClick={() => handleShelfClick(2)}
+                        />
+                        <Shelf
+                            position={[-6.5, 0, 6.5]}
+                            name="Shelf 3"
+                            folderName="testA"
+                            onClick={() => handleShelfClick(3)}
+                        />
+                        <Shelf
+                            position={[6.5, 0, -6.5]}
+                            name="Shelf 4"
+                            folderName="testA"
+                            onClick={() => handleShelfClick(4)}
+                        />
+                        <Shelf
+                            position={[6.5, 0, 0]}
+                            name="Shelf 5"
+                            folderName="testA"
+                            onClick={() => handleShelfClick(5)}
+                        />
+                        <Shelf
+                            position={[6.5, 0, 6.5]}
+                            name="Shelf 6"
+                            folderName="testA"
+                            onClick={() => handleShelfClick(6)}
+                        />
 
                         <RigidBody type="fixed" colliders="trimesh">
                             <primitive
                                 object={model.scene}
                                 position={[0, -3, 10]}
-                                rotation={[0, Math.PI / -1, 0]} // Rotate 90 degrees along the Y-axis
+                                rotation={[0, Math.PI / -1, 0]}
                                 scale={[1.25, 1.25, 1.25]}
-                                onClick={handleArcadeClick}                     // Scale uniformly by 2
+                                onClick={handleArcadeClick}
                                 castShadow
                                 onPointerOver={(e) => (document.body.style.cursor = "pointer")}
                                 onPointerOut={(e) => (document.body.style.cursor = "auto")}
                                 receiveShadow
                             />
-
                         </RigidBody>
-                        {/* <Till /> */}
                     </Physics>
+
                     <OrbitControls />
                     <Effects />
                 </Suspense>
             </Canvas>
         </>
-
     )
 }

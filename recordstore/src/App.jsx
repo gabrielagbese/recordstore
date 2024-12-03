@@ -1,5 +1,6 @@
 import React, { useState, startTransition, Suspense } from 'react';
 import LandingPage from './components/LandingPage';
+import LoadingScreen from './components/LoadingScreen';
 
 const StoreScene = React.lazy(() => import('./components/StoreScene'));
 
@@ -35,7 +36,7 @@ function App() {
       {!hasEntered ? (
         <LandingPage onEnter={handleEnter} />
       ) : (
-        <Suspense fallback={<div>Loading Store...</div>}>
+        <Suspense fallback={<LoadingScreen />}>
           <div className="relative w-screen h-screen">
             <StoreScene openModal={openModal} />
 
