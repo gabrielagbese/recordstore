@@ -42,15 +42,21 @@ function App() {
 
             {modalState.isOpen && (
               <div className="fixed inset-0 z-50 flex items-center justify-center bg-opacity-50 bg-blue">
-                <div className="w-full max-w-sm p-6 bg-white rounded-lg">
-                  <h2 className="mb-4 text-xl font-bold text-red-600">{modalState.title}</h2>
-                  {modalState.ModalContent && <modalState.ModalContent />}
+                <div className="w-11/12 max-h-[80vh] bg-white rounded-lg shadow-xl flex flex-col overflow-hidden
+                      sm:w-[480px] sm:h-[500px]
+                      md:w-[640px] md:h-[600px]
+                      lg:w-[600px] lg:h-[600px]">
                   <button
                     onClick={closeModal}
-                    className="px-4 py-2 mt-4 text-white bg-blue-500 rounded"
+                    className="px-4 py-2 mx-4 mt-4 text-white rounded w-min bg-zinc-900 "
                   >
                     Close
                   </button>
+                  {/* <h2 className="mb-4 text-xl font-bold text-red-600">{modalState.title}</h2> */}
+                  <div className="flex-1 p-6 overflow-y-auto">
+                    {modalState.ModalContent && <modalState.ModalContent />}
+                  </div>
+
                 </div>
               </div>
             )}

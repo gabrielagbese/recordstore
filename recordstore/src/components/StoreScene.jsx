@@ -5,7 +5,7 @@ import * as THREE from 'three'
 import Ecctrl from 'ecctrl'
 import { EcctrlJoystick } from "ecctrl";
 import { Physics, RigidBody } from '@react-three/rapier'
-
+import { Perf } from 'r3f-perf'
 import { useTexture } from '@react-three/drei'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { TextureLoader } from 'three'
@@ -17,6 +17,8 @@ import Shelf4 from './modal-components/Shelf4'
 import Shelf3 from './modal-components/Shelf3'
 import Shelf2 from './modal-components/Shelf2'
 import Effects from './Effects'
+import News from './modal-components/News'
+import NewspaperStand from './modal-components/NewspaperStand'
 
 function VinylTile({ position, color }) {
     return (
@@ -60,94 +62,13 @@ function Modal({ isOpen, onClose, title, content }) {
     );
 }
 
-function ArcadeGame({ position, onClick }) {
-    return (
-        <group position={position} onClick={(e) => {
-            e.stopPropagation(); // Prevent event bubbling
-            onClick(); // Directly call the onClick handler
-        }} rotation-y={3.1}>
-            {/* Cabinet */}
-            <Box args={[4, 6, 2]} position={[0, 3, 0]} castShadow receiveShadow>
-                <meshStandardMaterial color="#4a4a4a" />
-            </Box>
-            {/* Screen */}
-            <Box args={[3.5, 2.5, 0.1]} position={[0, 4.5, 1.05]} castShadow receiveShadow>
-                <meshStandardMaterial color="#000000" />
-            </Box>
-            {/* Control Panel */}
-            <Box args={[3.5, 1, 1.5]} position={[0, 2, 0.75]} rotation={[-Math.PI / 6, 0, 0]} castShadow receiveShadow>
-                <meshStandardMaterial color="#2c3e50" />
-            </Box>
-            {/* Joystick */}
-            <group position={[-0.75, 2.3, 1.2]}>
-                <Cylinder args={[0.1, 0.1, 0.5, 16]} rotation={[Math.PI / 2, 0, 0]} castShadow receiveShadow>
-                    <meshStandardMaterial color="#e74c3c" />
-                </Cylinder>
-
-            </group>
-            {/* Buttons */}
-            {[0, 0.5, 1].map((x, i) => (
-                <Cylinder key={i} args={[0.15, 0.15, 0.1, 16]} position={[x, 2.3, 1.2]} rotation={[Math.PI / 2, 0, 0]}>
-                    <meshStandardMaterial color={["#3498db", "#2ecc71", "#f1c40f"][i]} />
-                </Cylinder>
-            ))}
-        </group>
-    )
-}
-
-
-
-// function Shelf({ position, name, color, onClick }) {
-
-
-//     return (
-//         <RigidBody type="fixed" colliders="trimesh">
-//             <group position={position} onClick={(e) => {
-//                 e.stopPropagation()
-//                 onClick();
-//             }}>
-//                 <Box args={[0.1, 4, 0.1]} position={[-1.45, 0, 0]} castShadow receiveShadow>
-//                     <meshStandardMaterial color="#8B4513" />
-//                 </Box>
-//                 <Box args={[0.1, 4, 0.1]} position={[1.45, 0, 0]} castShadow receiveShadow>
-//                     <meshStandardMaterial color="#8B4513" />
-//                 </Box>
-
-//                 {[-1.8, -0.6, 0.6, 1.8].map((y, index) => (
-//                     <group key={index}>
-//                         <Box args={[3, 0.1, 1]} position={[0, y, 0]} castShadow receiveShadow>
-//                             <meshStandardMaterial color="#A0522D" />
-//                         </Box>
-//                         {[-1, 0, 1].map((x, i) => (
-//                             <VinylTile key={i} position={[x, y + 0.4, -0.2]} color={color} />
-//                         ))}
-//                     </group>
-//                 ))}
-
-//                 <group position={[0, 2.7, 0]}>
-//                     <Box args={[1.5, 0.5, 0.05]} castShadow receiveShadow>
-//                         <meshStandardMaterial color="white" />
-//                     </Box>
-//                     {[0, Math.PI].map((rotation, index) => (
-//                         <Text key={index} position={[0, 0, 0.03 * (index === 0 ? 1 : -1)]} fontSize={0.2} color="black" rotation={[0, rotation, 0]}>
-//                             {name}
-//                         </Text>
-//                     ))}
-//                 </group>
-
-
-//             </group>
-//         </RigidBody>
-//     )
-// }
-
 
 
 function Shelf({ position, name, folderName, onClick }) {
     // Load textures dynamically from the specified folder
     const textures = useLoader(
         THREE.TextureLoader,
-        Array.from({ length: 12 }, (_, i) => `/${folderName}/image${i + 1}.jpg`)
+        Array.from({ length: 12 }, (_, i) => `/${folderName}/image${12 - i}.jpg`)
     );
 
     return (
@@ -343,7 +264,7 @@ function Sun() {
 
 function FloatingShelf({ position }) {
     return (
-        <Box args={[27.5, 0.1, 1]} position={position} castShadow receiveShadow>
+        <Box args={[10, 0.1, 1]} position={position} castShadow receiveShadow>
             <meshStandardMaterial color="#8B4513" />
         </Box>
     )
@@ -477,8 +398,34 @@ function NeonTube({ position, tpx, tpz }) {
 // Update Room to receive shadows
 function Room() {
     {/* Loaded Models, Textures, and resizes */ }
+
+
+
     const bSpeaker1 = useLoader(GLTFLoader, "models/Speaker2.glb")
     const bSpeaker2 = useLoader(GLTFLoader, "models/Speaker3.glb")
+
+    const record = useLoader(GLTFLoader, "models/record_player_table.glb")
+    record.scene.traverse((child) => {
+        if (child.isMesh) { // Check if the child is a Mesh (i.e., a 3D object with geometry and material)
+            child.castShadow = true; // Enable shadow casting
+            child.receiveShadow = true; // Enable shadow receiving
+        }
+    });
+
+    const tallPLant = useLoader(GLTFLoader, "models/tall_house_plant.glb")
+    tallPLant.scene.traverse((child) => {
+        if (child.isMesh) { // Check if the child is a Mesh (i.e., a 3D object with geometry and material)
+            child.castShadow = true; // Enable shadow casting
+            child.receiveShadow = true; // Enable shadow receiving
+        }
+    });
+    const tall2 = tallPLant.scene.clone()
+
+    const wiz = useLoader(TextureLoader, 'img/wiz.jpg')
+    const burna = useLoader(TextureLoader, 'img/burna.jpg')
+    const david = useLoader(TextureLoader, 'img/david.jpg')
+
+
 
     const pBig1 = useLoader(GLTFLoader, "models/potted_big.gltf")
     pBig1.scene.traverse((child) => {
@@ -500,14 +447,7 @@ function Room() {
     const pBigClone2 = pBig1.scene.clone();
     const pBigClone3 = pBig1.scene.clone();
 
-    const tree = useLoader(GLTFLoader, "models/tree2.gltf")
-    tree.scene.traverse((child) => {
-        if (child.isMesh) { // Check if the child is a Mesh (i.e., a 3D object with geometry and material)
-            child.castShadow = true; // Enable shadow casting
-            child.receiveShadow = true; // Enable shadow receiving
-        }
-    });
-    console.log(tree.scene)
+
 
     const grass = useLoader(TextureLoader, 'textures/grass.jpg')
     grass.wrapS = THREE.RepeatWrapping; // Repeat wrapping in S direction
@@ -547,9 +487,6 @@ function Room() {
         dtexture.wrapT = THREE.RepeatWrapping; // Repeat wrapping in T direction
         dtexture.repeat.set(4, 4); // Repeat 4x4 times
     });
-
-
-
     texture.wrapS = THREE.RepeatWrapping
     texture.wrapT = THREE.RepeatWrapping
     texture.repeat.set(8, 8)
@@ -587,7 +524,7 @@ function Room() {
                 </Box>
 
                 {/*Central Bulb*/}
-                <HangingBulb position={[0, 7, 12]} />
+                <HangingBulb position={[0, 7, 0]} />
                 {/* <FlatLight position={[7, 7, -12.5]} tp={10} /> */}
                 <SmallFlatLight position={[7, 7.5, -12.5]} tpx={7} tpz={-12.5} />
                 {/* <FlatLight position={[-7, 7, -12.5]} tp={-10} /> */}
@@ -636,6 +573,17 @@ function Room() {
                         <meshStandardMaterial color="#F5F5F5" />
                     </Box>
                 </group>
+                {/*Posters*/}
+                <Box args={[0.1, 5, 4]} position={[24.95, 3, 6]} receiveShadow castShadow>
+                    <meshStandardMaterial map={wiz} />
+                </Box>
+                <Box args={[0.1, 5, 4]} position={[24.95, 3, 0]} receiveShadow castShadow>
+                    <meshStandardMaterial map={burna} />
+                </Box>
+                <Box args={[0.1, 5, 4]} position={[24.95, 3, -6]} receiveShadow castShadow>
+                    <meshStandardMaterial map={david} />
+                </Box>
+
 
                 {/*external garden walls*/}
                 <Box args={[26, 5, 0.1]} position={[-32, 0, -16]} receiveShadow castShadow>
@@ -647,15 +595,7 @@ function Room() {
                 <Box args={[0.1, 5, 32]} position={[-45, 0, 0]} receiveShadow castShadow>
                     <meshStandardMaterial color="#ffffff" />
                 </Box>
-                {/*Tree*/}
-                <primitive
-                    object={tree.scene}
-                    position={[-33, -1, 0]}
-                    rotation={[0, Math.PI / -1, 0]} // Rotate 90 degrees along the Y-axis
-                    scale={[1.5, 1.5, 1.5]}
-                    castShadow
-                    receiveShadow
-                />
+
 
                 {/* Front and back walls */}
                 {/* Front wall with door and posters */}
@@ -672,14 +612,14 @@ function Room() {
                 </Box>
 
                 {/*shelf panel*/}
-                <Box args={[27.5, 8, 0.1]} position={[0, 2, 14.9]}>
+                <Box args={[10, 8, 0.1]} position={[0, 2, 14.9]}>
                     <meshStandardMaterial map={texture} />
                 </Box>
 
                 {/*Speaker*/}
                 <primitive
                     object={bSpeaker1.scene}
-                    position={[12.2, 4, 14.25]}
+                    position={[4, 4, 14.25]}
                     rotation={[0, Math.PI / -1, 0]} // Rotate 90 degrees along the Y-axis
                     scale={[2, 2, 2]}
                     castShadow
@@ -688,12 +628,22 @@ function Room() {
                 {/*Speaker*/}
                 <primitive
                     object={bSpeaker2.scene}
-                    position={[-12.2, 4, 14.25]}
+                    position={[-4, 4, 14.25]}
                     rotation={[0, Math.PI / -1, 0]} // Rotate 90 degrees along the Y-axis
                     scale={[2, 2, 2]}
                     castShadow
                     receiveShadow
                 />
+
+                <primitive
+                    object={record.scene}
+                    position={[0, -2, 12]}
+                    rotation={[0, Math.PI / -1, 0]} // Rotate 90 degrees along the Y-axis
+                    scale={[0.45, 0.45, 0.45]}
+                    castShadow
+                    receiveShadow
+                />
+
 
                 {/*Big Plant*/}
                 <primitive
@@ -731,6 +681,25 @@ function Room() {
                     position={[-22, -2, 13]}
                     rotation={[0, Math.PI / -2, 0]} // Rotate 90 degrees along the Y-axis
                     scale={[4, 4, 4]}
+                    castShadow
+                    receiveShadow
+                />
+
+                {/*Big Plant Clone 3*/}
+                <primitive
+                    object={tallPLant.scene}
+                    position={[5.5, -1.5, 14]}
+                    rotation={[0, Math.PI / -1.5, 0]} // Rotate 90 degrees along the Y-axis
+                    scale={[0.012, 0.012, 0.012]}
+                    castShadow
+                    receiveShadow
+                />
+
+                <primitive
+                    object={tall2}
+                    position={[-5.5, -1.5, 14]}
+                    rotation={[0, Math.PI / -1, 0]} // Rotate 90 degrees along the Y-axis
+                    scale={[0.012, 0.012, 0.012]}
                     castShadow
                     receiveShadow
                 />
@@ -773,6 +742,7 @@ function Player() {
                     turnSpeed={100} // give it big turning speed to prevent turning wait time
                     mode="CameraBasedMovement"
                     floatHeight={0}
+                    position={[0, 3, -12]}
                     camTargetPos={{ x: 0, y: 3, z: 0 }}
 
 
@@ -832,6 +802,29 @@ export default function StoreScene({ openModal }) {
         openModal("Arcade Game", Arcade);
     };
 
+    const arcade = useLoader(GLTFLoader, "models/Arcade.glb")
+    arcade.scene.traverse((child) => {
+        if (child.isMesh) { // Check if the child is a Mesh (i.e., a 3D object with geometry and material)
+            child.castShadow = true; // Enable shadow casting
+            child.receiveShadow = true; // Enable shadow receiving
+        }
+    });
+
+    const handleNewsClick = (event) => {
+        event.stopPropagation();
+        openModal("News", NewspaperStand);
+    };
+
+
+
+    const news = useLoader(GLTFLoader, "models/newsstand2.glb")
+    news.scene.traverse((child) => {
+        if (child.isMesh) { // Check if the child is a Mesh (i.e., a 3D object with geometry and material)
+            child.castShadow = true; // Enable shadow casting
+            child.receiveShadow = true; // Enable shadow receiving
+        }
+    });
+
     const handleShelfClick = (shelfNumber) => {
         const shelfModals = {
             1: Shelf1,
@@ -847,6 +840,7 @@ export default function StoreScene({ openModal }) {
 
     return (
         <>
+
             <EcctrlJoystick
                 buttonNumber={0}
                 joystickPositionLeft={-20}
@@ -875,9 +869,10 @@ export default function StoreScene({ openModal }) {
                 className="relative"
                 shadows
             >
+
                 <Suspense fallback={null}>
                     <ambientLight intensity={0.5} color={0xffffff} />
-
+                    {/* <Perf /> */}
                     <directionalLight
                         position={[-10, 10, 4]}
                         intensity={2}
@@ -911,61 +906,73 @@ export default function StoreScene({ openModal }) {
 
                         {/* Shelves with dynamic click handling */}
                         <Shelf
-                            position={[-6.5, 0, -6.5]}
-                            name="Shelf 1"
-                            folderName="testA"
+                            position={[-5.5, 0, -6.5]}
+                            name="Pre 2000s"
+                            folderName="pre2000"
                             onClick={() => handleShelfClick(1)}
                         />
                         <Shelf
-                            position={[-6.5, 0, 0]}
-                            name="Shelf 2"
-                            folderName="testA"
+                            position={[-5.5, 0, 0]}
+                            name="2001 - 2005"
+                            folderName="01-04"
                             onClick={() => handleShelfClick(2)}
                         />
                         <Shelf
-                            position={[-6.5, 0, 6.5]}
-                            name="Shelf 3"
-                            folderName="testA"
+                            position={[-5.5, 0, 6.5]}
+                            name="2006-2010"
+                            folderName="06-10"
                             onClick={() => handleShelfClick(3)}
                         />
                         <Shelf
-                            position={[6.5, 0, -6.5]}
-                            name="Shelf 4"
-                            folderName="testA"
+                            position={[5.5, 0, -6.5]}
+                            name="2011-2015"
+                            folderName="11-15"
                             onClick={() => handleShelfClick(4)}
                         />
                         <Shelf
-                            position={[6.5, 0, 0]}
-                            name="Shelf 5"
-                            folderName="testA"
+                            position={[5.5, 0, 0]}
+                            name="2016 - 2019"
+                            folderName="16-20"
                             onClick={() => handleShelfClick(5)}
                         />
                         <Shelf
                             position={[6.5, 0, 6.5]}
-                            name="Shelf 6"
-                            folderName="testA"
+                            name="2020 - 2024"
+                            folderName="20-24"
                             onClick={() => handleShelfClick(6)}
                         />
 
-                        <RigidBody type="fixed" colliders="trimesh">
-                            <primitive
-                                object={model.scene}
-                                position={[0, -3, 10]}
-                                rotation={[0, Math.PI / -1, 0]}
-                                scale={[1.25, 1.25, 1.25]}
-                                onClick={handleArcadeClick}
-                                castShadow
-                                onPointerOver={(e) => (document.body.style.cursor = "pointer")}
-                                onPointerOut={(e) => (document.body.style.cursor = "auto")}
-                                receiveShadow
-                            />
-                        </RigidBody>
+                        {/*News Stand*/}
+                        <primitive
+                            object={news.scene}
+                            position={[-16, -1.925, 14]}
+                            rotation={[0, Math.PI / 1, 0]}
+                            scale={[0.7, 0.575, 0.575]}
+                            onClick={(event) => handleNewsClick(event)}
+                            castShadow
+                            receiveShadow
+                        />
+
+                        {/*Arcade*/}
+                        <primitive
+                            object={arcade.scene}
+                            position={[16, -2, 14.25]}
+                            rotation={[0, Math.PI / 2, 0]} // Rotate 90 degrees along the Y-axis
+                            scale={[1, 2, 2.5]}
+                            onClick={() => handleArcadeClick()}
+                            castShadow
+                            receiveShadow
+                        />
+
+
                     </Physics>
 
                     <OrbitControls />
                     <Effects />
+
                 </Suspense>
             </Canvas>
+
         </>
     )
 }

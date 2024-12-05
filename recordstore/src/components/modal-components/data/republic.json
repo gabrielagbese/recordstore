@@ -1,0 +1,1279 @@
+{
+    "news_results": [
+        {
+            "position": 1,
+            "title": "A Poet and His Divine Inquiry",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL"
+            },
+            "link": "https://republic.com.ng/december-24-january-25/poet-and-his-divine-inquiry/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/11/Oluwapelumi_September-2024.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNXBZbUp3UjA5M1VXeHNaMkkxVFJDaUFSaTNBaWdCTWdZTlVJYVRwQU0",
+            "date": "12/02/2024, 06:12 AM, +0000 UTC"
+        },
+        {
+            "position": 2,
+            "title": "Lagos According to Six Great Musicians",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Emmanuel Esomnofu"]
+            },
+            "link": "https://republic.com.ng/october-november-2024/no-love-in-lagos-review/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/11/Esomnofu_23-September-2024.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNVRZbUl4VkZaQ2MwbFhhazFmVFJDaUFSaTNBaWdCTWdhWlk0aXJxUVk",
+            "date": "11/17/2024, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 3,
+            "title": "The Strange Genius of William Onyeabor",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Emmanuel Esomnofu"]
+            },
+            "link": "https://republic.com.ng/december-24-january-25/the-genius-of-william-onyeabor/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/11/Esomnofu_September-2024.jpg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNTVhWEV3ZW1KNVJGZ3RjV05xVFJDWkFoaXpBU2dCTWdZaEpKRE5sUW8",
+            "date": "11/24/2024, 07:39 PM, +0000 UTC"
+        },
+        {
+            "position": 4,
+            "title": "The Endless Life of Onyeka Onwenu",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL"
+            },
+            "link": "https://republic.com.ng/vol8-no4/the-endless-life-of-onyeka-onwenu/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/11/Nomu_October-2024.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNVhjVkpDT0hWTFdFdHlNMU5tVFJDaUFSaTNBaWdCTWdhaEZJU3RKUVk",
+            "date": "11/25/2024, 10:38 AM, +0000 UTC"
+        },
+        {
+            "position": 5,
+            "title": "How Fireboy Captured the Heart of a Generation",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Abioye Damilare"]
+            },
+            "link": "https://republic.com.ng/october-november-2024/fireboy-laughter-tears-and-goosebumps/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/11/Damilare_November-2024.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNWtaVVpRTnpSbFVsUllOM2cwVFJDaUFSaTNBaWdCTWdZVlE0NW9JZ2c",
+            "date": "11/25/2024, 06:14 AM, +0000 UTC"
+        },
+        {
+            "position": 6,
+            "title": "The Rap-Centric Philosophies of Illbliss",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Emmanuel Esomnofu"]
+            },
+            "link": "https://republic.com.ng/april-may-2024/the-rap-centric-philosophies-of-illbliss/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/04/Esomnofu_18-March-2024.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNVhSMFJJZEVoU1ltUkZSMlY2VFJDaUFSaTNBaWdCTWdhaFZKQUxKZ2c",
+            "date": "04/28/2024, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 7,
+            "title": "The ‘Essence’ of Afrobeats",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Tilewa Kazeem"]
+            },
+            "link": "https://republic.com.ng/june-july-2024-2/the-essence-of-afrobeats/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/07/Kazeem_June-2024.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNTFjVFZ5ZFc1SlVFUkVUM1ZMVFJDaUFSaTNBaWdCTWdZWmRaQXFLZ2M",
+            "date": "07/21/2024, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 8,
+            "title": "How ‘Ojuelegba’ Took Wizkid to the World",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Patrick Ezema"]
+            },
+            "link": "https://republic.com.ng/october-november-2024/wizkid-ojuelegba/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/10/Ezema_September-2024.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNTZjbkV5TkZnNFkzVnpVemhuVFJDaUFSaTNBaWdCTWdZTklvanpsQW8",
+            "date": "10/08/2024, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 9,
+            "title": "Christian Adofo’s A Quick Ting on Afrobeats",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Dami Ajayi"]
+            },
+            "link": "https://republic.com.ng/october-november-2022/christian-adofos-a-quick-ting-on-afrobeats/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2022/10/Ajayi_WebsiteBanner-378x300.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iL0NnNTBOR3gxZUhsTmNtaGFiQzFmVFJESUFSajhBU2dCTWdrbEpZcUxGYXA3YlFF",
+            "date": "10/18/2022, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 10,
+            "title": "The Prophetic Arrival of Burna Boy",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Zainab Kuku"]
+            },
+            "link": "https://republic.com.ng/august-september-2023/burna-boy-life-album/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2023/08/Website-Banners-800%C3%97-418px-16-378x300.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNDJlRWhrTmpnM1lVVnZlbkp5VFJESUFSajhBU2dCTWdZQllJeEFOd1k",
+            "date": "08/12/2023, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 11,
+            "title": "Flowers for Wande Coal?",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Carl Terver"]
+            },
+            "link": "https://republic.com.ng/nigeria/flowers-for-wande-coal-2/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/07/Terver_20-June-2024.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNWZlRGMwYkd4R1lXSkRZemM1VFJDaUFSaTNBaWdCTWdheE5KYVFIUWs",
+            "date": "07/07/2024, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 12,
+            "title": "The Puzzling Tragedy of MohBad’s Death",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Victoria Audu"]
+            },
+            "link": "https://republic.com.ng/august-september-2023/mohbads-tragic-passing/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2023/09/Website-Banners-800%C3%97-418px-378x300.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNU1hek5HZEhwaU5WSk5UMWwzVFJESUFSajhBU2dCTWdZcHRZak9QUVU",
+            "date": "09/22/2023, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 13,
+            "title": "Headies, Your Misogyny is Showing",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Victoria Audu"]
+            },
+            "link": "https://republic.com.ng/august-september-2023/headies-misogyny/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2023/09/Headies-Your-Misogyny-is-Showing-260x170.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNDRUa1JUT0ZnNVZ6RklaVWxCVFJDcUFSaUVBaWdCTWdZdEZvRE5GUWs",
+            "date": "09/10/2023, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 14,
+            "title": "The Political Dilemmas of Tanzania’s Music Artists",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Karen Chalamilla"]
+            },
+            "link": "https://republic.com.ng/october-november-2024/tanzania-music-artists/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/10/Chalamilla_September-2024.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNVJZVWhaTm5KWFZUTm9NM3AzVFJDaUFSaTNBaWdCTWdhbFpJeU5KUWM",
+            "date": "10/27/2024, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 15,
+            "title": "Odunsi the Engine’s ‘rare.’",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Yaa Addae"]
+            },
+            "link": "https://republic.com.ng/vol3-no1/odunsi-the-engine-rare/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2019/03/Odunsi_rare.jpeg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iL0NnNURlVk5SVGxwS1JqazRXRjlyVFJEaEFSamhBU2dCTWdrQmdJeWlzU1ltcmdF",
+            "date": "03/01/2019, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 16,
+            "title": "The Changing Sound of Afrobeats",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Zainab Kuku"]
+            },
+            "link": "https://republic.com.ng/october-november-2022/afrobeats-and-its-current-landscape/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2022/10/Kuku_April-2022.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNW1jQzB6VEdWalRVVlZheTA1VFJDaUFSaTNBaWdCTWdZRmRJeXZKUVk",
+            "date": "10/25/2022, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 17,
+            "title": "Sampling and the ‘New Fela’ Complex",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Zainab Kuku"]
+            },
+            "link": "https://republic.com.ng/april-may-2023/black-music-fela/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2023/05/Website-Banners-800%C3%97-418px-1024x535.jpg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNVFiRU5FVFMxRVNIbFZaVlkwVFJDaUFSaTNBaWdCTWdhQlVJYTBzQVU",
+            "date": "05/16/2023, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 18,
+            "title": "The Books About Music That Moved Emmanuel Esomnofu.",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Emmanuel Esomnofu"]
+            },
+            "link": "https://republic.com.ng/june-july-2024-2/first-draft-emmanuel-esomnofu/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/07/Esomnofu-landscape.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNVhiMTgxVlVSS1gwdGhhVFZEVFJDb0FSaXNBaWdCTWdZcFZZak9xUVU",
+            "date": "07/26/2024, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 19,
+            "title": "Narcissism and the Aggrieved Art of Burna Boy",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Olasubomi Olumofin"]
+            },
+            "link": "https://republic.com.ng/december-23-january-24/burna-boy-afrobeats/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2023/12/Olumofin_October-2023.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNUJOVjlMWnpWUU1FWjBhRTVOVFJDaUFSaTNBaWdCTWdZcFVvcXVMUVU",
+            "date": "12/08/2023, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 20,
+            "title": "How Flavour Reinvented Highlife",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Emmanuel Esomnofu"]
+            },
+            "link": "https://republic.com.ng/february-march-2024/the-neo-highlife-vision-of-flavour/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/03/Esomnofu_16-February-2024.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNW1jbFl6Tlc5S01YbHJiRUZpVFJDaUFSaTNBaWdCTWdZSm9veXZzUWM",
+            "date": "03/24/2024, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 21,
+            "title": "The Songs of Jos",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Emmanuel Esomnofu"]
+            },
+            "link": "https://republic.com.ng/april-may-2024/the-songs-of-jos/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/04/Esomnofu_February-2024.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iJ0NnNTNhSEZ0UkVsR1pWSnVWMmxRVFJDaUFSaTNBaWdCTWdNQmtBQQ",
+            "date": "05/19/2024, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 22,
+            "title": "The Poetic Success of Zlatan Ibile",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL"
+            },
+            "link": "https://republic.com.ng/june-july-2023/zlatan-and-the-triumph-of-perseverance/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2023/06/Zlatan-inspires-listeners-on-new-single-Omo-Ologo-1050x525-1.jpeg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNHdXV1U0VDBzMVdGUnJTMDF4VFJDZkFSaS1BaWdCTWdZdFZZS3VzUVU",
+            "date": "06/12/2023, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 23,
+            "title": "The Exuberance of Rema",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Carl Terver"]
+            },
+            "link": "https://republic.com.ng/august-september-2024/rema-heis-album-review/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/08/Terver_30-July-2024.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNVNRVzkwVURKTWIyUTBaRGxYVFJDaUFSaTNBaWdCTWdaRk1ZN1ZIQWs",
+            "date": "08/18/2024, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 24,
+            "title": "​​Listening to Five Years of ​Burna Boy’s ‘African Giant’​ ​",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL"
+            },
+            "link": "https://republic.com.ng/august-september-2024/burna-boy-african-giant/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/09/Akande_July-2024.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iL0NnNU1iSEYyU2pWVWRVWlFVVUZhVFJDaUFSaTNBaWdCTWdrQlVwUVRvU2pCS1FJ",
+            "date": "09/22/2024, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 25,
+            "title": "Who Were the Lijadu Sisters?",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Tomisin Awosika"]
+            },
+            "link": "https://republic.com.ng/gender/who-were-the-lijadu-sisters/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2022/02/1-2.jpg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNXhRbGwyWDNCQ1pUUXRXREZWVFJDQUFoakZBU2dCTWdhWkVwNHFsUW8",
+            "date": "02/03/2022, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 26,
+            "title": "The ‘Global Music’ Category at the Grammy Awards",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Zainab Kuku"]
+            },
+            "link": "https://republic.com.ng/nigeria/global-music-category-grammy-awards/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2023/01/Kuku_Website-Banners-800%C3%97-418px-378x300.jpg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNWxXa1pRTXpNeWNuZFVUMHd4VFJESUFSajhBU2dCTWdhZE1vYk9HUW8",
+            "date": "01/18/2023, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 27,
+            "title": "Shallipopi’s Incandescent Takeover of Afrobeats",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Emmanuel Esomnofu"]
+            },
+            "link": "https://republic.com.ng/february-march-2024/shallipopi-afrobeats/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/02/Shallipopi.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNVpNM1JGVVZadGJFNXNaRXA1VFJDaUFSaTNBaWdCTWdhdE5JeXVuUWc",
+            "date": "02/14/2024, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 28,
+            "title": "The Ingenuity of Ayra Starr’s Afropop",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Zainab Kuku"]
+            },
+            "link": "https://republic.com.ng/august-september-2024/the-ingenuity-of-ayra-starr/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/05/V8-N2-_-Wall-Art-Frame-1.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNUNMVmt4VFZaSmNYaHZRMjVtVFJDTEFoaTlBU2dCTWdhVlFwQk1uUVk",
+            "date": "08/25/2024, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 29,
+            "title": "The Beautiful Thing About P-Square",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Ernest Ifeanyi Nweke"]
+            },
+            "link": "https://republic.com.ng/december-23-january-24/the-beautiful-thing-about-p-square/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2023/12/Nweke_25-October-2023.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iL0NnNVVSRmRuTUdwRVQxRm5MV1pLVFJDaUFSaTNBaWdCTWdtVlVvZ3lKU2lpNmdF",
+            "date": "12/08/2023, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 30,
+            "title": "Soundbender: The Many Lives of Beautiful Nubia",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Kemi Falodun"]
+            },
+            "link": "https://republic.com.ng/october-november-2019/sound-bender/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2019/11/0135-360x240.jpg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNDVSbEZhWTIxbFh6SkZPVlF4VFJDM0FSaVRBaWdCTWdZZFpZUUtMZ1E",
+            "date": "11/11/2019, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 31,
+            "title": "The Revolution Is a Song!",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL"
+            },
+            "link": "https://republic.com.ng/october-november-2021/the-revolution-is-a-song/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2021/10/Noko20Web-min-759x300.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNXRZVkZFYUdkelUybG5OR0ZRVFJDTkFSamxBaWdCTWdhRkVJeEVHZ2s",
+            "date": "10/13/2021, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 32,
+            "title": "Can Contemporary African Music Escape ‘Afrobeats’?",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Kathleen Anaza"]
+            },
+            "link": "https://republic.com.ng/october-november-2022/contemporary-african-music/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2022/11/Website-Banners-800%C3%97-418px-3.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNWpVMGhZWlVORldEQlRPVmhaVFJDaUFSaTNBaWdCTWdZQmtJYnBQUWM",
+            "date": "11/16/2022, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 33,
+            "title": "The Sonic Politics of Gabon’s Ntcham",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Alice Aterianus-owanga"]
+            },
+            "link": "https://republic.com.ng/august-september-2024/ntcham-coup-gabon/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/09/Aterianus-Owanga_August-2024.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNW9aa3g2YlU0NVdFaFdkVEZhVFJDaUFSaTNBaWdCTWdZSk1ZYmtsZ28",
+            "date": "09/08/2024, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 34,
+            "title": "A Boy, His Father, and Old Tunes",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Tonny Ogwa"]
+            },
+            "link": "https://republic.com.ng/february-march-2024/nairobi-in-a-song/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/03/Ogwa_February-2024.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNDRWbXd6WVd4eFdGSnlUMkpHVFJDaUFSaTNBaWdCTWdZQlVJcGpJZ2c",
+            "date": "03/24/2024, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 35,
+            "title": "Songs in the #EndSARS Protests",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Adekunle Falade"]
+            },
+            "link": "https://republic.com.ng/february-march-2021/songs-in-the-endsars-protests/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2021/03/image_from_ios.jpg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNWhVbGwzUVhCS1RFUmpNMGhyVFJDb0FSaXNBaWdCTWdZSlVKU3RyUWM",
+            "date": "03/03/2021, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 36,
+            "title": "Beyoncé, the Internet and My Relationship with Money",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Edwin Okolo"]
+            },
+            "link": "https://republic.com.ng/april-may-2024/a-three-act-renaissance/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/04/4-2.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNWhTRk5sVUd3NFpYWXhZMWhCVFJDaUFSaTNBaWdCTWdhbFpJeXVKUWc",
+            "date": "04/14/2024, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 37,
+            "title": "Andy Palacio and the Garifuna Revolution",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Kai Mora"]
+            },
+            "link": "https://republic.com.ng/belize/andy-palacio-and-the-garifuna-revolution/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2022/10/Website-Banners-800%C3%97-418px-1-1-378x300.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iMkNnNUdURk16YTBWcmRVWTRjamgzVFJESUFSajhBU2dCTWdzQlVJWmcxNkllN2Fra29n",
+            "date": "10/16/2022, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 38,
+            "title": "Tiwa Savage within a Globalized Afrobeats Climate",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Zainab Kuku"]
+            },
+            "link": "https://republic.com.ng/december-23-january-24/tiwa-savage-afrobeats/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2023/12/Kuku_25-October-2023.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNXlhVVZmYjB4RFJsTkRkRzlNVFJDaUFSaTNBaWdCTWdhcFU0U3VvUWM",
+            "date": "12/08/2023, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 39,
+            "title": "The Devil Works Hard but Asake Works Harder",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Dami Ajayi"]
+            },
+            "link": "https://republic.com.ng/december-23-january-24/the-assiduous-ethic-of-asake/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2023/12/Ajayi_October-2023.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNXZORVpzYjA4MFZrRndXWEp2VFJDaUFSaTNBaWdCTWdheFJJNlBvUWM",
+            "date": "12/08/2023, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 40,
+            "title": "Lady Donli and the Birth of a Pan-African Rockstar",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Nnamdi Ehirim"]
+            },
+            "link": "https://republic.com.ng/february-march-2020/enjoy-your-life-lady-donli/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2020/02/IMG_0057-27-11-19-10-02-378x300.jpeg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iL0NnNXdRVGN5Um1kek9VcFVjRGxJVFJESUFSajhBU2dCTWdrUlVJVFZ0Q2FMS3dJ",
+            "date": "02/17/2020, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 41,
+            "title": "Lagbaja: The Legacy of Our Second Democracy Superhero",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Olamide Adio Olanrewaju"]
+            },
+            "link": "https://republic.com.ng/december-19-january-20/lagbaja-something-for-you/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2019/12/Lagbaja-260x170.jpg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iL0NnNDJaM1owVUdzNWRpMVlMWGRLVFJDcUFSaUVBaWdCTWdrQlFZWnNNYVJGVWdF",
+            "date": "12/06/2019, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 42,
+            "title": "The Versatility of Musical Feuds: From Contemporary Rap to Afrobeats",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL"
+            },
+            "link": "https://republic.com.ng/nigeria/ethics-of-musical-feuds/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/06/Ogunsanya_May-2024.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNHlhM2t5UVZkbVNVOWpkM3BUVFJDaUFSaTNBaWdCTWdhSlVaQW9wUWc",
+            "date": "06/16/2024, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 43,
+            "title": "Revisiting 2Baba’s Face2Face",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Emmanuel Esomnofu"]
+            },
+            "link": "https://republic.com.ng/nigeria/revisiting-2baba-face2face/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/05/Esomnofu_26-April-2024.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNDFVa1JSZGxCalVHbzVNVTFtVFJDaUFSaTNBaWdCTWdZbFJwYnNuUWc",
+            "date": "05/12/2024, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 44,
+            "title": "The Meaning of Aṣa",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Saratu Abiola"]
+            },
+            "link": "https://republic.com.ng/december-23-january-24/the-meaning-of-asa/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2023/12/Abiola_Nov2023.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNXViRUYyT1hCNVpFNXNXV0ZpVFJDaUFSaTNBaWdCTWdZdGxZVE9RUVE",
+            "date": "12/08/2023, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 45,
+            "title": "How Wizkid Became the Paragon of African Music’s Golden Age",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Patrick Ezema"]
+            },
+            "link": "https://republic.com.ng/december-23-january-24/wizkid-african-music-golden-age/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2023/12/Ezema_November-2023.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iL0NnNVJjVVpHVFdNMGFGSktOazFNVFJDaUFSaTNBaWdCTWdtUkE0WkdEdXRqREFF",
+            "date": "12/08/2023, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 46,
+            "title": "Ayra Starr’s Transcendental Vision for Afrobeats",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Emmanuel Esomnofu"]
+            },
+            "link": "https://republic.com.ng/december-23-january-24/ayra-starr-afrobeats/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2023/12/Esomnofu_November-2023.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNTNZamhsZEVKTVRETXlPRlJ5VFJDaUFSaTNBaWdCTWdZbEpaRE5tUWs",
+            "date": "12/08/2023, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 47,
+            "title": "The Untamed Brilliance of Tems",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Chukwudi Ukonne"]
+            },
+            "link": "https://republic.com.ng/june-july-2024-2/the-untamed-brilliance-of-tems/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/07/Ukonne_July-2024.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNDBXVVk0UzNCZlZtY3pZVUZEVFJDaUFSaTNBaWdCTWdhRk5aYnNHUW8",
+            "date": "07/29/2024, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 48,
+            "title": "Unpacking the Motivations Behind Pan-African Collaborations in Afrobeats",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Ayoola Oladipupo", "Zainab Kuku"]
+            },
+            "link": "https://republic.com.ng/june-july-2023/pan-african-collaborations-in-afrobeats/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2023/06/Website-Banners-800%C3%97-418px.jpg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iL0NnNU5TRjlYWm0weFFWOVJkRE5UVFJDaUFSaTNBaWdCTWdtQkFZckdMT1Z5cVFJ",
+            "date": "06/19/2023, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 49,
+            "title": "Don Jazzy’s Global Machine",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Oyindamola Depo-oyedokun"]
+            },
+            "link": "https://republic.com.ng/april-may-2024/don-jazzys-global-machine/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/04/Depo-Oyedokun_April-2024.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNTNYMVoxUjFadllreHFOMWw1VFJDaUFSaTNBaWdCTWdhbGRZck5yUVk",
+            "date": "05/12/2024, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 50,
+            "title": "Zainab Kuku",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Zainab Kuku"]
+            },
+            "link": "https://republic.com.ng/author/zainab-kuku/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2023/08/Website-Banners-800%C3%97-418px-16-378x300.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNDJlRWhrTmpnM1lVVnZlbkp5VFJESUFSajhBU2dCTWdZQllJeEFOd1k",
+            "date": "10/25/2022, 10:37 PM, +0000 UTC"
+        },
+        {
+            "position": 51,
+            "title": "The Potential for Resistance in Afrobeats",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Olasubomi Olumofin"]
+            },
+            "link": "https://republic.com.ng/august-september-2022/felas-renegade-children/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2022/08/OlumofinWebsite-378x300.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNVFjVk5sZVZkVVRVa3lhbTE1VFJESUFSajhBU2dCTWdZSlVZWkp0UU0",
+            "date": "08/29/2022, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 52,
+            "title": "Every Other Day, Disorganized",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Chiamaka Anicho-okoro"]
+            },
+            "link": "https://republic.com.ng/nigeria/nigerian-concerts/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2022/12/CandaceChambersAsake_WEG0613-1024x683.jpg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNUZUbkZvUlROSlZtd3pNVlp2VFJDM0FSaVRBaWdCTWdZSndvUm92Z1U",
+            "date": "12/20/2022, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 53,
+            "title": "Zainab Kuku is focused on reading fictional texts by Black writers.",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Zainab Kuku"]
+            },
+            "link": "https://republic.com.ng/december-2022/first-draft-zainab-kuku/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2022/12/Kuku-FD-copy-3-1024x512.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNTBVMjVhZFVaQ1JqTnNYMnBwVFJDZkFSaS1BaWdCTWdZdGRZaXVzUVk",
+            "date": "12/02/2022, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 54,
+            "title": "Call for Submissions – Vol. 6, No. 2",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL"
+            },
+            "link": "https://republic.com.ng/february-march-2022/call-for-submissions-vol-6-no-2/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2022/03/IMG_0571.jpg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iMkNnNWtaRXQwTUVOTVpGRTRkVFJHVFJDbUFSaXZBaWdCTWd1Qk1KNUJINmx6cG9yTG9R",
+            "date": "03/02/2022, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 55,
+            "title": "Karsten Noko",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Karsten Noko"]
+            },
+            "link": "https://republic.com.ng/author/karsten/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2021/10/Noko20Web-min-759x300.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNXRZVkZFYUdkelUybG5OR0ZRVFJDTkFSamxBaWdCTWdhRkVJeEVHZ2s",
+            "date": "10/13/2021, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 56,
+            "title": "Unbury Our Dead With Song",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL"
+            },
+            "link": "https://republic.com.ng/product/unbury-our-dead-with-song-2/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/05/Unbury-Our-Dead-With-Song.jpeg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iMkNnNVhjWEpaWkZsQlFsQTVWVGhEVFJDY0FoaXhBU2dCTWd1UklZYW92ZU5qUzNyTlJB",
+            "date": "05/27/2024, 04:10 AM, +0000 UTC"
+        },
+        {
+            "position": 57,
+            "title": "Sọ̀rọ̀ Sókè is not a Metaphor",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL"
+            },
+            "link": "https://republic.com.ng/february-march-2021/soro-soke-is-not-a-metaphor/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2021/03/ayanfe-olarinde-sDTHE0knRYM-unsplash-scaled.jpg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNXBVekZKUjBwQllrdE9RalJmVFJDVEFoaTNBU2dCTWdZQlFKQUpyZ1k",
+            "date": "03/10/2021, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 58,
+            "title": "Is Money-Spraying the Problem?",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Ayoola Oladipupo"]
+            },
+            "link": "https://republic.com.ng/october-november-2022/is-money-spraying-a-problem/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2022/11/Website-Banners-800%C3%97-418px-1-2.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNW9TazlST0VoM2JuY3RiWEZ5VFJDaUFSaTNBaWdCTWdhQlFZakxQUVE",
+            "date": "11/27/2022, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 59,
+            "title": "December 23/January 24 Archives",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL"
+            },
+            "link": "https://republic.com.ng/category/december-23-january-24/page/2/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2023/12/Nweke_25-October-2023.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iL0NnNVVSRmRuTUdwRVQxRm5MV1pLVFJDaUFSaTNBaWdCTWdtVlVvZ3lKU2lpNmdF",
+            "date": "12/11/2023, 11:58 AM, +0000 UTC"
+        },
+        {
+            "position": 60,
+            "title": "Will Nigerian Artists Treat Their Fans Better This Year?",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Busayo Akinmoju"]
+            },
+            "link": "https://republic.com.ng/december-23-january-24/detty-december/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2023/12/Akinmoju_November-2023.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNWFkbmRKTkdwQ1ZFVTBRazE2VFJDaUFSaTNBaWdCTWdZQlVKRFZ0QVk",
+            "date": "12/08/2023, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 61,
+            "title": "vol7-no4 Archives",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL"
+            },
+            "link": "https://republic.com.ng/category/vol7-no4/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2023/12/AO1I0455.jpg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNUhabkZMTW1kRmIwOUVUM0pQVFJEN0FSakpBU2dCTWdhWllKQnNxUWM",
+            "date": "12/10/2023, 03:00 AM, +0000 UTC"
+        },
+        {
+            "position": 62,
+            "title": "Tems Has Become the First Female Nigerian Artist to Win a BET Award",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Tomisin Awosika"]
+            },
+            "link": "https://republic.com.ng/june-july-2022/tems-wins-bet-award/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2022/06/mgid-arc-content-bet.com-5bffe7fc-6d5c-4db9-9466-87e73b3307c6-260x170.jpeg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNURhV0ZMYVRaZlFuUm5iVmxhVFJDcUFSaUVBaWdCTWdZQlFKb0RHd28",
+            "date": "06/28/2022, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 63,
+            "title": "Kathleen Anaza",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Kathleen Anaza"]
+            },
+            "link": "https://republic.com.ng/author/kizzo636/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2022/11/Website-Banners-800%C3%97-418px-3-759x300.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNXNYM1o1TTJWTVFXbHRjMDFxVFJDTkFSamxBaWdCTWdZQmtJVGl0QVU",
+            "date": "11/16/2022, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 64,
+            "title": "The Poetics of ‘Adedamola’",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Adeniyi Odukoya"]
+            },
+            "link": "https://republic.com.ng/october-november-2024/the-poetics-of-adedamola/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/11/Odukoya_September-2024-1.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNXJiakpXWW5SM1dHWnFiV3RRVFJDaUFSaTNBaWdCTWdZRmxaRE1zUVk",
+            "date": "11/03/2024, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 65,
+            "title": "Afrobeats playlist? Here’s Christian Adofo’s Afrobeats reading list.",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Adofo"]
+            },
+            "link": "https://republic.com.ng/december-23-january-24/first-draft-christian-adofo/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2023/12/Adofo-landscape.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNHdSakEwVVhORUxXOXRTMHhuVFJDb0FSaXNBaWdCTWdhZEZwQkttZ2c",
+            "date": "12/08/2023, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 66,
+            "title": "The Political Kaleidoscope of Burna Boy’s Discography",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Estelle Uba"]
+            },
+            "link": "https://republic.com.ng/december-22-january-23/burna-boy-discography/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2023/01/Uba_Website-Banners-800%C3%97-418px-7-260x170.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNVVUVTloWkhCSk5UaHhlVE5KVFJDcUFSaUVBaWdCTWdZQmtKQU9PUWM",
+            "date": "01/22/2023, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 67,
+            "title": "Tanzania Archives",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL"
+            },
+            "link": "https://republic.com.ng/category/tanzania/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/10/Chalamilla_September-2024.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNVJZVWhaTm5KWFZUTm9NM3AzVFJDaUFSaTNBaWdCTWdhbFpJeU5KUWM",
+            "date": "12/04/2021, 04:57 AM, +0000 UTC"
+        },
+        {
+            "position": 68,
+            "title": "Honour Aghedo",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL"
+            },
+            "link": "https://republic.com.ng/author/honourzoey/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2023/06/Zlatan-inspires-listeners-on-new-single-Omo-Ologo-1050x525-1-759x300.jpeg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNXRUbWxJU201clIzTnllbFpTVFJDTkFSamxBaWdCTWdhdEJJQ3ZzUVE",
+            "date": "06/12/2023, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 69,
+            "title": "‘Dead Body No Dey Do Shakara’",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Olajide Salawu"]
+            },
+            "link": "https://republic.com.ng/june-july-2020/frank-aig-imoukhuede-pidgin-stew/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2020/07/man-walking-by-a-motor-park-260x170.jpg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNTZhRW96YUhsS2RtTkNVSEUyVFJDcUFSaUVBaWdCTWdaRkFZVFdEQXM",
+            "date": "07/13/2020, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 70,
+            "title": "The Many Sides to Davido’s Longevity",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Olajide Salawu"]
+            },
+            "link": "https://republic.com.ng/december-23-january-24/the-many-sides-to-davido-longevity/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2023/12/Salawu_October-2023.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNUNVbkZ0WTNKWlJVczBWVjgyVFJDaUFSaTNBaWdCTWdhdEpZcnVuUWs",
+            "date": "12/08/2023, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 71,
+            "title": "Izzy Odigie's Unstoppable Message for the World",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Temi Ibirogba"]
+            },
+            "link": "https://republic.com.ng/april-may-2021/izzy-odigie-iziegbe/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2021/04/Izzy-Odigie-Day-Two-Photo-Cropped.jpg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNWZSR1ZJU0d4bGJURnhTRGRNVFJDcUFSaW9BaWdCTWdhcGhJNlByUVk",
+            "date": "04/12/2021, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 72,
+            "title": "The Age of Afrobeats - Look Inside",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL"
+            },
+            "link": "https://republic.com.ng/dispatch/v7n4/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2023/09/V7N4Afrobeats-1.gif",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iL0NnNVpWV0pLY21sUlRUZHJRbXB3VFJDTEFoaTlBU2dCTWdrQkVJanVFR1F1THdF",
+            "date": "06/20/2024, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 73,
+            "title": "Detty December and a New Era of Africa-Diaspora Relations",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL"
+            },
+            "link": "https://republic.com.ng/april-may-2023/detty-december-africa-diaspora-relations/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2023/04/afrochella-378x300.jpg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNW5TbkZXUW5vMmVrZ3lPREZSVFJESUFSajhBU2dCTWdZQlFKRHJtUWM",
+            "date": "04/12/2023, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 74,
+            "title": "The Artist-Philosopher: Keeping Up With My Sister, KemKem",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Funmi Lijadu"]
+            },
+            "link": "https://republic.com.ng/nigeria/the-artist-philosopher/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2023/01/Lijadu-Image-3-759x300.jpg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iMkNnNDBiekpGUkZScFVFSTFkRmxzVFJDTkFSamxBaWdCTWdzTkVJWm1MdVk4Y2JraXFn",
+            "date": "01/15/2023, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 75,
+            "title": "Adekunle Falade",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Adekunle Falade"]
+            },
+            "link": "https://republic.com.ng/author/gbotemi89/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2021/03/image_from_ios-759x300.jpg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNDNUVEY2UmxGWVJXZFBhMkk1VFJDTkFSamxBaWdCTWdZRkVKQ3RxUWM",
+            "date": "03/08/2020, 06:36 AM, +0000 UTC"
+        },
+        {
+            "position": 76,
+            "title": "Best of 2023: Essays Archives - Page 4 of 4",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL"
+            },
+            "link": "https://republic.com.ng/category/best-of-2023-essays/page/4/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2023/02/Muhammad-Banner-260x170.jpg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNTVaWFZQYTNJdE1Yb3hWVEp0VFJDcUFSaUVBaWdCTWdhUlJZcnR4UVE",
+            "date": "01/29/2024, 01:48 PM, +0000 UTC"
+        },
+        {
+            "position": 77,
+            "title": "It took Ayọ̀bámi Adébáyọ̀ seven years to publish 'Stay with Me'.",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Ayobami Adebayo"]
+            },
+            "link": "https://republic.com.ng/first-draft/december-ayobami-adebayo/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2020/12/38-Adebayo-web-scaled.jpg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNUlUMWRDV0RjdGQzbEtjbkpyVFJDZkFSaS1BaWdCTWdZdE5ZU3ZJUWc",
+            "date": "12/04/2020, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 78,
+            "title": "‘Mai Ganga ya Gode, Yaran Mai Ganga sun Gode.’",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Aisha Aliyu Arabee"]
+            },
+            "link": "https://republic.com.ng/vol3-no2/campaign-songs-politics-in-northern-nigeria/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2019/05/5927777724_29aedb7f7a_o-759x300.jpg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNDJWRFl3TmxCTGNVZFJOak5qVFJDTkFSamxBaWdCTWdZQkVJakRtZ2M",
+            "date": "05/09/2019, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 79,
+            "title": "Are Nigerians Dancing to a ‘Cult Anthem’?",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Todah Opeyemi"]
+            },
+            "link": "https://republic.com.ng/news/nigerians-dancing-cult-anthem/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2021/12/maxresdefault-3-1024x576.jpg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNVBaMDlyWVZwbGNEWlBZbWRLVFJDb0FSaXNBaWdCTWdhNVk1QnhxUWM",
+            "date": "12/17/2021, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 80,
+            "title": "‘Joba Ojelabi",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL"
+            },
+            "link": "https://republic.com.ng/author/jobaojelabi/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2022/12/Screen-Shot-2022-12-20-at-16.46.56-759x300.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNDFkR3ByVGpSRGVVTkJOa3hWVFJDTkFSamxBaWdCTWdZdEJZaXVsUWs",
+            "date": "12/20/2022, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 81,
+            "title": "Patrick Ezema",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Patrick Ezema"]
+            },
+            "link": "https://republic.com.ng/author/patrickezema007gmail-com/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/10/Ezema_September-2024-1.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNTZjbkV5TkZnNFkzVnpVemhuVFJDaUFSaTNBaWdCTWdZTklvanpsQW8",
+            "date": "12/08/2023, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 82,
+            "title": "Blossom Maduafokwa",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL"
+            },
+            "link": "https://republic.com.ng/author/blossom10000/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2021/03/ayanfe-olarinde-sDTHE0knRYM-unsplash-759x300.jpg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNVBjek5QTkRJM2FEQTFlRWxWVFJDTkFSamxBaWdCTWdhaEJZNExsZ28",
+            "date": "03/10/2021, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 83,
+            "title": "The greatest travelogue Noo Saro-Wiwa has ever read.",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Noo Saro-Wiwa"]
+            },
+            "link": "https://republic.com.ng/april-may-2024/first-draft-noo-saro-wiwa/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/04/Noo-saro-landscape.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNUNaMHB3YTI4M2VqZFRTVTVSVFJDb0FSaXNBaWdCTWdZbFZvd01LZ2M",
+            "date": "05/19/2024, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 84,
+            "title": "Karen Chalamilla",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Karen Chalamilla"]
+            },
+            "link": "https://republic.com.ng/author/karenchalamilla/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/10/Chalamilla_September-2024.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNVJZVWhaTm5KWFZUTm9NM3AzVFJDaUFSaTNBaWdCTWdhbFpJeU5KUWM",
+            "date": "09/15/2024, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 85,
+            "title": "Victoria Audu",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Victoria Audu"]
+            },
+            "link": "https://republic.com.ng/author/victoria-audurepublic-com-ng/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/07/Bookstagram-cover-0707.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iL0NnNTNRV2w1WkdoU1JVNWZjRkYzVFJDaUFSaTNBaWdCTWdrRmNwTGtybWRjN0FF",
+            "date": "08/08/2023, 04:37 PM, +0000 UTC"
+        },
+        {
+            "position": 86,
+            "title": "Kalakuta Queens: A Feminine Critique of Fela",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL"
+            },
+            "link": "https://republic.com.ng/june-july-2021/a-feminine-critique-of-fela/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2021/06/fela-1-759x300.jpg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNVlMVjlQT1RKT1RHZDVOWGRtVFJDTkFSamxBaWdCTWdZQllvWUxvZ2c",
+            "date": "06/07/2021, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 87,
+            "title": "The AMVCA’s 10-Year Milestone",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Seyi Lasisi"]
+            },
+            "link": "https://republic.com.ng/april-may-2024/the-amvca-10-year-milestone/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/05/Lasisi_May-2024.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNU9jM0pxVURBMlJ6aE9lSEZ5VFJDaUFSaTNBaWdCTWdZQmdKUWlzd2M",
+            "date": "05/10/2024, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 88,
+            "title": "Order Now: The Age of Afrobeats",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL"
+            },
+            "link": "https://republic.com.ng/product/the-republic-v7-n4/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2023/12/V7N4-Front-Cover.jpg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iL0NnNWFlalJNVW1wTlZFOUZTbTFMVFJDTEFoaTlBU2dCTWdrQkVJanRrR01tRHdF",
+            "date": "12/10/2023, 03:27 AM, +0000 UTC"
+        },
+        {
+            "position": 89,
+            "title": "Nigeria Archives - Page 9 of 56",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL"
+            },
+            "link": "https://republic.com.ng/category/nigeria/page/9/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/08/Adebiyi_July-2024.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iL0NnNVNkblZuU1VZdFVGQTNkVWczVFJDaUFSaTNBaWdCTWdrTmdvd1VxYWV4Y0FF",
+            "date": "03/16/2022, 10:04 AM, +0000 UTC"
+        },
+        {
+            "position": 90,
+            "title": "June/July 2024 Archives",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL"
+            },
+            "link": "https://republic.com.ng/category/june-july-2024-2/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/07/Akinwande_June-2024.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNHhlRFl0YzJFNVgxRnhiVVpsVFJDaUFSaTNBaWdCTWdhSlVZcEtNZ2c",
+            "date": "06/02/2024, 12:17 PM, +0000 UTC"
+        },
+        {
+            "position": 91,
+            "title": "Kaspar Loftin",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Kaspar Loftin"]
+            },
+            "link": "https://republic.com.ng/author/k-loftin/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2017/07/feature-image-2-759x300.jpg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iL0NnNVRiVVpZYkc5R01EQnlhRkJQVFJDTkFSamxBaWdCTWdrQmtJQksyS0Z5VkFF",
+            "date": "03/04/2020, 11:53 PM, +0000 UTC"
+        },
+        {
+            "position": 92,
+            "title": "Who Was Lady Oyinkansola Abayomi?",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Ibukunoluwa Olokode"]
+            },
+            "link": "https://republic.com.ng/nigeria/who-was-oyinkansola-abayomi/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2022/03/Oyinkan-Abayomi.jpg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNUlTMjVJYWxSdk0zUm9RbGRCVFJEUkFSanhBU2dCTWdZaFZwWUxKZ2c",
+            "date": "03/18/2022, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 93,
+            "title": "Ayọ̀bámi Adébáyọ̀",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL"
+            },
+            "link": "https://republic.com.ng/author/ayobami-adebayo/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2020/12/38-Adebayo-web-759x300.jpg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNXpaa1JtUkhWd1R6ZHBTbkpyVFJDTkFSamxBaWdCTWdZdEJZRFBtUWc",
+            "date": "12/04/2020, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 94,
+            "title": "Ayọ̀délé Ìbíyẹmí",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL"
+            },
+            "link": "https://republic.com.ng/author/843/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2022/09/Website-Banners-800%C3%97-418px-1-759x300.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNDJlV2czWVVoVGJqTnFjemN6VFJDTkFSamxBaWdCTWdhcFJZN05vUWM",
+            "date": "03/07/2022, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 95,
+            "title": "December 2022 Archives",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Natasha Chilambo"]
+            },
+            "link": "https://republic.com.ng/category/december-2022/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2022/12/Chilambo-FD-copy-2-260x170.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNXFVRFJFTlRGU056Rm9ZMDFrVFJDcUFSaUVBaWdCTWdZdFJaVE9vUWc",
+            "date": "12/01/2022, 04:00 AM, +0000 UTC"
+        },
+        {
+            "position": 96,
+            "title": "OUR BEST WRITING OF 2023",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL"
+            },
+            "link": "https://republic.com.ng/best-writing-of-2023/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2023/06/JEAN2799-1024x683.jpg",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNXJUVzgyTjBreldrVkpZekpsVFJDM0FSaVRBaWdCTWdhcGxZak50UVk",
+            "date": "02/02/2024, 08:49 PM, +0000 UTC"
+        },
+        {
+            "position": 97,
+            "title": "The Artist Archiving Igbo Life and Spirituality through Indigenous Aesthetics",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Iruoma Chukwuemeka"]
+            },
+            "link": "https://republic.com.ng/august-september-2024/archiving-igbo-life-and-spirituality/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/02/Chukwuemeka_August-2024-1.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iJ0NnNUtORVl5U2s1eWRVbEVjWEZqVFJDaUFSaTNBaWdCTWdPQk1Rbw",
+            "date": "09/22/2024, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 98,
+            "title": "Nigeria Imaginary",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Wale Lawal"]
+            },
+            "link": "https://republic.com.ng/nigeria/nigeria-imaginary-v8-n2/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/05/MOWAA-Editor-Foreword.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iJ0NnNDNYMjU2Wlc1MldHSjRiMHBVVFJDaUFSaTNBaWdCTWdNQmNnSQ",
+            "date": "05/19/2024, 07:00 AM, +0000 UTC"
+        },
+        {
+            "position": 99,
+            "title": "CJ ‘Fiery’ Obasi’s Mami Wata and the Repositioning of Nollywood",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Carl Terver"]
+            },
+            "link": "https://republic.com.ng/december-23-january-24/mami-wata-review/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2023/12/Terver_October-2023.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNUJaRUZTUkhNM2FYQkRNVGRGVFJDaUFSaTNBaWdCTWdZaFJwRHJwUWM",
+            "date": "12/08/2023, 08:00 AM, +0000 UTC"
+        },
+        {
+            "position": 100,
+            "title": "The writers Oyindamola Depo-Oyedokun would invite to her imaginary book club.",
+            "source": {
+                "name": "The Republic",
+                "icon": "https://encrypted-tbn2.gstatic.com/faviconV2?url=https://republic.com.ng&client=NEWS_360&size=96&type=FAVICON&fallback_opts=TYPE,SIZE,URL",
+                "authors": ["Oyindamola Depo-oyedokun", "Depo Oyedokun"]
+            },
+            "link": "https://republic.com.ng/april-may-2024/first-draft-oyindamola-depo-oyedokun/",
+            "thumbnail": "https://republic.com.ng/wp-content/uploads/2024/05/Depo-Oyedokun-landscape.png",
+            "thumbnail_small": "https://news.google.com/api/attachments/CC8iK0NnNXRielpFVTFvdGIyUk5VSHB5VFJDb0FSaXNBaWdCTWdheFJKQ1BLUWM",
+            "date": "05/31/2024, 07:00 AM, +0000 UTC"
+        }
+    ]
+}

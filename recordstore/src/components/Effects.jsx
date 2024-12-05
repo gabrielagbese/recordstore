@@ -12,12 +12,12 @@ function Effects() {
                 luminanceThreshold={0.75}
 
             />
-            <Noise
+            {/* <Noise
                 premultiply
                 opacity={0.2}
                 // enables or disables noise premultiplication
                 blendFunction={BlendFunction.ADD} // blend mode
-            />
+            /> */}
         </EffectComposer>
     )
 }
