@@ -742,7 +742,7 @@ function Player() {
                     turnSpeed={100} // give it big turning speed to prevent turning wait time
                     mode="CameraBasedMovement"
                     floatHeight={0}
-                    position={[0, 3, -12]}
+                    // position={[0, , -12]}
                     camTargetPos={{ x: 0, y: 3, z: 0 }}
 
 
