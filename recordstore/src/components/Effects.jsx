@@ -6,12 +6,12 @@ import { BlendFunction } from 'postprocessing'
 function Effects() {
     return (
         <EffectComposer >
-            <Bloom
+            {/* <Bloom
                 // opacity={0.15}
                 opacity={0.5}
                 luminanceThreshold={0.75}
 
-            />
+            /> */}
             {/* <Noise
                 premultiply
                 opacity={0.2}
