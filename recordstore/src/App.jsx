@@ -43,9 +43,9 @@ function App() {
             {modalState.isOpen && (
               <div className="fixed inset-0 z-50 flex items-center justify-center bg-opacity-50 bg-blue">
                 <div className="w-11/12 max-h-[80vh] bg-white rounded-lg shadow-xl flex flex-col overflow-hidden
-                      sm:w-[480px] sm:h-[500px]
-                      md:w-[640px] md:h-[600px]
-                      lg:w-[600px] lg:h-[600px]">
+                        sm:w-[480px] sm:h-[500px]
+                        md:w-[640px] md:h-[600px]
+                        lg:w-[600px] lg:h-[600px]">
                   <button
                     onClick={closeModal}
                     className="px-4 py-2 mx-4 mt-4 text-white rounded w-min bg-zinc-900 "

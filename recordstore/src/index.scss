@@ -88,6 +88,11 @@ body {
     }
 }
 
+// .bld-other{
+//     height: 100%;
+//     width: ;
+// }
+
 .sky {
     background: linear-gradient(to bottom, #779bc1, #9abfda, #cbdfec, #b6bdce);
     width: 100vw;
@@ -98,56 +103,126 @@ body {
     justify-content: end;
 }
 
+.platform {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    align-items: end;
+    //border: thin solid blue;
+    justify-content: center;
+}
+
+// .l-build {
+//     width: 15%;
+//     height: 40%;
+//     background: rgb(183, 183, 162);
+// }
+// .r-build {
+//     width: 15%;
+//     height: 60%;
+//     background: rgb(175, 174, 174);
+// }
+
 .cloud {
     width: 20%;
     height: 20%;
-    border: thin solid red;
-    background: url("./assets/cld2.png");
-    z-index: 3;
+    //border: thin solid red;
+    //background: url("./assets/cld2.png");
+    background-size: cover;
+    opacity: 0.25;
+    background-position: center;
+    z-index: 99;
+}
+
+.mid {
+    width: 70%;
+    height: 90%;
+    display: flex;
+    //border: thin solid red;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+}
+
+.trapezoid {
+    width: 84%; /* Base width of the trapezoid */
+    height: 5px; /* Height of the trapezoid */
+    border-top: thin solid rgba(0, 0, 0, 0.01);
+    background: linear-gradient(
+        to bottom,
+        rgb(199, 197, 197),
+        rgb(159, 159, 159)
+    ); /* Gradient background */
+    clip-path: polygon(
+        25% 0%,
+        75% 0%,
+        100% 100%,
+        0% 100%
+    ); /* Trapezoid shape */
+    margin-left: -18%;
 }
 
 .roof {
-    width: 52.5%;
+    width: 85%;
     height: 2.5%;
-    margin-left: -10%;
+    margin-left: -18%;
     background: rgb(238, 237, 237);
-    box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.05); /* Adjust values as needed */
+    box-shadow: 0px 7px 15px rgba(0, 0, 0, 0.5); /* Adjust values as needed */
     z-index: 2;
+    //margin-left: 2.5%;
 }
 .foundation {
-    width: 62.5%;
+    width: 101%;
     height: 2.5%;
     background: rgb(238, 237, 237);
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); /* Adjust values as needed */
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3); /* Adjust values as needed */
+    box-shadow: 10px 20px 50px rgba(0, 0, 0, 1);
     z-index: 2;
+    //margin-left: 10%;
+    z-index: 4;
 }
 
 .building-container {
     width: 100%;
-    height: 30%;
+    height: 75%;
+    //margin-left: 10%;
     display: flex;
     justify-content: center;
     align-items: end;
 }
 .building {
-    width: 50%; /* Default width for larger screens */
+    width: 90%; /* Default width for larger screens */
     height: 100%;
-    background: radial-gradient(circle, rgb(223, 222, 222), rgb(200, 200, 200));
+
     display: flex;
-    align-items: flex-end;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+        url("./assets/brick.jpg");
+    background-size: 13%;
+    background-repeat: repeat;
 }
 
-.door {
+.lintel {
     width: 12.5%;
+    height: 5%;
+    background: white;
+    z-index: 3;
+    box-shadow: 0px 5px 2px rgba(0, 0, 0, 0.2);
+}
+.door {
+    width: 11.5%;
     height: 55%;
     border: thin solid rgba(0, 0, 0, 0.1);
     border-bottom: none;
     background: burlywood;
+    border-left: medium solid rgb(243, 242, 242);
+    border-right: medium solid rgb(243, 242, 242);
 }
 
 .building-side {
-    width: 10%;
+    width: 20%;
     height: 60%;
     background: rgb(193, 193, 193);
 }
@@ -161,8 +236,10 @@ body {
 .curb {
     width: 100%;
     height: 10%;
-    background: linear-gradient(to bottom, #ecebeb, #b1b1b1);
+    background: linear-gradient(to bottom, #ecebebcc, #b1b1b1cc),
+        url(./assets/sw.jpg);
     border-bottom: thick solid gainsboro;
+    background-size: cover;
 }
 
 /* Mobile-specific styles */
@@ -171,11 +248,16 @@ body {
     .building {
         width: 100%; /* Full width on mobile devices */
         height: 100%;
+        background-size: 19%;
+    }
+    .mid {
+        width: 100%;
     }
 
     .building-container {
         width: 100%;
-        height: 30%;
+        height: 45%;
+        margin: 0;
     }
 
     .building-side {
@@ -193,12 +275,26 @@ body {
         width: 100%;
         margin: 0;
     }
+    .trapezoid {
+        width: 150%;
+        height: 5px;
+        margin: 0;
+    }
     .door {
-        width: 20%;
+        width: 15%;
         height: 55%;
         border: thin solid rgba(0, 0, 0, 0.1);
         border-bottom: none;
         background: burlywood;
+        border-left: medium solid rgb(243, 242, 242);
+        border-right: medium solid rgb(243, 242, 242);
+    }
+    .lintel {
+        width: 18%;
+        height: 5%;
+        background: white;
+        z-index: 3;
+        box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.2);
     }
 
     .foundation {

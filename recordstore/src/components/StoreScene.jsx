@@ -19,6 +19,8 @@ import Shelf2 from './modal-components/Shelf2'
 import Effects from './Effects'
 import News from './modal-components/News'
 import NewspaperStand from './modal-components/NewspaperStand'
+import LoadingScreen from './LoadingScreen'
+
 
 function VinylTile({ position, color }) {
     return (
@@ -844,7 +846,7 @@ export default function StoreScene({ openModal }) {
                 className="relative"
                 shadows
             >
-                <Suspense fallback={null}>
+                <Suspense fallback={"Load..."}>
                     <ambientLight intensity={0.25} color={0xffffff} />
                     <directionalLight
                         position={[-10, 10, 4]}
