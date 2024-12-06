@@ -82,20 +82,20 @@ function Shelf1() {
     ];
 
     return (
-        <div className="w-full h-full mx-auto">
-            <Carousel className="relative w-full h-full">
+        <div className="w-full h-full mx-auto ">
+            <Carousel className="relative w-full h-full ">
                 <CarouselContent className="h-full ">
                     {/* First slide: Cover and Intro */}
-                    <CarouselItem className="h-full">
-                        <Card className="relative h-full p-6 overflow-y-auto">
+                    <CarouselItem className="h-max">
+                        <Card className="relative h-full p-5 overflow-y-auto bg-white/65 border-gray-800/30">
                             <div className="flex flex-col items-center justify-center min-h-full">
                                 <img
                                     src="https://via.placeholder.com/800x400"
                                     alt="Album Collection Cover"
                                     className="w-full max-w-[400px] mb-4 rounded-lg shadow-lg"
                                 />
-                                <h1 className="mb-4 text-xl font-bold">Pre-2000: The Roots of Modern Afrobeats</h1>
-                                <p className="max-w-2xl text-center">
+                                <h1 className="mt-4 mb-4 text-xl font-bold">Pre-2000: The Roots of Modern Afrobeats</h1>
+                                <p className="max-w-2xl text-center md:text-lg">
                                     This era was foundational, influenced by Afrobeat, highlife, and juju music. The music laid the groundwork for what would become Afrobeats by combining African tradition with modern instrumentation.                                </p>
                             </div>
                         </Card>
@@ -104,16 +104,16 @@ function Shelf1() {
                     {/* Subsequent slides for each album */}
                     {albums.map((album, index) => (
                         <CarouselItem key={index} className="h-full">
-                            <Card className="relative h-full p-6 overflow-y-auto">
+                            <Card className="relative h-full p-5 overflow-y-auto shadow-md backdrop-blur-md bg-white/45 border-gray-800/30">
                                 <div className="flex flex-col items-center min-h-full">
-                                    <h2 className="mb-4 text-2xl font-semibold">{album.name}</h2>
+                                    <h2 className="mb-6 font-semibold text-lg md:text-xl h-[25px]">{album.name}</h2>
                                     <img
                                         src={album.imgSrc}
                                         alt={`${album.name} Cover`}
-                                        className="w-[150px] h-[150px] object-cover mb-4 rounded-lg shadow-lg"
+                                        className="w-[150px] h-[150px] object-cover mb-4 rounded-lg shadow-md"
                                     />
 
-                                    <p className="mt-4 text-center max-w-[400px]">{album.description}</p>
+                                    <p className="mt-4 text-center max-w-[400px] h-[150px] text-sm md:text-base overflow-hidden text-ellipsis line-clamp-4">{album.description}</p>
                                     <Accordion type="single" collapsible className="w-full max-w-[400px]">
                                         <AccordionItem value="spotify-embed">
                                             <AccordionTrigger>Listen to the Album</AccordionTrigger>

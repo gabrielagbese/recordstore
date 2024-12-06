@@ -1,6 +1,6 @@
 import { Canvas, useThree, useFrame, useLoader } from '@react-three/fiber'
 import { FirstPersonControls, useHelper, PivotControls, OrbitControls, Box, Text, Html, Sky, Cylinder, AccumulativeShadows, RandomizedLight, SoftShadows, Text3D, KeyboardControls, useGLTF, Environment, Edges } from '@react-three/drei'
-import { useState, useRef, useCallback, useEffect, Children, Suspense } from 'react'
+import { useState, useRef, useCallback, useEffect, Children, Suspense, useMemo } from 'react'
 import * as THREE from 'three'
 import Ecctrl from 'ecctrl'
 import { EcctrlJoystick } from "ecctrl";
@@ -577,6 +577,8 @@ function Room({ onLoad }) {
                 </Box>
 
 
+
+
                 {/*external garden walls*/}
                 <Box args={[26, 5, 0.1]} position={[-32, 0, -16]} receiveShadow castShadow>
                     <meshStandardMaterial color="#eeeeee" opacity={0} />
@@ -747,7 +749,7 @@ function Player() {
 
 
 
-export default function StoreScene({ openModal }) {
+export default function StoreScene({ openModal, isModalOpen }) {
     const [cFov, setCFov] = useState(65); // Default FOV
     const [roomLoaded, setRoomLoaded] = useState(false);
 
@@ -763,7 +765,12 @@ export default function StoreScene({ openModal }) {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
+
     const model = useGLTF("models/cashregister.glb")
+    const m1 = useLoader(TextureLoader, 'img/m1.jpg')
+    const m2 = useLoader(TextureLoader, 'img/m2.jpg')
+    const m3 = useLoader(TextureLoader, 'img/m3.jpg')
+    const m4 = useLoader(TextureLoader, 'img/m4.jpg')
 
     // Traverse and set shadow properties for the model
     model.scene.traverse((child) => {
@@ -814,7 +821,11 @@ export default function StoreScene({ openModal }) {
 
     return (
         <>
+            {!roomLoaded && <LoadingScreen />} {/* Show the loading screen while room is loading */}
+
             <EcctrlJoystick
+                className={`transition-opacity duration-300 ${isModalOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+
                 buttonNumber={0}
                 joystickPositionLeft={-20}
                 joystickPositionBottom={-20}
@@ -832,6 +843,7 @@ export default function StoreScene({ openModal }) {
                     scale: [0.7, 0.7, 0.7],
                     material: new THREE.MeshBasicMaterial({ color: "#D3D3D3" })
                 }}
+
             />
             <Canvas
                 camera={{
@@ -879,6 +891,21 @@ export default function StoreScene({ openModal }) {
                             turbidity={0.1}
                             rayleigh={0.5}
                         />
+
+                        <group onClick={(event) => handleNewsClick(event)}>
+                            <Box args={[1, 1.4, 0.1]} position={[2.4, 2.75, 14]} rotation={[0.2, 0, 0]} receiveShadow castShadow>
+                                <meshStandardMaterial map={m1} />
+                            </Box>
+                            <Box args={[1, 1.4, 0.1]} position={[0.8, 2.75, 14]} rotation={[0.2, 0, 0]} receiveShadow castShadow>
+                                <meshStandardMaterial map={m2} />
+                            </Box>
+                            <Box args={[1, 1.4, 0.1]} position={[-0.8, 2.75, 14]} rotation={[0.2, 0, 0]} receiveShadow castShadow>
+                                <meshStandardMaterial map={m3} />
+                            </Box>
+                            <Box args={[1, 1.4, 0.1]} position={[-2.4, 2.75, 14]} rotation={[0.2, 0, 0]} receiveShadow castShadow>
+                                <meshStandardMaterial map={m4} />
+                            </Box>
+                        </group>
 
                         {/* Shelves with dynamic click handling */}
                         <Shelf

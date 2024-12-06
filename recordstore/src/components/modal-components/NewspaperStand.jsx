@@ -75,7 +75,7 @@ const NewspaperStand = () => {
 
     return (
         <div className="flex flex-col h-full max-h-[70vh] w-full max-w-[90vw]">
-            <div className="sticky top-0 z-10 flex items-center justify-between mb-2 bg-white">
+            <div className="sticky top-0 z-10 flex items-center justify-between p-1 mb-2 rounded-lg bg-white/30">
                 <Select
                     onValueChange={(value) => {
                         setSelectedSource(value);
@@ -93,7 +93,7 @@ const NewspaperStand = () => {
                     </SelectContent>
                 </Select>
 
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center ml-1 space-x-2">
                     <Button
                         variant="outline"
                         size="icon"
@@ -102,7 +102,7 @@ const NewspaperStand = () => {
                     >
                         <ChevronLeft className="w-4 h-4" />
                     </Button>
-                    <span className="text-sm">
+                    <span className="text-xs text-center">
                         Page {currentPage} of {totalPages}
                     </span>
                     <Button
@@ -121,7 +121,7 @@ const NewspaperStand = () => {
                     {paginatedArticles.map((article, index) => (
                         <Card
                             key={index}
-                            className="flex flex-col w-5/6 mx-6 cursor-pointer hover:bg-gray-50"
+                            className="flex flex-col w-5/6 mx-6 mx-auto cursor-pointer md:w-3/5 hover:bg-gray-50"
                             onClick={() => window.open(article.link, '_blank')}
                         >
                             <div className="flex items-center m-3 mb-2 space-x-2">

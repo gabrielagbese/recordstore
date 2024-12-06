@@ -106,16 +106,16 @@ function Shelf4() {
                     {/* Subsequent slides for each album */}
                     {albums.map((album, index) => (
                         <CarouselItem key={index} className="h-full">
-                            <Card className="relative h-full p-6 overflow-y-auto">
+                            <Card className="relative h-full p-5 overflow-y-auto shadow-md backdrop-blur-md bg-white/45 border-gray-800/30">
                                 <div className="flex flex-col items-center min-h-full">
-                                    <h2 className="mb-4 text-2xl font-semibold">{album.name}</h2>
+                                    <h2 className="mb-6 font-semibold text-lg md:text-xl h-[25px]">{album.name}</h2>
                                     <img
                                         src={album.imgSrc}
                                         alt={`${album.name} Cover`}
-                                        className="w-[150px] h-[150px] object-cover mb-4 rounded-lg shadow-lg"
+                                        className="w-[150px] h-[150px] object-cover mb-4 rounded-lg shadow-md"
                                     />
 
-                                    <p className="mt-4 text-center max-w-[400px]">{album.description}</p>
+                                    <p className="mt-4 text-center max-w-[400px] h-[150px] text-sm md:text-base overflow-hidden text-ellipsis line-clamp-4">{album.description}</p>
                                     <Accordion type="single" collapsible className="w-full max-w-[400px]">
                                         <AccordionItem value="spotify-embed">
                                             <AccordionTrigger>Listen to the Album</AccordionTrigger>
