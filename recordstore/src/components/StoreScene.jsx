@@ -264,7 +264,7 @@ function Sun() {
 
 function FloatingShelf({ position }) {
     return (
-        <Box args={[10, 0.1, 1]} position={position} castShadow receiveShadow>
+        <Box args={[10, 0.1, 2.75]} position={position} castShadow receiveShadow>
             <meshStandardMaterial color="#8B4513" />
         </Box>
     )
@@ -283,7 +283,7 @@ function ShelfObject({ position, color }) {
 function FloatingShelves() {
     return (
         <group position={[0, 0, 14.5]}>
-            <FloatingShelf position={[0, 6, 0]} />
+
             <FloatingShelf position={[0, 4, 0]} />
             <FloatingShelf position={[0, 2, 0]} />
             <FloatingShelf position={[0, 0, 0]} />
@@ -396,13 +396,16 @@ function NeonTube({ position, tpx, tpz }) {
 }
 
 // Update Room to receive shadows
-function Room() {
-    {/* Loaded Models, Textures, and resizes */ }
+function Room({ onLoad }) {
+    useEffect(() => {
+        // Once room is fully loaded
+        onLoad();
+    }, [onLoad]);
 
 
 
     const bSpeaker1 = useLoader(GLTFLoader, "models/Speaker2.glb")
-    const bSpeaker2 = useLoader(GLTFLoader, "models/Speaker3.glb")
+    const bSpeaker2 = bSpeaker1.scene.clone();
 
     const record = useLoader(GLTFLoader, "models/record_player_table.glb")
     record.scene.traverse((child) => {
@@ -412,14 +415,7 @@ function Room() {
         }
     });
 
-    const tallPLant = useLoader(GLTFLoader, "models/tall_house_plant.glb")
-    tallPLant.scene.traverse((child) => {
-        if (child.isMesh) { // Check if the child is a Mesh (i.e., a 3D object with geometry and material)
-            child.castShadow = true; // Enable shadow casting
-            child.receiveShadow = true; // Enable shadow receiving
-        }
-    });
-    const tall2 = tallPLant.scene.clone()
+
 
     const wiz = useLoader(TextureLoader, 'img/wiz.jpg')
     const burna = useLoader(TextureLoader, 'img/burna.jpg')
@@ -435,13 +431,7 @@ function Room() {
         }
     });
 
-    const outside = useLoader(GLTFLoader, "models/outside.glb")
-    outside.scene.traverse((child) => {
-        if (child.isMesh) { // Check if the child is a Mesh (i.e., a 3D object with geometry and material)
-            child.castShadow = true; // Enable shadow casting
-            child.receiveShadow = true; // Enable shadow receiving
-        }
-    });
+
 
     const pBigClone1 = pBig1.scene.clone();
     const pBigClone2 = pBig1.scene.clone();
@@ -612,34 +602,34 @@ function Room() {
                 </Box>
 
                 {/*shelf panel*/}
-                <Box args={[10, 8, 0.1]} position={[0, 2, 14.9]}>
-                    <meshStandardMaterial map={texture} />
+                <Box args={[8, 7, 0.1]} position={[0, 2, 14.9]}>
+                    <meshStandardMaterial color="#662b00" />
                 </Box>
 
                 {/*Speaker*/}
                 <primitive
                     object={bSpeaker1.scene}
-                    position={[4, 4, 14.25]}
+                    position={[2, 0, 14.25]}
                     rotation={[0, Math.PI / -1, 0]} // Rotate 90 degrees along the Y-axis
-                    scale={[2, 2, 2]}
+                    scale={[2.5, 2.5, 2.5]}
                     castShadow
                     receiveShadow
                 />
                 {/*Speaker*/}
                 <primitive
-                    object={bSpeaker2.scene}
-                    position={[-4, 4, 14.25]}
+                    object={bSpeaker2}
+                    position={[-2, 0, 14.25]}
                     rotation={[0, Math.PI / -1, 0]} // Rotate 90 degrees along the Y-axis
-                    scale={[2, 2, 2]}
+                    scale={[2.5, 2.5, 2.5]}
                     castShadow
                     receiveShadow
                 />
 
                 <primitive
                     object={record.scene}
-                    position={[0, -2, 12]}
+                    position={[0, -1.78, 13.25]}
                     rotation={[0, Math.PI / -1, 0]} // Rotate 90 degrees along the Y-axis
-                    scale={[0.45, 0.45, 0.45]}
+                    scale={[0.4, 0.4, 0.4]}
                     castShadow
                     receiveShadow
                 />
@@ -668,9 +658,9 @@ function Room() {
                 {/*Big Plant Clone 2*/}
                 <primitive
                     object={pBigClone2}
-                    position={[22, -2, 13]}
+                    position={[6, -2, 13.75]}
                     rotation={[0, Math.PI / -7, 0]} // Rotate 90 degrees along the Y-axis
-                    scale={[4, 4, 4]}
+                    scale={[3, 3, 3]}
                     castShadow
                     receiveShadow
                 />
@@ -678,31 +668,14 @@ function Room() {
                 {/*Big Plant Clone 3*/}
                 <primitive
                     object={pBigClone3}
-                    position={[-22, -2, 13]}
+                    position={[-6, -2, 13.75]}
                     rotation={[0, Math.PI / -2, 0]} // Rotate 90 degrees along the Y-axis
-                    scale={[4, 4, 4]}
+                    scale={[3, 3, 3]}
                     castShadow
                     receiveShadow
                 />
 
-                {/*Big Plant Clone 3*/}
-                <primitive
-                    object={tallPLant.scene}
-                    position={[5.5, -1.5, 14]}
-                    rotation={[0, Math.PI / -1.5, 0]} // Rotate 90 degrees along the Y-axis
-                    scale={[0.012, 0.012, 0.012]}
-                    castShadow
-                    receiveShadow
-                />
 
-                <primitive
-                    object={tall2}
-                    position={[-5.5, -1.5, 14]}
-                    rotation={[0, Math.PI / -1, 0]} // Rotate 90 degrees along the Y-axis
-                    scale={[0.012, 0.012, 0.012]}
-                    castShadow
-                    receiveShadow
-                />
 
                 {/* Tables */}
                 <TableOne position={[-19.5, -1.5, 0]} />
@@ -742,7 +715,7 @@ function Player() {
                     turnSpeed={100} // give it big turning speed to prevent turning wait time
                     mode="CameraBasedMovement"
                     floatHeight={0}
-                    // position={[0, , -12]}
+                    position={[0, 0, -12]}
                     camTargetPos={{ x: 0, y: 3, z: 0 }}
 
 
@@ -774,11 +747,12 @@ function Player() {
 
 export default function StoreScene({ openModal }) {
     const [cFov, setCFov] = useState(65); // Default FOV
+    const [roomLoaded, setRoomLoaded] = useState(false);
 
     useEffect(() => {
         const handleResize = () => {
             // Adjust FOV based on screen width
-            setCFov(window.innerWidth < 768 ? 65 : 65); // Wider FOV for mobile (<768px)
+            setCFov(window.innerWidth < 768 ? 75 : 55); // Wider FOV for mobile (<768px)
         };
 
         handleResize(); // Initial check
@@ -804,9 +778,9 @@ export default function StoreScene({ openModal }) {
 
     const arcade = useLoader(GLTFLoader, "models/Arcade.glb")
     arcade.scene.traverse((child) => {
-        if (child.isMesh) { // Check if the child is a Mesh (i.e., a 3D object with geometry and material)
-            child.castShadow = true; // Enable shadow casting
-            child.receiveShadow = true; // Enable shadow receiving
+        if (child.isMesh) {
+            child.castShadow = true;
+            child.receiveShadow = true;
         }
     });
 
@@ -815,13 +789,11 @@ export default function StoreScene({ openModal }) {
         openModal("News", NewspaperStand);
     };
 
-
-
     const news = useLoader(GLTFLoader, "models/newsstand2.glb")
     news.scene.traverse((child) => {
-        if (child.isMesh) { // Check if the child is a Mesh (i.e., a 3D object with geometry and material)
-            child.castShadow = true; // Enable shadow casting
-            child.receiveShadow = true; // Enable shadow receiving
+        if (child.isMesh) {
+            child.castShadow = true;
+            child.receiveShadow = true;
         }
     });
 
@@ -840,7 +812,6 @@ export default function StoreScene({ openModal }) {
 
     return (
         <>
-
             <EcctrlJoystick
                 buttonNumber={0}
                 joystickPositionLeft={-20}
@@ -865,14 +836,16 @@ export default function StoreScene({ openModal }) {
                     position: [0, 5, -15],
                     fov: cFov,
                 }}
+
+                performance={{
+                    min: 0.5  // Prioritize performance over quality
+                }}
                 style={{ width: '100vw', height: '100vh' }}
                 className="relative"
                 shadows
             >
-
                 <Suspense fallback={null}>
-                    <ambientLight intensity={0.5} color={0xffffff} />
-                    {/* <Perf /> */}
+                    <ambientLight intensity={0.25} color={0xffffff} />
                     <directionalLight
                         position={[-10, 10, 4]}
                         intensity={2}
@@ -888,7 +861,10 @@ export default function StoreScene({ openModal }) {
                     />
 
                     <Physics>
-                        <Player />
+                        <Suspense fallback={"Loading..."}>
+                            <Room onLoad={() => setRoomLoaded(true)} />
+                            {roomLoaded && <Player />}
+                        </Suspense>
 
                         <hemisphereLight
                             intensity={0.3}
@@ -901,8 +877,6 @@ export default function StoreScene({ openModal }) {
                             turbidity={0.1}
                             rayleigh={0.5}
                         />
-
-                        <Room />
 
                         {/* Shelves with dynamic click handling */}
                         <Shelf
@@ -941,38 +915,12 @@ export default function StoreScene({ openModal }) {
                             folderName="20-24"
                             onClick={() => handleShelfClick(6)}
                         />
-
-                        {/*News Stand*/}
-                        <primitive
-                            object={news.scene}
-                            position={[-16, -1.925, 14]}
-                            rotation={[0, Math.PI / 1, 0]}
-                            scale={[0.7, 0.575, 0.575]}
-                            onClick={(event) => handleNewsClick(event)}
-                            castShadow
-                            receiveShadow
-                        />
-
-                        {/*Arcade*/}
-                        <primitive
-                            object={arcade.scene}
-                            position={[16, -2, 14.25]}
-                            rotation={[0, Math.PI / 2, 0]} // Rotate 90 degrees along the Y-axis
-                            scale={[1, 2, 2.5]}
-                            onClick={() => handleArcadeClick()}
-                            castShadow
-                            receiveShadow
-                        />
-
-
                     </Physics>
 
                     <OrbitControls />
                     <Effects />
-
                 </Suspense>
             </Canvas>
-
         </>
     )
 }
