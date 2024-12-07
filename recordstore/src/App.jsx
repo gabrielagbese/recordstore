@@ -1,6 +1,7 @@
 import React, { useState, startTransition, Suspense } from 'react';
 import LandingPage from './components/LandingPage';
 import LoadingScreen from './components/LoadingScreen';
+import { Analytics } from "@vercel/analytics/react"
 
 const StoreScene = React.lazy(() => import('./components/StoreScene'));
 
@@ -33,6 +34,7 @@ function App() {
 
   return (
     <div className="relative w-screen h-screen">
+      <Analytics />
       {!hasEntered ? (
         <LandingPage onEnter={handleEnter} />
       ) : (
