@@ -864,8 +864,8 @@ export default function StoreScene({ openModal, isModalOpen }) {
                         position={[-10, 10, 4]}
                         intensity={2}
                         castShadow
-                        shadow-mapSize-width={2048}
-                        shadow-mapSize-height={2048}
+                        shadow-mapSize-width={512}
+                        shadow-mapSize-height={512}
                         shadow-camera-far={50}
                         shadow-camera-near={0.1}
                         shadow-camera-left={-20}

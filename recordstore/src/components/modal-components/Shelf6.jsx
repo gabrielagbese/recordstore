@@ -7,16 +7,19 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 function Shelf6() {
     const albums = [
+
+
+
         {
             name: 'Burna Boy - "Twice as Tall" (2020)',
             imgSrc: "/20-24/image1.jpg",
-            spotifyEmbed: 'https://open.spotify.com/embed/album/0123456789',
+            spotifyEmbed: 'https://open.spotify.com/embed/album/2pANu4qucnliJuRR94eZSV?utm_source=generator',
             description: "Grammy-winning album that solidified Burna Boy's international status, blending Afrobeats with pan-African messaging and global musical influences. The album featured collaborations with international artists and represented a landmark moment in African musical global recognition."
         },
         {
             name: 'Wizkid - "Made in Lagos" (2020)',
             imgSrc: "/20-24/image2.jpg",
-            spotifyEmbed: 'https://open.spotify.com/embed/album/0123456789',
+            spotifyEmbed: 'https://open.spotify.com/embed/album/6HpMdN52TfJAwVbmkrFeBN?utm_source=generator',
             description: "A critically acclaimed album that refined Wizkid's global sound, featuring smooth R&B-infused Afrobeats tracks that became international hits. The project showcased Wizkid's ability to create a cohesive, sophisticated musical experience that transcended traditional genre boundaries."
         },
         {
@@ -135,8 +138,8 @@ function Shelf6() {
                         </CarouselItem>
                     ))}
                 </CarouselContent>
-                <CarouselPrevious className="fixed text-white transform -translate-y-1/2 bg-black top-1/2 left-4 sm:left-1/4" />
-                <CarouselNext className="fixed text-white transform -translate-y-1/2 bg-black top-1/2 right-4 sm:right-1/4 " />
+                <CarouselPrevious className="fixed text-white transform -translate-y-1/2 bg-black top-1/2 left-4 sm:left-1/4 md:left-4" />
+                <CarouselNext className="fixed text-white transform -translate-y-1/2 bg-black top-1/2 right-4 sm:right-1/4 md:right-4" />
 
 
 
