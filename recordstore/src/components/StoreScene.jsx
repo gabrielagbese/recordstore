@@ -1,5 +1,5 @@
 import { Canvas, useThree, useFrame, useLoader } from '@react-three/fiber'
-import { FirstPersonControls, useHelper, PivotControls, OrbitControls, Box, Text, Html, Sky, Cylinder, AccumulativeShadows, RandomizedLight, SoftShadows, Text3D, KeyboardControls, useGLTF, Environment, Edges } from '@react-three/drei'
+import { FirstPersonControls, useHelper, PivotControls, OrbitControls, Box, Text, Html, Sky, Cylinder, AccumulativeShadows, RandomizedLight, SoftShadows, Text3D, KeyboardControls, useGLTF, Environment, Edges, DeviceOrientationControls } from '@react-three/drei'
 import { useState, useRef, useCallback, useEffect, Children, Suspense, useMemo } from 'react'
 import * as THREE from 'three'
 import Ecctrl from 'ecctrl'
@@ -692,7 +692,9 @@ function Room({ onLoad }) {
 
 
 
-function Player() {
+function Player({ gyroEnabled }) {
+    const { camera } = useThree();
+    const controlsRef = useRef();
     const keyboardMap = [
         { name: "forward", keys: ["ArrowUp", "KeyW"] },
         { name: "backward", keys: ["ArrowDown", "KeyS"] },
@@ -700,58 +702,53 @@ function Player() {
         { name: "rightward", keys: ["ArrowRight", "KeyD"] },
         { name: "jump", keys: ["Space"] },
         { name: "run", keys: ["Shift"] },
-        // Optional animation key map
-        { name: "action1", keys: ["1"] },
-        { name: "action2", keys: ["2"] },
-        { name: "action3", keys: ["3"] },
-        { name: "action4", keys: ["KeyF"] },
     ];
+
+    // Update the camera position based on gyroscope or Ecctrl
+    useFrame(() => {
+        if (gyroEnabled && controlsRef.current) {
+            controlsRef.current.update(); // Update DeviceOrientationControls
+        }
+    });
+
     return (
         <>
+            {gyroEnabled && <DeviceOrientationControls ref={controlsRef} camera={camera} />}
             <KeyboardControls map={keyboardMap}>
                 <Ecctrl
-                    camCollision={true} // disable camera collision detect (useless in FP mode)
-                    camInitDis={-0.1} // camera intial position
-                    camMinDis={-0.01} // camera zoom in closest position
-                    camFollowMult={1000} // give a big number here, so the camera follows the target (character) instantly
-                    camLerpMult={1000} // give a big number here, so the camera lerp to the followCam position instantly
-                    turnVelMultiplier={1} // Turning speed same as moving speed
-                    turnSpeed={100} // give it big turning speed to prevent turning wait time
+                    camCollision={true}
+                    camInitDis={-0.1}
+                    camMinDis={-0.01}
+                    camFollowMult={1000}
+                    camLerpMult={1000}
+                    turnVelMultiplier={1}
+                    turnSpeed={100}
                     mode="CameraBasedMovement"
                     floatHeight={0}
                     position={[0, 0, -12]}
                     camTargetPos={{ x: 0, y: 3, z: 0 }}
-
-
-
-                    // Keyboard control configuration
-                    keyboardControls={{
-                        forward: 'ArrowUp',
-                        backward: 'ArrowDown',
-                        leftward: 'ArrowLeft',
-                        rightward: 'ArrowRight',
-                        jump: 'Space',
-                        sprint: 'Shift'
-                    }}
+                    disableControl={gyroEnabled} // Disable Ecctrl controls when gyro is enabled
                 >
-                    {/* Adjust mesh to be taller */}
                     <RigidBody type="fixed" colliders="trimesh">
-                        <mesh visible={false} >
-                            <cylinderGeometry args={[0.5, 0.5, 2, 16]} />  // Doubled height from 2 to 4
+                        <mesh visible={false}>
+                            <cylinderGeometry args={[0.5, 0.5, 2, 16]} />
                             <meshStandardMaterial color="red" />
                         </mesh>
                     </RigidBody>
                 </Ecctrl>
-            </KeyboardControls >
+            </KeyboardControls>
         </>
-    )
+    );
 }
+
+
 
 
 
 export default function StoreScene({ openModal, isModalOpen }) {
     const [cFov, setCFov] = useState(65); // Default FOV
     const [roomLoaded, setRoomLoaded] = useState(false);
+    const [gyroEnabled, setGyroEnabled] = useState(false); // Gyroscope toggle state
 
     useEffect(() => {
         const handleResize = () => {
@@ -765,12 +762,11 @@ export default function StoreScene({ openModal, isModalOpen }) {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-
-    const model = useGLTF("models/cashregister.glb")
-    const m1 = useLoader(TextureLoader, 'img/m1.jpg')
-    const m2 = useLoader(TextureLoader, 'img/m2.jpg')
-    const m3 = useLoader(TextureLoader, 'img/m3.jpg')
-    const m4 = useLoader(TextureLoader, 'img/m4.jpg')
+    const model = useGLTF("models/cashregister.glb");
+    const m1 = useLoader(TextureLoader, 'img/m1.jpg');
+    const m2 = useLoader(TextureLoader, 'img/m2.jpg');
+    const m3 = useLoader(TextureLoader, 'img/m3.jpg');
+    const m4 = useLoader(TextureLoader, 'img/m4.jpg');
 
     // Traverse and set shadow properties for the model
     model.scene.traverse((child) => {
@@ -785,7 +781,7 @@ export default function StoreScene({ openModal, isModalOpen }) {
         openModal("Arcade Game", Arcade);
     };
 
-    const arcade = useLoader(GLTFLoader, "models/Arcade.glb")
+    const arcade = useLoader(GLTFLoader, "models/Arcade.glb");
     arcade.scene.traverse((child) => {
         if (child.isMesh) {
             child.castShadow = true;
@@ -798,7 +794,7 @@ export default function StoreScene({ openModal, isModalOpen }) {
         openModal("News", NewspaperStand);
     };
 
-    const news = useLoader(GLTFLoader, "models/newsstand2.glb")
+    const news = useLoader(GLTFLoader, "models/newsstand2.glb");
     news.scene.traverse((child) => {
         if (child.isMesh) {
             child.castShadow = true;
@@ -823,9 +819,27 @@ export default function StoreScene({ openModal, isModalOpen }) {
         <>
             {!roomLoaded && <LoadingScreen />} {/* Show the loading screen while room is loading */}
 
+            {/* Toggle Button */}
+            <button
+                style={{
+                    position: 'absolute',
+                    top: '20px',
+                    right: '20px',
+                    zIndex: 1000,
+                    padding: '10px 20px',
+                    backgroundColor: gyroEnabled ? '#4CAF50' : '#f44336',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '5px',
+                    cursor: 'pointer',
+                }}
+                onClick={() => setGyroEnabled(!gyroEnabled)}
+            >
+                {gyroEnabled ? 'Disable Gyro' : 'Enable Gyro'}
+            </button>
+
             <EcctrlJoystick
                 className={`transition-opacity duration-300 ${isModalOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
-
                 buttonNumber={0}
                 joystickPositionLeft={-20}
                 joystickPositionBottom={-20}
@@ -843,22 +857,20 @@ export default function StoreScene({ openModal, isModalOpen }) {
                     scale: [0.7, 0.7, 0.7],
                     material: new THREE.MeshBasicMaterial({ color: "#D3D3D3" })
                 }}
-
             />
+
             <Canvas
                 camera={{
                     position: [0, 5, -15],
                     fov: cFov,
                 }}
-
-                performance={{
-                    min: 0.5  // Prioritize performance over quality
-                }}
+                performance={{ min: 0.5 }}
                 style={{ width: '100vw', height: '100vh' }}
                 className="relative"
                 shadows
             >
                 <Suspense fallback={"Load..."}>
+                    {gyroEnabled && <DeviceOrientationControls />} {/* Gyroscope controls */}
                     <ambientLight intensity={0.25} color={0xffffff} />
                     <directionalLight
                         position={[-10, 10, 4]}
@@ -877,20 +889,11 @@ export default function StoreScene({ openModal, isModalOpen }) {
                     <Physics>
                         <Suspense fallback={"Loading..."}>
                             <Room onLoad={() => setRoomLoaded(true)} />
-                            {roomLoaded && <Player />}
+                            {roomLoaded && <Player gyroEnabled={gyroEnabled} />} {/* Pass gyroEnabled to Player */}
                         </Suspense>
 
-                        <hemisphereLight
-                            intensity={0.3}
-                            color="#ffffff"
-                            groundColor="#bbbbff"
-                        />
-
-                        <Sky
-                            sunPosition={[20, 5, 0]}
-                            turbidity={0.1}
-                            rayleigh={0.5}
-                        />
+                        <hemisphereLight intensity={0.3} color="#ffffff" groundColor="#bbbbff" />
+                        <Sky sunPosition={[20, 5, 0]} turbidity={0.1} rayleigh={0.5} />
 
                         <group onClick={(event) => handleNewsClick(event)}>
                             <Box args={[1, 1.4, 0.1]} position={[2.4, 2.75, 14]} rotation={[0.2, 0, 0]} receiveShadow castShadow>
@@ -908,48 +911,17 @@ export default function StoreScene({ openModal, isModalOpen }) {
                         </group>
 
                         {/* Shelves with dynamic click handling */}
-                        <Shelf
-                            position={[-5.5, 0, -6.5]}
-                            name="Pre 2000s"
-                            folderName="pre2000"
-                            onClick={() => handleShelfClick(1)}
-                        />
-                        <Shelf
-                            position={[-5.5, 0, 0]}
-                            name="2001 - 2005"
-                            folderName="01-04"
-                            onClick={() => handleShelfClick(2)}
-                        />
-                        <Shelf
-                            position={[-5.5, 0, 6.5]}
-                            name="2006-2010"
-                            folderName="06-10"
-                            onClick={() => handleShelfClick(3)}
-                        />
-                        <Shelf
-                            position={[5.5, 0, -6.5]}
-                            name="2011-2015"
-                            folderName="11-15"
-                            onClick={() => handleShelfClick(4)}
-                        />
-                        <Shelf
-                            position={[5.5, 0, 0]}
-                            name="2016 - 2019"
-                            folderName="16-20"
-                            onClick={() => handleShelfClick(5)}
-                        />
-                        <Shelf
-                            position={[6.5, 0, 6.5]}
-                            name="2020 - 2024"
-                            folderName="20-24"
-                            onClick={() => handleShelfClick(6)}
-                        />
+                        <Shelf position={[-5.5, 0, -6.5]} name="Pre 2000s" folderName="pre2000" onClick={() => handleShelfClick(1)} />
+                        <Shelf position={[-5.5, 0, 0]} name="2001 - 2005" folderName="01-04" onClick={() => handleShelfClick(2)} />
+                        <Shelf position={[-5.5, 0, 6.5]} name="2006-2010" folderName="06-10" onClick={() => handleShelfClick(3)} />
+                        <Shelf position={[5.5, 0, -6.5]} name="2011-2015" folderName="11-15" onClick={() => handleShelfClick(4)} />
+                        <Shelf position={[5.5, 0, 0]} name="2016 - 2019" folderName="16-20" onClick={() => handleShelfClick(5)} />
+                        <Shelf position={[6.5, 0, 6.5]} name="2020 - 2024" folderName="20-24" onClick={() => handleShelfClick(6)} />
                     </Physics>
 
-                    <OrbitControls />
                     <Effects />
                 </Suspense>
             </Canvas>
         </>
-    )
+    );
 }

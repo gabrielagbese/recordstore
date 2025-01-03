@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@react-three/xr": "^6.4.12",
+    "three-stdlib": "^2.35.2"
+  }
+}

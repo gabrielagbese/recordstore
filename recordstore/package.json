@@ -17,6 +17,7 @@
         "@react-three/fiber": "^8.17.10",
         "@react-three/postprocessing": "^2.16.3",
         "@react-three/rapier": "^1.5.0",
+        "@react-three/xr": "^6.4.12",
         "@vercel/analytics": "^1.4.1",
         "autoprefixer": "^10.4.20",
         "axios": "^1.7.8",
@@ -47,6 +48,7 @@
         "eslint-plugin-react-refresh": "^0.4.14",
         "globals": "^15.11.0",
         "tailwindcss": "^3.4.15",
-        "vite": "^5.4.10"
+        "vite": "^5.4.10",
+        "vite-plugin-mkcert": "^1.17.6"
     }
 }
