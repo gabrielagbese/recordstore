@@ -839,7 +839,7 @@ export default function StoreScene({ openModal, isModalOpen }) {
             />
             <button
                 onClick={() => {
-                    store.enterVR();
+                    store.enterAR();
                     alert("AR entered");
                 }}
             >
