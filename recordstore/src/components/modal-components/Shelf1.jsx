@@ -10,49 +10,49 @@ function Shelf1() {
         {
             name: 'Fela Kuti - Zombie (1977)',
             imgSrc: "/pre2000/image1.jpg",
-            spotifyEmbed: 'https://open.spotify.com/embed/album/0123456789',
+            spotifyEmbed: 'https://open.spotify.com/embed/album/51kRDjKcrYrQfFmOktFh32?utm_source=generator',
             description: 'A fearless critique of the Nigerian military, Zombie showcased Fela’s ability to blend complex rhythms with bold political commentary. Its rebellious spirit inspired subsequent generations to use music as a tool for social change.'
         },
         {
             name: 'King Sunny Ade - Juju Music (1982)',
             imgSrc: "/pre2000/image2.jpg",
-            spotifyEmbed: 'https://open.spotify.com/embed/album/0123456789',
+            spotifyEmbed: "https://open.spotify.com/embed/album/3Z7IpHf4cbe4NUEwnXSxXq?utm_source=generator",
             description: 'This album introduced Nigerian juju music to global audiences, featuring innovative guitar work and Western production techniques. It opened international doors for African music and inspired the fusion of traditional and modern styles.'
         },
         {
             name: 'Onyeka Onwenu - One Love (1986)',
             imgSrc: "/pre2000/image3.jpg",
-            spotifyEmbed: 'https://open.spotify.com/embed/album/0123456789',
+            spotifyEmbed: 'https://open.spotify.com/embed/album/76XBrYBz1RcuVUIQJausHi?utm_source=generator',
             description: 'A blend of highlife and soulful vocals, this album emphasized themes of unity and social progress. Onyeka’s artistry paved the way for women in the male-dominated Nigerian music industry.'
         },
         {
             name: 'Shina Peters - Ace (Afro-Juju Series 1) (1989)',
             imgSrc: "/pre2000/image4.jpg",
-            spotifyEmbed: 'https://open.spotify.com/embed/album/0123456789',
+            spotifyEmbed: 'https://open.spotify.com/embed/album/5teAikgdXjCxHb8wHNJDaq?utm_source=generator',
             description: 'This groundbreaking work combined juju and Afrobeat, creating the Afro-juju genre. Its infectious energy and danceable beats revolutionized Nigerian party music.'
         },
         {
             name: 'Majek Fashek - Prisoner of Conscience (1988)',
             imgSrc: "/pre2000/image5.jpg",
-            spotifyEmbed: 'https://open.spotify.com/embed/album/0123456789',
+            spotifyEmbed: 'https://open.spotify.com/embed/album/5K88mmbH7fcl6ojBxHWN45?utm_source=generator',
             description: 'Featuring the hit Send Down the Rain, this album infused reggae with African spirituality and advocacy for freedom. It showcased the potential for cross-genre innovation in Nigerian music.'
         },
         {
             name: 'Sir Victor Uwaifo - Guitar Boy Superstar (1971)',
             imgSrc: "/pre2000/image6.jpg",
-            spotifyEmbed: 'https://open.spotify.com/embed/album/0123456789',
+            spotifyEmbed: 'https://open.spotify.com/embed/album/6bhj9gdMkEegi5UfmLwS0v?utm_source=generator',
             description: 'This album introduced Nigerian juju music to global audiences, featuring innovative guitar work and Western production techniques. It opened international doors for African music and inspired the fusion of traditional and modern styles.'
         },
         {
             name: 'Femi Kuti - Femi Kuti (1995)',
             imgSrc: "/pre2000/image7.jpg",
-            spotifyEmbed: 'https://open.spotify.com/embed/album/0123456789',
+            spotifyEmbed: 'https://open.spotify.com/embed/album/6VrhPe4z1gPzeXAXW02I1y?utm_source=generator',
             description: 'Femi carried forward his father’s Afrobeat legacy, adding funk and jazz elements. This album modernized the genre and made Afrobeat more accessible to younger audiences.'
         },
         {
             name: 'Oliver De Coque - People’s Club of Nigeria (1981)',
             imgSrc: "/pre2000/image8.jpg",
-            spotifyEmbed: 'https://open.spotify.com/embed/album/0123456789',
+            spotifyEmbed: 'https://open.spotify.com/embed/album/0lk3fl59TwHVHRYZBzr5ah?utm_source=generator',
             description: 'By incorporating Igbo rhythms and highlife, this album celebrated Nigerian culture and identity. It introduced the concept of music as a unifying social force.'
         },
         {
@@ -64,7 +64,7 @@ function Shelf1() {
         {
             name: 'Christy Essien-Igbokwe - Ever Liked My Person (1981)',
             imgSrc: "/pre2000/image10.jpg",
-            spotifyEmbed: 'https://open.spotify.com/embed/album/0123456789',
+            spotifyEmbed: 'https://open.spotify.com/embed/album/0SDvbLDUqNufWrHnkY0dIN?utm_source=generator',
             description: 'A mix of highlife and early Afrobeat, this album tackled themes of love and societal expectations. Christy’s work set a precedent for personal storytelling in Nigerian music.'
         },
         {

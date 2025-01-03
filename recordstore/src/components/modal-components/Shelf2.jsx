@@ -10,37 +10,37 @@ function Shelf2() {
         {
             name: '2Baba - Face 2 Face (2004)',
             imgSrc: "/01-04/image1.jpg",
-            spotifyEmbed: 'https://open.spotify.com/embed/album/0123456789',
+            spotifyEmbed: 'https://open.spotify.com/embed/album/49Whucm0UZcPGY7eYfoDje?utm_source=generator',
             description: 'Featuring timeless hits like African Queen and Nfana Ibaga, this album brought Nigerian pop music to a global stage. Its melodic sound and heartfelt lyrics became the blueprint for modern Afrobeats’ romantic ballads.'
         },
         {
             name: 'Tony Tetuila - E Go Better (2004)',
             imgSrc: "/01-04/image2.jpg",
-            spotifyEmbed: 'https://open.spotify.com/embed/album/0123456789',
+            spotifyEmbed: 'https://open.spotify.com/embed/album/1mfFRFaO6nMZIMIwrFfQlP?utm_source=generator',
             description: 'With tracks like My Car, Tony Tetuila brought relatable, humorous storytelling to Afrobeats, blending highlife-inspired melodies with hip-hop influences. The album captured Nigerias urban lifestyle and solidified him as a genre-defining artist.'
         },
         {
             name: 'Plantashun Boiz - Body and Soul (2000)',
             imgSrc: "/01-04/image3.jpg",
-            spotifyEmbed: 'https://open.spotify.com/embed/album/0123456789',
+            spotifyEmbed: 'https://open.spotify.com/embed/album/4o4JgUxu1r9ihMhmb3CgHF?utm_source=generator',
             description: 'This collaborative effort by 2Baba, Blackface, and Faze delivered harmonized vocals and heartfelt lyrics. The album’s soulful tracks, including Knock Me Off, set the foundation for group dynamics in Afrobeats.'
         },
         {
             name: 'Styl-Plus - Olufunmi (2005)',
             imgSrc: "/01-04/image4.jpg",
-            spotifyEmbed: 'https://open.spotify.com/embed/album/0123456789',
+            spotifyEmbed: 'https://open.spotify.com/embed/album/5plKeEs2bHRz44nTFkByhg?utm_source=generator',
             description: 'Known for their smooth harmonies and R&B influence, this album featured romantic ballads that resonated with fans. Tracks like Olufunmi showcased the emotional and melodic potential of Afrobeats.'
         },
         {
             name: 'Ruggedman - Thy Album Come (2005)',
             imgSrc: "/01-04/image5.jpg",
-            spotifyEmbed: 'https://open.spotify.com/embed/album/0123456789',
+            spotifyEmbed: 'https://open.spotify.com/embed/album/7nlsvrATeVi1jBGeWLNthl?utm_source=generator',
             description: 'Ruggedman’s lyrical sharpness and fusion of hip-hop with Afrobeats paved the way for rap in the Nigerian music scene. His work appealed to a burgeoning youth culture.'
         },
         {
             name: 'Eedris Abdulkareem - Mr. Lecturer (2002)',
             imgSrc: "/01-04/image6.jpg",
-            spotifyEmbed: 'https://open.spotify.com/embed/album/0123456789',
+            spotifyEmbed: 'https://open.spotify.com/embed/album/0nJYM3buD8THmw2hQLfBDQ?utm_source=generator',
             description: 'A bold critique of societal corruption, this album proved Afrobeats could address serious issues. Eedris set a precedent for activist themes in music.'
         },
         {
