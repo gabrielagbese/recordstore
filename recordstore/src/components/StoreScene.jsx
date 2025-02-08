@@ -695,7 +695,7 @@ function Room({ onLoad }) {
 function Player({ gyroEnabled }) {
     const { camera } = useThree();
     const controlsRef = useRef();
-    const playerRotation = useRef(0);
+    const playerOrientation = useRef(0);
 
     const keyboardMap = [
         { name: "forward", keys: ["ArrowUp", "KeyW"] },
@@ -706,15 +706,31 @@ function Player({ gyroEnabled }) {
         { name: "run", keys: ["Shift"] },
     ];
 
-    // Update the camera position and handle gyroscope rotation
     useFrame(() => {
         if (gyroEnabled && controlsRef.current) {
             controlsRef.current.update();
-            // Get the camera's current rotation
-            const euler = new THREE.Euler().setFromQuaternion(camera.quaternion);
-            playerRotation.current = euler.y;
+            // Extract the y-rotation from the camera's quaternion
+            const quaternion = camera.quaternion.clone();
+            const euler = new THREE.Euler().setFromQuaternion(quaternion, 'YXZ');
+            playerOrientation.current = euler.y;
         }
     });
+
+    const handleJoystickMove = useCallback((data) => {
+        if (gyroEnabled) {
+            // Adjust joystick input based on camera orientation
+            const angle = playerOrientation.current;
+            const cos = Math.cos(angle);
+            const sin = Math.sin(angle);
+
+            // Rotate the joystick input vector
+            const rotatedX = data.x * cos - data.y * sin;
+            const rotatedY = data.x * sin + data.y * cos;
+
+            return { x: rotatedX, y: rotatedY };
+        }
+        return data;
+    }, [gyroEnabled]);
 
     return (
         <>
@@ -728,12 +744,12 @@ function Player({ gyroEnabled }) {
                     camLerpMult={1000}
                     turnVelMultiplier={1}
                     turnSpeed={100}
-                    mode={gyroEnabled ? "PointerLockControls" : "CameraBasedMovement"}
+                    mode="CameraBasedMovement"
                     floatHeight={0}
                     position={[0, 0, -12]}
                     camTargetPos={{ x: 0, y: 3, z: 0 }}
                     autoBalance={!gyroEnabled}
-                    modelRotation={gyroEnabled ? playerRotation.current : undefined}
+                    onJoystickMove={handleJoystickMove}
                 >
                     <RigidBody type="fixed" colliders="trimesh">
                         <mesh visible={false}>
@@ -746,6 +762,7 @@ function Player({ gyroEnabled }) {
         </>
     );
 }
+
 
 
 
