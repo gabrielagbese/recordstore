@@ -712,32 +712,30 @@ function Player({ gyroEnabled }) {
 
     return (
         <>
-            {gyroEnabled ? (
-                <DeviceOrientationControls ref={controlsRef} args={[camera]} />
-            ) : (
-                <KeyboardControls map={keyboardMap}>
-                    <Ecctrl
-                        camCollision={true}
-                        camInitDis={-0.1}
-                        camMinDis={-0.01}
-                        camFollowMult={1000}
-                        camLerpMult={1000}
-                        turnVelMultiplier={1}
-                        turnSpeed={100}
-                        mode="CameraBasedMovement"
-                        floatHeight={0}
-                        position={[0, 0, -12]}
-                        camTargetPos={{ x: 0, y: 3, z: 0 }}
-                    >
-                        <RigidBody type="fixed" colliders="trimesh">
-                            <mesh visible={false}>
-                                <cylinderGeometry args={[0.5, 0.5, 2, 16]} />
-                                <meshStandardMaterial color="red" />
-                            </mesh>
-                        </RigidBody>
-                    </Ecctrl>
-                </KeyboardControls>
-            )}
+            {gyroEnabled && <DeviceOrientationControls ref={controlsRef} args={[camera]} />}
+            <KeyboardControls map={keyboardMap}>
+                <Ecctrl
+                    camCollision={true}
+                    camInitDis={-0.1}
+                    camMinDis={-0.01}
+                    camFollowMult={1000}
+                    camLerpMult={1000}
+                    turnVelMultiplier={1}
+                    turnSpeed={100}
+                    mode="CameraBasedMovement"
+                    floatHeight={0}
+                    position={[0, 0, -12]}
+                    camTargetPos={{ x: 0, y: 3, z: 0 }}
+                    disableControl={gyroEnabled} // Disable Ecctrl rotation controls when gyro is enabled
+                >
+                    <RigidBody type="fixed" colliders="trimesh">
+                        <mesh visible={false}>
+                            <cylinderGeometry args={[0.5, 0.5, 2, 16]} />
+                            <meshStandardMaterial color="red" />
+                        </mesh>
+                    </RigidBody>
+                </Ecctrl>
+            </KeyboardControls>
         </>
     );
 }
