@@ -695,7 +695,9 @@ function Room({ onLoad }) {
 function Player({ gyroEnabled }) {
     const { camera } = useThree();
     const controlsRef = useRef();
-    const [cameraDirection] = useState(new THREE.Vector3());
+    const playerRef = useRef();
+    const cameraDirection = new THREE.Vector3();
+    const movementVector = new THREE.Vector3();
 
     const keyboardMap = [
         { name: "forward", keys: ["ArrowUp", "KeyW"] },
@@ -707,9 +709,15 @@ function Player({ gyroEnabled }) {
     ];
 
     useFrame(() => {
-        if (gyroEnabled && controlsRef.current) {
+        if (gyroEnabled && controlsRef.current && playerRef.current) {
             controlsRef.current.update();
             camera.getWorldDirection(cameraDirection);
+            cameraDirection.y = 0; // Prevent unwanted vertical movement
+            cameraDirection.normalize();
+
+            // Apply camera-based movement
+            movementVector.set(cameraDirection.x, 0, cameraDirection.z);
+            playerRef.current.setLinvel(movementVector.multiplyScalar(3)); // Adjust speed if necessary
         }
     });
 
@@ -718,6 +726,7 @@ function Player({ gyroEnabled }) {
             {gyroEnabled && <DeviceOrientationControls ref={controlsRef} camera={camera} />}
             <KeyboardControls map={keyboardMap}>
                 <Ecctrl
+                    ref={playerRef}
                     camCollision={true}
                     camInitDis={-0.1}
                     camMinDis={-0.01}
@@ -730,10 +739,8 @@ function Player({ gyroEnabled }) {
                     floatHeight={0}
                     position={[0, 0, -12]}
                     camTargetPos={{ x: 0, y: 3, z: 0 }}
-                    quaternion={gyroEnabled ? camera.quaternion : undefined}
-                    moveDir={gyroEnabled ? cameraDirection.clone().setY(0).normalize() : undefined}
                 >
-                    <RigidBody type="fixed" colliders="trimesh">
+                    <RigidBody ref={playerRef} type="dynamic" colliders="trimesh">
                         <mesh visible={false}>
                             <cylinderGeometry args={[0.5, 0.5, 2, 16]} />
                             <meshStandardMaterial color="red" />
@@ -744,6 +751,7 @@ function Player({ gyroEnabled }) {
         </>
     );
 }
+
 
 
 
