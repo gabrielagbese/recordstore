@@ -715,13 +715,16 @@ function Player({ gyroEnabled }) {
             cameraDirection.y = 0; // Keep rotation level
             cameraDirection.normalize();
 
-            // Apply only rotation, not movement
-            playerRef.current.setRotation(
-                new THREE.Quaternion().setFromUnitVectors(
-                    new THREE.Vector3(0, 0, -1), // Default forward direction
-                    cameraDirection // Match camera's forward direction
-                )
-            );
+            // Only rotate player if there is movement input (joystick or keyboard)
+            const velocity = playerRef.current.linvel();
+            if (velocity.length() > 0.01) { // Small threshold to detect movement
+                playerRef.current.setRotation(
+                    new THREE.Quaternion().setFromUnitVectors(
+                        new THREE.Vector3(0, 0, -1), // Default forward direction
+                        cameraDirection // Match camera's forward direction
+                    )
+                );
+            }
         }
     });
 
@@ -739,7 +742,7 @@ function Player({ gyroEnabled }) {
                     turnVelMultiplier={1}
                     turnSpeed={100}
                     mode="ThirdPersonControls"
-                    autoRotate={false} // Ensure gyro controls rotation instead
+                    autoRotate={false} // Ensures manual control
                     floatHeight={0}
                     position={[0, 0, -12]}
                     camTargetPos={{ x: 0, y: 3, z: 0 }}
@@ -755,7 +758,6 @@ function Player({ gyroEnabled }) {
         </>
     );
 }
-
 
 
 
