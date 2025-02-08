@@ -695,7 +695,7 @@ function Room({ onLoad }) {
 function Player({ gyroEnabled }) {
     const { camera } = useThree();
     const controlsRef = useRef();
-    const playerOrientation = useRef(0);
+    const [cameraDirection] = useState(new THREE.Vector3());
 
     const keyboardMap = [
         { name: "forward", keys: ["ArrowUp", "KeyW"] },
@@ -709,28 +709,9 @@ function Player({ gyroEnabled }) {
     useFrame(() => {
         if (gyroEnabled && controlsRef.current) {
             controlsRef.current.update();
-            // Extract the y-rotation from the camera's quaternion
-            const quaternion = camera.quaternion.clone();
-            const euler = new THREE.Euler().setFromQuaternion(quaternion, 'YXZ');
-            playerOrientation.current = euler.y;
+            camera.getWorldDirection(cameraDirection);
         }
     });
-
-    const handleJoystickMove = useCallback((data) => {
-        if (gyroEnabled) {
-            // Adjust joystick input based on camera orientation
-            const angle = playerOrientation.current;
-            const cos = Math.cos(angle);
-            const sin = Math.sin(angle);
-
-            // Rotate the joystick input vector
-            const rotatedX = data.x * cos - data.y * sin;
-            const rotatedY = data.x * sin + data.y * cos;
-
-            return { x: rotatedX, y: rotatedY };
-        }
-        return data;
-    }, [gyroEnabled]);
 
     return (
         <>
@@ -744,12 +725,13 @@ function Player({ gyroEnabled }) {
                     camLerpMult={1000}
                     turnVelMultiplier={1}
                     turnSpeed={100}
-                    mode="CameraBasedMovement"
+                    mode="ThirdPersonControls"
+                    autoRotate={!gyroEnabled}
                     floatHeight={0}
                     position={[0, 0, -12]}
                     camTargetPos={{ x: 0, y: 3, z: 0 }}
-                    autoBalance={!gyroEnabled}
-                    onJoystickMove={handleJoystickMove}
+                    quaternion={gyroEnabled ? camera.quaternion : undefined}
+                    moveDir={gyroEnabled ? cameraDirection : undefined}
                 >
                     <RigidBody type="fixed" colliders="trimesh">
                         <mesh visible={false}>
@@ -762,7 +744,6 @@ function Player({ gyroEnabled }) {
         </>
     );
 }
-
 
 
 
@@ -840,9 +821,6 @@ export default function StoreScene({ openModal, isModalOpen }) {
 
     return (
         <>
-
-
-            {/* Toggle Button */}
             <button
                 style={{
                     position: 'absolute',
@@ -861,26 +839,28 @@ export default function StoreScene({ openModal, isModalOpen }) {
                 {gyroEnabled ? 'Disable Gyro' : 'Enable Gyro'}
             </button>
 
-            <EcctrlJoystick
-                className={`transition-opacity duration-300 ${isModalOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
-                buttonNumber={0}
-                joystickPositionLeft={-20}
-                joystickPositionBottom={-20}
-                joystickBaseProps={{
-                    receiveShadow: true,
-                    scale: [0.55, 0.55, 0.55],
-                    material: new THREE.MeshBasicMaterial({ color: "#8f8f8f" })
-                }}
-                joystickStickProps={{
-                    castShadow: true,
-                    scale: [0.65, 0.65, 0.65],
-                    material: new THREE.MeshBasicMaterial({ color: "#A9A9A9" })
-                }}
-                joystickHandleProps={{
-                    scale: [0.7, 0.7, 0.7],
-                    material: new THREE.MeshBasicMaterial({ color: "#D3D3D3" })
-                }}
-            />
+            {!gyroEnabled && (
+                <EcctrlJoystick
+                    className={`transition-opacity duration-300 ${isModalOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+                    buttonNumber={0}
+                    joystickPositionLeft={-20}
+                    joystickPositionBottom={-20}
+                    joystickBaseProps={{
+                        receiveShadow: true,
+                        scale: [0.55, 0.55, 0.55],
+                        material: new THREE.MeshBasicMaterial({ color: "#8f8f8f" })
+                    }}
+                    joystickStickProps={{
+                        castShadow: true,
+                        scale: [0.65, 0.65, 0.65],
+                        material: new THREE.MeshBasicMaterial({ color: "#A9A9A9" })
+                    }}
+                    joystickHandleProps={{
+                        scale: [0.7, 0.7, 0.7],
+                        material: new THREE.MeshBasicMaterial({ color: "#D3D3D3" })
+                    }}
+                />
+            )}
 
             <Canvas
                 camera={{
@@ -893,56 +873,53 @@ export default function StoreScene({ openModal, isModalOpen }) {
                 shadows
             >
                 <Suspense fallback={"Load..."}>
-                    {gyroEnabled && <DeviceOrientationControls />} {/* Gyroscope controls */}
-                    <ambientLight intensity={0.25} color={0xffffff} />
-                    <directionalLight
-                        position={[-10, 10, 4]}
-                        intensity={2}
-                        castShadow
-                        shadow-mapSize-width={512}
-                        shadow-mapSize-height={512}
-                        shadow-camera-far={50}
-                        shadow-camera-near={0.1}
-                        shadow-camera-left={-20}
-                        shadow-camera-right={20}
-                        shadow-camera-top={20}
-                        shadow-camera-bottom={-20}
-                    />
-
                     <Physics>
                         <Suspense fallback={"Loading..."}>
                             <Room onLoad={() => setRoomLoaded(true)} />
-                            {roomLoaded && <Player gyroEnabled={gyroEnabled} />} {/* Pass gyroEnabled to Player */}
+                            {roomLoaded && (
+                                <KeyboardControls
+                                    map={[
+                                        { name: "forward", keys: ["ArrowUp", "KeyW"] },
+                                        { name: "backward", keys: ["ArrowDown", "KeyS"] },
+                                        { name: "leftward", keys: ["ArrowLeft", "KeyA"] },
+                                        { name: "rightward", keys: ["ArrowRight", "KeyD"] },
+                                        { name: "jump", keys: ["Space"] },
+                                        { name: "run", keys: ["Shift"] },
+                                    ]}
+                                >
+                                    {gyroEnabled ? (
+                                        <DeviceOrientationControls>
+                                            <mesh position={[0, 0, -12]}>
+                                                <cylinderGeometry args={[0.5, 0.5, 2, 16]} />
+                                                <meshStandardMaterial color="red" visible={false} />
+                                            </mesh>
+                                        </DeviceOrientationControls>
+                                    ) : (
+                                        <Ecctrl
+                                            camCollision={true}
+                                            camInitDis={-0.1}
+                                            camMinDis={-0.01}
+                                            camFollowMult={1000}
+                                            camLerpMult={1000}
+                                            turnVelMultiplier={1}
+                                            turnSpeed={100}
+                                            mode="CameraBasedMovement"
+                                            floatHeight={0}
+                                            position={[0, 0, -12]}
+                                            camTargetPos={{ x: 0, y: 3, z: 0 }}
+                                        >
+                                            <RigidBody type="fixed" colliders="trimesh">
+                                                <mesh visible={false}>
+                                                    <cylinderGeometry args={[0.5, 0.5, 2, 16]} />
+                                                    <meshStandardMaterial color="red" />
+                                                </mesh>
+                                            </RigidBody>
+                                        </Ecctrl>
+                                    )}
+                                </KeyboardControls>
+                            )}
                         </Suspense>
-
-                        <hemisphereLight intensity={0.3} color="#ffffff" groundColor="#bbbbff" />
-                        <Sky sunPosition={[20, 5, 0]} turbidity={0.1} rayleigh={0.5} />
-
-                        <group onClick={(event) => handleNewsClick(event)}>
-                            <Box args={[1, 1.4, 0.1]} position={[2.4, 2.75, 14]} rotation={[0.2, 0, 0]} receiveShadow castShadow>
-                                <meshStandardMaterial map={m1} />
-                            </Box>
-                            <Box args={[1, 1.4, 0.1]} position={[0.8, 2.75, 14]} rotation={[0.2, 0, 0]} receiveShadow castShadow>
-                                <meshStandardMaterial map={m2} />
-                            </Box>
-                            <Box args={[1, 1.4, 0.1]} position={[-0.8, 2.75, 14]} rotation={[0.2, 0, 0]} receiveShadow castShadow>
-                                <meshStandardMaterial map={m3} />
-                            </Box>
-                            <Box args={[1, 1.4, 0.1]} position={[-2.4, 2.75, 14]} rotation={[0.2, 0, 0]} receiveShadow castShadow>
-                                <meshStandardMaterial map={m4} />
-                            </Box>
-                        </group>
-
-                        {/* Shelves with dynamic click handling */}
-                        <Shelf position={[-5.5, 0, -6.5]} name="Pre 2000s" folderName="pre2000" onClick={() => handleShelfClick(1)} />
-                        <Shelf position={[-5.5, 0, 0]} name="2001 - 2005" folderName="01-04" onClick={() => handleShelfClick(2)} />
-                        <Shelf position={[-5.5, 0, 6.5]} name="2006-2010" folderName="06-10" onClick={() => handleShelfClick(3)} />
-                        <Shelf position={[5.5, 0, -6.5]} name="2011-2015" folderName="11-15" onClick={() => handleShelfClick(4)} />
-                        <Shelf position={[5.5, 0, 0]} name="2016 - 2019" folderName="16-20" onClick={() => handleShelfClick(5)} />
-                        <Shelf position={[6.5, 0, 6.5]} name="2020 - 2024" folderName="20-24" onClick={() => handleShelfClick(6)} />
                     </Physics>
-
-                    <Effects />
                 </Suspense>
 
             </Canvas>
