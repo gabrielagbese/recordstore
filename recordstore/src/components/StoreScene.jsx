@@ -696,8 +696,7 @@ function Player({ gyroEnabled }) {
     const { camera } = useThree();
     const controlsRef = useRef();
     const playerRef = useRef();
-    const cameraDirection = new THREE.Vector3();
-    const movementVector = new THREE.Vector3();
+    const [cameraDirection] = useState(new THREE.Vector3());
 
     const keyboardMap = [
         { name: "forward", keys: ["ArrowUp", "KeyW"] },
@@ -709,28 +708,19 @@ function Player({ gyroEnabled }) {
     ];
 
     useFrame(() => {
-        if (gyroEnabled && controlsRef.current && playerRef.current) {
+        if (gyroEnabled && controlsRef.current) {
             controlsRef.current.update();
             camera.getWorldDirection(cameraDirection);
-            cameraDirection.y = 0; // Keep rotation level
+            cameraDirection.y = 0; // Keep movement flat on the ground
             cameraDirection.normalize();
-
-            // Only rotate player if there is movement input (joystick or keyboard)
-            const velocity = playerRef.current.linvel();
-            if (velocity.length() > 0.01) { // Small threshold to detect movement
-                playerRef.current.setRotation(
-                    new THREE.Quaternion().setFromUnitVectors(
-                        new THREE.Vector3(0, 0, -1), // Default forward direction
-                        cameraDirection // Match camera's forward direction
-                    )
-                );
-            }
         }
     });
 
     return (
         <>
+            {/* Enable DeviceOrientationControls for gyro */}
             {gyroEnabled && <DeviceOrientationControls ref={controlsRef} camera={camera} />}
+
             <KeyboardControls map={keyboardMap}>
                 <Ecctrl
                     ref={playerRef}
@@ -742,12 +732,14 @@ function Player({ gyroEnabled }) {
                     turnVelMultiplier={1}
                     turnSpeed={100}
                     mode="ThirdPersonControls"
-                    autoRotate={false} // Ensures manual control
+                    autoRotate={!gyroEnabled} // Prevent auto-rotate when gyro is active
                     floatHeight={0}
                     position={[0, 0, -12]}
                     camTargetPos={{ x: 0, y: 3, z: 0 }}
+                    quaternion={gyroEnabled ? camera.quaternion : undefined} // Pass gyro rotation to Ecctrl
+                    moveDir={gyroEnabled ? cameraDirection.clone() : undefined} // Pass camera's forward direction for movement
                 >
-                    <RigidBody ref={playerRef} type="dynamic" colliders="trimesh">
+                    <RigidBody type="dynamic" colliders="trimesh">
                         <mesh visible={false}>
                             <cylinderGeometry args={[0.5, 0.5, 2, 16]} />
                             <meshStandardMaterial color="red" />
