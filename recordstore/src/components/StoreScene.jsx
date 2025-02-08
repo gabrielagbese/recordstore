@@ -731,7 +731,7 @@ function Player({ gyroEnabled }) {
                     position={[0, 0, -12]}
                     camTargetPos={{ x: 0, y: 3, z: 0 }}
                     quaternion={gyroEnabled ? camera.quaternion : undefined}
-                    moveDir={gyroEnabled ? cameraDirection : undefined}
+                    moveDir={gyroEnabled ? cameraDirection.clone().setY(0).normalize() : undefined}
                 >
                     <RigidBody type="fixed" colliders="trimesh">
                         <mesh visible={false}>
