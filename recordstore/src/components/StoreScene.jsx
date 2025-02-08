@@ -1,5 +1,5 @@
 import { Canvas, useThree, useFrame, useLoader } from '@react-three/fiber'
-import { FirstPersonControls, useHelper, PivotControls, OrbitControls, Box, Text, Html, Sky, Cylinder, AccumulativeShadows, RandomizedLight, SoftShadows, Text3D, KeyboardControls, useGLTF, Environment, Edges, DeviceOrientationControls } from '@react-three/drei'
+import { FirstPersonControls, useHelper, PivotControls, OrbitControls, Box, Text, Html, Sky, Cylinder, AccumulativeShadows, RandomizedLight, SoftShadows, Text3D, KeyboardControls, useGLTF, Environment, Edges, DeviceOrientationControls, Loader } from '@react-three/drei'
 import { useState, useRef, useCallback, useEffect, Children, Suspense, useMemo } from 'react'
 import * as THREE from 'three'
 import Ecctrl from 'ecctrl'
@@ -691,7 +691,6 @@ function Room({ onLoad }) {
 }
 
 
-
 function Player({ gyroEnabled }) {
     const { camera } = useThree();
     const controlsRef = useRef();
@@ -713,33 +712,36 @@ function Player({ gyroEnabled }) {
 
     return (
         <>
-            {gyroEnabled && <DeviceOrientationControls ref={controlsRef} camera={camera} />}
-            <KeyboardControls map={keyboardMap}>
-                <Ecctrl
-                    camCollision={true}
-                    camInitDis={-0.1}
-                    camMinDis={-0.01}
-                    camFollowMult={1000}
-                    camLerpMult={1000}
-                    turnVelMultiplier={1}
-                    turnSpeed={100}
-                    mode="CameraBasedMovement"
-                    floatHeight={0}
-                    position={[0, 0, -12]}
-                    camTargetPos={{ x: 0, y: 3, z: 0 }}
-                //disableControl={gyroEnabled} // Disable Ecctrl controls when gyro is enabled
-                >
-                    <RigidBody type="fixed" colliders="trimesh">
-                        <mesh visible={false}>
-                            <cylinderGeometry args={[0.5, 0.5, 2, 16]} />
-                            <meshStandardMaterial color="red" />
-                        </mesh>
-                    </RigidBody>
-                </Ecctrl>
-            </KeyboardControls>
+            {gyroEnabled ? (
+                <DeviceOrientationControls ref={controlsRef} args={[camera]} />
+            ) : (
+                <KeyboardControls map={keyboardMap}>
+                    <Ecctrl
+                        camCollision={true}
+                        camInitDis={-0.1}
+                        camMinDis={-0.01}
+                        camFollowMult={1000}
+                        camLerpMult={1000}
+                        turnVelMultiplier={1}
+                        turnSpeed={100}
+                        mode="CameraBasedMovement"
+                        floatHeight={0}
+                        position={[0, 0, -12]}
+                        camTargetPos={{ x: 0, y: 3, z: 0 }}
+                    >
+                        <RigidBody type="fixed" colliders="trimesh">
+                            <mesh visible={false}>
+                                <cylinderGeometry args={[0.5, 0.5, 2, 16]} />
+                                <meshStandardMaterial color="red" />
+                            </mesh>
+                        </RigidBody>
+                    </Ecctrl>
+                </KeyboardControls>
+            )}
         </>
     );
 }
+
 
 
 
@@ -817,7 +819,7 @@ export default function StoreScene({ openModal, isModalOpen }) {
 
     return (
         <>
-            {!roomLoaded && <LoadingScreen />} {/* Show the loading screen while room is loading */}
+
 
             {/* Toggle Button */}
             <button
@@ -921,7 +923,9 @@ export default function StoreScene({ openModal, isModalOpen }) {
 
                     <Effects />
                 </Suspense>
+
             </Canvas>
+            <Loader />
         </>
     );
 }
