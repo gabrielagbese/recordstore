@@ -691,9 +691,12 @@ function Room({ onLoad }) {
 }
 
 
+
 function Player({ gyroEnabled }) {
     const { camera } = useThree();
     const controlsRef = useRef();
+    const playerRotation = useRef(0);
+
     const keyboardMap = [
         { name: "forward", keys: ["ArrowUp", "KeyW"] },
         { name: "backward", keys: ["ArrowDown", "KeyS"] },
@@ -703,58 +706,19 @@ function Player({ gyroEnabled }) {
         { name: "run", keys: ["Shift"] },
     ];
 
-    // Get camera direction for movement
-    const getCameraDirection = () => {
-        const direction = new THREE.Vector3();
-        camera.getWorldDirection(direction);
-        // We only want the horizontal direction, so set y to 0 and normalize
-        direction.y = 0;
-        direction.normalize();
-        return direction;
-    };
-
-    // Custom movement handler for Ecctrl
-    const handleMovement = useCallback((state, player) => {
-        if (gyroEnabled) {
-            const cameraDir = getCameraDirection();
-            const moveSpeed = state.run ? 5 : 2.5;
-
-            if (state.forward) {
-                player.setLinearVelocity({
-                    x: cameraDir.x * moveSpeed,
-                    y: player.linvel().y,
-                    z: cameraDir.z * moveSpeed
-                });
-            }
-            if (state.backward) {
-                player.setLinearVelocity({
-                    x: -cameraDir.x * moveSpeed,
-                    y: player.linvel().y,
-                    z: -cameraDir.z * moveSpeed
-                });
-            }
-            if (state.leftward) {
-                const rightDir = new THREE.Vector3(-cameraDir.z, 0, cameraDir.x);
-                player.setLinearVelocity({
-                    x: -rightDir.x * moveSpeed,
-                    y: player.linvel().y,
-                    z: -rightDir.z * moveSpeed
-                });
-            }
-            if (state.rightward) {
-                const rightDir = new THREE.Vector3(-cameraDir.z, 0, cameraDir.x);
-                player.setLinearVelocity({
-                    x: rightDir.x * moveSpeed,
-                    y: player.linvel().y,
-                    z: rightDir.z * moveSpeed
-                });
-            }
+    // Update the camera position and handle gyroscope rotation
+    useFrame(() => {
+        if (gyroEnabled && controlsRef.current) {
+            controlsRef.current.update();
+            // Get the camera's current rotation
+            const euler = new THREE.Euler().setFromQuaternion(camera.quaternion);
+            playerRotation.current = euler.y;
         }
-    }, [gyroEnabled, camera]);
+    });
 
     return (
         <>
-            {gyroEnabled && <DeviceOrientationControls ref={controlsRef} args={[camera]} />}
+            {gyroEnabled && <DeviceOrientationControls ref={controlsRef} camera={camera} />}
             <KeyboardControls map={keyboardMap}>
                 <Ecctrl
                     camCollision={true}
@@ -764,12 +728,12 @@ function Player({ gyroEnabled }) {
                     camLerpMult={1000}
                     turnVelMultiplier={1}
                     turnSpeed={100}
-                    mode="CameraBasedMovement"
+                    mode={gyroEnabled ? "PointerLockControls" : "CameraBasedMovement"}
                     floatHeight={0}
                     position={[0, 0, -12]}
                     camTargetPos={{ x: 0, y: 3, z: 0 }}
-                    disableControl={gyroEnabled}
-                    onMove={handleMovement}
+                    autoBalance={!gyroEnabled}
+                    modelRotation={gyroEnabled ? playerRotation.current : undefined}
                 >
                     <RigidBody type="fixed" colliders="trimesh">
                         <mesh visible={false}>
@@ -782,8 +746,6 @@ function Player({ gyroEnabled }) {
         </>
     );
 }
-
-
 
 
 
