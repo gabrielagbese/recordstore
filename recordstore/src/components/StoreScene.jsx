@@ -703,12 +703,54 @@ function Player({ gyroEnabled }) {
         { name: "run", keys: ["Shift"] },
     ];
 
-    // Update the camera position based on gyroscope or Ecctrl
-    useFrame(() => {
-        if (gyroEnabled && controlsRef.current) {
-            controlsRef.current.update(); // Update DeviceOrientationControls
+    // Get camera direction for movement
+    const getCameraDirection = () => {
+        const direction = new THREE.Vector3();
+        camera.getWorldDirection(direction);
+        // We only want the horizontal direction, so set y to 0 and normalize
+        direction.y = 0;
+        direction.normalize();
+        return direction;
+    };
+
+    // Custom movement handler for Ecctrl
+    const handleMovement = useCallback((state, player) => {
+        if (gyroEnabled) {
+            const cameraDir = getCameraDirection();
+            const moveSpeed = state.run ? 5 : 2.5;
+
+            if (state.forward) {
+                player.setLinearVelocity({
+                    x: cameraDir.x * moveSpeed,
+                    y: player.linvel().y,
+                    z: cameraDir.z * moveSpeed
+                });
+            }
+            if (state.backward) {
+                player.setLinearVelocity({
+                    x: -cameraDir.x * moveSpeed,
+                    y: player.linvel().y,
+                    z: -cameraDir.z * moveSpeed
+                });
+            }
+            if (state.leftward) {
+                const rightDir = new THREE.Vector3(-cameraDir.z, 0, cameraDir.x);
+                player.setLinearVelocity({
+                    x: -rightDir.x * moveSpeed,
+                    y: player.linvel().y,
+                    z: -rightDir.z * moveSpeed
+                });
+            }
+            if (state.rightward) {
+                const rightDir = new THREE.Vector3(-cameraDir.z, 0, cameraDir.x);
+                player.setLinearVelocity({
+                    x: rightDir.x * moveSpeed,
+                    y: player.linvel().y,
+                    z: rightDir.z * moveSpeed
+                });
+            }
         }
-    });
+    }, [gyroEnabled, camera]);
 
     return (
         <>
@@ -726,7 +768,8 @@ function Player({ gyroEnabled }) {
                     floatHeight={0}
                     position={[0, 0, -12]}
                     camTargetPos={{ x: 0, y: 3, z: 0 }}
-                    disableControl={gyroEnabled} // Disable Ecctrl rotation controls when gyro is enabled
+                    disableControl={gyroEnabled}
+                    onMove={handleMovement}
                 >
                     <RigidBody type="fixed" colliders="trimesh">
                         <mesh visible={false}>
@@ -739,6 +782,7 @@ function Player({ gyroEnabled }) {
         </>
     );
 }
+
 
 
 
