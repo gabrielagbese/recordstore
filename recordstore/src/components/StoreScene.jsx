@@ -697,56 +697,51 @@ function Player({ gyroEnabled }) {
     const controlsRef = useRef();
     const playerRef = useRef();
     const [cameraDirection] = useState(new THREE.Vector3());
+    const [movementDirection, setMovementDirection] = useState(new THREE.Vector3());
 
-    const keyboardMap = [
-        { name: "forward", keys: ["ArrowUp", "KeyW"] },
-        { name: "backward", keys: ["ArrowDown", "KeyS"] },
-        { name: "leftward", keys: ["ArrowLeft", "KeyA"] },
-        { name: "rightward", keys: ["ArrowRight", "KeyD"] },
-        { name: "jump", keys: ["Space"] },
-        { name: "run", keys: ["Shift"] },
-    ];
-
+    // Handle movement based on gyro direction
     useFrame(() => {
         if (gyroEnabled && controlsRef.current) {
             controlsRef.current.update();
             camera.getWorldDirection(cameraDirection);
             cameraDirection.y = 0; // Keep movement flat on the ground
             cameraDirection.normalize();
+
+            // Apply movement direction
+            if (movementDirection.length() > 0) {
+                const moveSpeed = 0.1;
+                playerRef.current.position.addScaledVector(movementDirection, moveSpeed);
+            }
         }
     });
 
+    // Listen for movement updates
+    useEffect(() => {
+        const handleMove = (event) => {
+            if (event.detail === 'forward') {
+                setMovementDirection(cameraDirection.clone());
+            } else if (event.detail === 'backward') {
+                setMovementDirection(cameraDirection.clone().negate());
+            } else if (event.detail === 'left') {
+                setMovementDirection(new THREE.Vector3(-cameraDirection.z, 0, cameraDirection.x));
+            } else if (event.detail === 'right') {
+                setMovementDirection(new THREE.Vector3(cameraDirection.z, 0, -cameraDirection.x));
+            }
+        };
+
+        window.addEventListener('gyroMove', handleMove);
+        return () => window.removeEventListener('gyroMove', handleMove);
+    }, [cameraDirection]);
+
     return (
         <>
-            {/* Enable DeviceOrientationControls for gyro */}
             {gyroEnabled && <DeviceOrientationControls ref={controlsRef} camera={camera} />}
-
-            <KeyboardControls map={keyboardMap}>
-                <Ecctrl
-                    ref={playerRef}
-                    camCollision={true}
-                    camInitDis={-0.1}
-                    camMinDis={-0.01}
-                    camFollowMult={1000}
-                    camLerpMult={1000}
-                    turnVelMultiplier={1}
-                    turnSpeed={100}
-                    mode="ThirdPersonControls"
-                    autoRotate={!gyroEnabled} // Prevent auto-rotate when gyro is active
-                    floatHeight={0}
-                    position={[0, 0, -12]}
-                    camTargetPos={{ x: 0, y: 3, z: 0 }}
-                    quaternion={gyroEnabled ? camera.quaternion : undefined} // Pass gyro rotation to Ecctrl
-                    moveDir={gyroEnabled ? cameraDirection.clone() : undefined} // Pass camera's forward direction for movement
-                >
-                    <RigidBody type="dynamic" colliders="trimesh">
-                        <mesh visible={false}>
-                            <cylinderGeometry args={[0.5, 0.5, 2, 16]} />
-                            <meshStandardMaterial color="red" />
-                        </mesh>
-                    </RigidBody>
-                </Ecctrl>
-            </KeyboardControls>
+            <RigidBody type="dynamic" colliders="trimesh">
+                <mesh ref={playerRef} visible={false}>
+                    <cylinderGeometry args={[0.5, 0.5, 2, 16]} />
+                    <meshStandardMaterial color="red" />
+                </mesh>
+            </RigidBody>
         </>
     );
 }
@@ -757,6 +752,13 @@ export default function StoreScene({ openModal, isModalOpen }) {
     const [roomLoaded, setRoomLoaded] = useState(false);
     const [gyroEnabled, setGyroEnabled] = useState(false); // Gyroscope toggle state
 
+    // Function to handle gyro movement
+    const handleGyroMove = (direction) => {
+        if (gyroEnabled && roomLoaded) {
+            // Dispatch a custom event for the Player component to listen to
+            window.dispatchEvent(new CustomEvent('gyroMove', { detail: direction }));
+        }
+    };
     useEffect(() => {
         const handleResize = () => {
             // Adjust FOV based on screen width
@@ -822,10 +824,9 @@ export default function StoreScene({ openModal, isModalOpen }) {
         openModal(`Shelf ${shelfNumber}`, shelfModals[shelfNumber]);
     };
 
+
     return (
         <>
-
-
             {/* Toggle Button */}
             <button
                 style={{
@@ -845,26 +846,71 @@ export default function StoreScene({ openModal, isModalOpen }) {
                 {gyroEnabled ? 'Disable Gyro' : 'Enable Gyro'}
             </button>
 
-            <EcctrlJoystick
-                className={`transition-opacity duration-300 ${isModalOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
-                buttonNumber={0}
-                joystickPositionLeft={-20}
-                joystickPositionBottom={-20}
-                joystickBaseProps={{
-                    receiveShadow: true,
-                    scale: [0.55, 0.55, 0.55],
-                    material: new THREE.MeshBasicMaterial({ color: "#8f8f8f" })
-                }}
-                joystickStickProps={{
-                    castShadow: true,
-                    scale: [0.65, 0.65, 0.65],
-                    material: new THREE.MeshBasicMaterial({ color: "#A9A9A9" })
-                }}
-                joystickHandleProps={{
-                    scale: [0.7, 0.7, 0.7],
-                    material: new THREE.MeshBasicMaterial({ color: "#D3D3D3" })
-                }}
-            />
+            {/* Movement Buttons (Visible only when gyro is enabled) */}
+            {gyroEnabled && (
+                <div
+                    style={{
+                        position: 'absolute',
+                        bottom: '20px',
+                        left: '20px',
+                        zIndex: 1000,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '10px',
+                    }}
+                >
+                    <button
+                        style={{ padding: '10px 20px', backgroundColor: '#4CAF50', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}
+                        onClick={() => handleGyroMove('forward')}
+                    >
+                        Forward
+                    </button>
+                    <div style={{ display: 'flex', gap: '10px' }}>
+                        <button
+                            style={{ padding: '10px 20px', backgroundColor: '#4CAF50', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}
+                            onClick={() => handleGyroMove('left')}
+                        >
+                            Left
+                        </button>
+                        <button
+                            style={{ padding: '10px 20px', backgroundColor: '#4CAF50', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}
+                            onClick={() => handleGyroMove('right')}
+                        >
+                            Right
+                        </button>
+                    </div>
+                    <button
+                        style={{ padding: '10px 20px', backgroundColor: '#4CAF50', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}
+                        onClick={() => handleGyroMove('backward')}
+                    >
+                        Backward
+                    </button>
+                </div>
+            )}
+
+            {/* Joystick (Hidden when gyro is enabled) */}
+            {!gyroEnabled && (
+                <EcctrlJoystick
+                    className={`transition-opacity duration-300 ${isModalOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+                    buttonNumber={0}
+                    joystickPositionLeft={-20}
+                    joystickPositionBottom={-20}
+                    joystickBaseProps={{
+                        receiveShadow: true,
+                        scale: [0.55, 0.55, 0.55],
+                        material: new THREE.MeshBasicMaterial({ color: "#8f8f8f" })
+                    }}
+                    joystickStickProps={{
+                        castShadow: true,
+                        scale: [0.65, 0.65, 0.65],
+                        material: new THREE.MeshBasicMaterial({ color: "#A9A9A9" })
+                    }}
+                    joystickHandleProps={{
+                        scale: [0.7, 0.7, 0.7],
+                        material: new THREE.MeshBasicMaterial({ color: "#D3D3D3" })
+                    }}
+                />
+            )}
 
             <Canvas
                 camera={{
@@ -902,6 +948,7 @@ export default function StoreScene({ openModal, isModalOpen }) {
                         <hemisphereLight intensity={0.3} color="#ffffff" groundColor="#bbbbff" />
                         <Sky sunPosition={[20, 5, 0]} turbidity={0.1} rayleigh={0.5} />
 
+
                         <group onClick={(event) => handleNewsClick(event)}>
                             <Box args={[1, 1.4, 0.1]} position={[2.4, 2.75, 14]} rotation={[0.2, 0, 0]} receiveShadow castShadow>
                                 <meshStandardMaterial map={m1} />
@@ -928,7 +975,6 @@ export default function StoreScene({ openModal, isModalOpen }) {
 
                     <Effects />
                 </Suspense>
-
             </Canvas>
             <Loader />
         </>
