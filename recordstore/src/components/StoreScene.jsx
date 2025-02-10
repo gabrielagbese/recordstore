@@ -690,12 +690,12 @@ function Room({ onLoad }) {
     )
 }
 
-
 function Player({ gyroEnabled }) {
     const { camera } = useThree();
     const controlsRef = useRef();
     const playerRef = useRef();
-    const [cameraDirection] = useState(new THREE.Vector3());
+    const cameraDirection = new THREE.Vector3();
+    const moveVector = new THREE.Vector3();
 
     const keyboardMap = [
         { name: "forward", keys: ["ArrowUp", "KeyW"] },
@@ -713,10 +713,21 @@ function Player({ gyroEnabled }) {
             cameraDirection.y = 0; // Keep movement level
             cameraDirection.normalize();
 
-            // Ensure playerRef is valid before calling rotation function
-            if (playerRef.current?.rotateCharacterOnY) {
-                playerRef.current.rotateCharacterOnY(Math.atan2(cameraDirection.x, cameraDirection.z));
-            }
+            // Get the rightward vector (perpendicular to camera direction)
+            const rightVector = new THREE.Vector3();
+            rightVector.crossVectors(cameraDirection, new THREE.Vector3(0, 1, 0)).normalize();
+
+            // Get joystick input from Ecctrl
+            const input = playerRef.current.getJoystickInput ? playerRef.current.getJoystickInput() : { x: 0, y: 0 };
+
+            // Convert joystick input to world movement direction
+            moveVector.set(0, 0, 0);
+            moveVector.addScaledVector(cameraDirection, input.y); // Forward/backward
+            moveVector.addScaledVector(rightVector, input.x); // Left/right
+            moveVector.normalize();
+
+            // Apply movement direction to Ecctrl
+            playerRef.current.moveDir = moveVector;
         }
     });
 
@@ -740,8 +751,6 @@ function Player({ gyroEnabled }) {
                     floatHeight={0}
                     position={[0, 0, -12]}
                     camTargetPos={{ x: 0, y: 3, z: 0 }}
-                    quaternion={gyroEnabled ? camera.quaternion.clone() : undefined} // Clone quaternion for safety
-                    moveDir={gyroEnabled ? cameraDirection.clone() : undefined} // Clone movement direction
                 >
                     <RigidBody type="dynamic" colliders="trimesh">
                         <mesh visible={false}>
@@ -751,9 +760,13 @@ function Player({ gyroEnabled }) {
                     </RigidBody>
                 </Ecctrl>
             </KeyboardControls>
+
+            {/* Joystick outside the Canvas */}
+            <EcctrlJoystick />
         </>
     );
 }
+
 
 
 
