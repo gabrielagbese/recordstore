@@ -691,91 +691,62 @@ function Room({ onLoad }) {
 }
 
 
-export function Player({ gyroEnabled }) {
-    const { camera } = useThree();
-    const controlsRef = useRef(); // Reference for gyro controls
-    const playerRef = useRef(); // Reference for the player object
-    const [cameraDirection] = useState(new THREE.Vector3()); // Tracks camera direction
-    const internalJoystickInput = useRef(new THREE.Vector2(0, 0)); // Internal joystick state for this component
-    const playerQuaternion = useRef(new THREE.Quaternion()); // Tracks player orientation
 
-    // Hook into the existing joystick store
-    const { joystickDis, joystickAng } = useJoystickControls(); // Use values from the existing store
+function Player({ gyroEnabled }) {
+    const { camera } = useThree();
+    const controlsRef = useRef();
+    const playerRef = useRef();
+    const [cameraDirection] = useState(new THREE.Vector3());
+
+    const keyboardMap = [
+        { name: "forward", keys: ["ArrowUp", "KeyW"] },
+        { name: "backward", keys: ["ArrowDown", "KeyS"] },
+        { name: "leftward", keys: ["ArrowLeft", "KeyA"] },
+        { name: "rightward", keys: ["ArrowRight", "KeyD"] },
+        { name: "jump", keys: ["Space"] },
+        { name: "run", keys: ["Shift"] },
+    ];
 
     useFrame(() => {
-        const moveDirection = new THREE.Vector3(); // Final movement direction
-
-        // Update internal joystick input
-        internalJoystickInput.current.set(
-            joystickDis * Math.cos(joystickAng),
-            joystickDis * Math.sin(joystickAng)
-        );
-
-        // Update gyro (if enabled)
         if (gyroEnabled && controlsRef.current) {
             controlsRef.current.update();
             camera.getWorldDirection(cameraDirection);
-            cameraDirection.y = 0; // Ensure movement is on a flat plane
+            cameraDirection.y = 0; // Keep movement flat on the ground
             cameraDirection.normalize();
-
-            // Update player's quaternion from the camera's orientation
-            camera.getWorldQuaternion(playerQuaternion.current);
-        }
-
-        // Handle joystick input
-        if (internalJoystickInput.current.length() > 0) {
-            const joystickDir = new THREE.Vector3(
-                internalJoystickInput.current.x,
-                0,
-                -internalJoystickInput.current.y
-            );
-
-            // Transform joystick movement by the player's quaternion (updated by gyro)
-            joystickDir.applyQuaternion(playerQuaternion.current);
-            joystickDir.y = 0; // Ensure movement remains grounded
-            joystickDir.normalize();
-
-            moveDirection.copy(joystickDir); // Use joystick direction
-        } else if (gyroEnabled) {
-            // Use gyro direction when joystick is not in use
-            moveDirection.copy(cameraDirection);
-        }
-
-        // Apply movement to the player
-        if (playerRef.current) {
-            playerRef.current.moveDir = moveDirection;
         }
     });
 
     return (
         <>
-            {/* Gyroscope Controls */}
+            {/* Enable DeviceOrientationControls for gyro */}
             {gyroEnabled && <DeviceOrientationControls ref={controlsRef} camera={camera} />}
 
-            <Ecctrl
-                ref={playerRef}
-                camCollision={true}
-                camInitDis={-0.1}
-                camMinDis={-0.01}
-                camFollowMult={1000}
-                camLerpMult={1000}
-                turnVelMultiplier={1}
-                turnSpeed={100}
-                mode="ThirdPersonControls"
-                autoRotate={!gyroEnabled}
-                floatHeight={0}
-                position={[0, 0, -12]}
-                camTargetPos={{ x: 0, y: 3, z: 0 }}
-                quaternion={gyroEnabled ? camera.quaternion : undefined} // Pass gyro quaternion
-                moveDir={new THREE.Vector3()} // Movement direction, updated each frame
-            >
-                <RigidBody type="dynamic" colliders="trimesh">
-                    <mesh visible={false}>
-                        <cylinderGeometry args={[0.5, 0.5, 2, 16]} />
-                        <meshStandardMaterial color="red" />
-                    </mesh>
-                </RigidBody>
-            </Ecctrl>
+            <KeyboardControls map={keyboardMap}>
+                <Ecctrl
+                    ref={playerRef}
+                    camCollision={true}
+                    camInitDis={-0.1}
+                    camMinDis={-0.01}
+                    camFollowMult={1000}
+                    camLerpMult={1000}
+                    turnVelMultiplier={1}
+                    turnSpeed={100}
+                    mode="ThirdPersonControls"
+                    autoRotate={!gyroEnabled} // Prevent auto-rotate when gyro is active
+                    floatHeight={0}
+                    position={[0, 0, -12]}
+                    camTargetPos={{ x: 0, y: 3, z: 0 }}
+                    quaternion={gyroEnabled ? camera.quaternion : undefined} // Pass gyro rotation to Ecctrl
+                    moveDir={gyroEnabled ? cameraDirection.clone() : undefined} // Pass camera's forward direction for movement
+                >
+                    <RigidBody type="dynamic" colliders="trimesh">
+                        <mesh visible={false}>
+                            <cylinderGeometry args={[0.5, 0.5, 2, 16]} />
+                            <meshStandardMaterial color="red" />
+                        </mesh>
+                    </RigidBody>
+                </Ecctrl>
+            </KeyboardControls>
         </>
     );
 }
