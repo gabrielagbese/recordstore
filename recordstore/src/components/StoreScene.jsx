@@ -12,7 +12,6 @@ import { TextureLoader } from 'three'
 import Arcade from './modal-components/Arcade'
 import Shelf1 from './modal-components/Shelf1'
 import Shelf6 from './modal-components/Shelf6'
-import { useJoystickControls } from 'ecctrl'
 import Shelf5 from './modal-components/Shelf5'
 import Shelf4 from './modal-components/Shelf4'
 import Shelf3 from './modal-components/Shelf3'
@@ -693,89 +692,35 @@ function Room({ onLoad }) {
 
 
 
+function Player({ gyroEnabled }) {
+    const { camera } = useThree();
+    const controlsRef = useRef();
+    const playerRef = useRef();
+    const [cameraDirection] = useState(new THREE.Vector3());
 
-
-
-const keyboardMap = [
-    { name: "forward", keys: ["ArrowUp", "KeyW"] },
-    { name: "backward", keys: ["ArrowDown", "KeyS"] },
-    { name: "leftward", keys: ["ArrowLeft", "KeyA"] },
-    { name: "rightward", keys: ["ArrowRight", "KeyD"] },
-    { name: "jump", keys: ["Space"] },
-    { name: "run", keys: ["Shift"] },
-];
-
-export function Player({ gyroEnabled }) {
-    const { camera } = useThree(); // Shared camera reference
-    const controlsRef = useRef(); // Gyro controls reference
-    const playerRef = useRef(); // Reference to the player object
-    const [cameraDirection] = useState(new THREE.Vector3()); // Tracks camera direction
-    const joystickInput = useRef(new THREE.Vector2(0, 0)); // Tracks joystick movement
-    const movementDirection = useRef(new THREE.Vector3()); // Final combined movement direction
-
-    // Capture joystick input updates
-    useJoystickControls((dis, ang) => {
-        joystickInput.current.set(
-            dis * Math.cos(ang), // X-component
-            dis * Math.sin(ang)  // Z-component
-        );
-    });
+    const keyboardMap = [
+        { name: "forward", keys: ["ArrowUp", "KeyW"] },
+        { name: "backward", keys: ["ArrowDown", "KeyS"] },
+        { name: "leftward", keys: ["ArrowLeft", "KeyA"] },
+        { name: "rightward", keys: ["ArrowRight", "KeyD"] },
+        { name: "jump", keys: ["Space"] },
+        { name: "run", keys: ["Shift"] },
+    ];
 
     useFrame(() => {
-        const playerQuaternion = new THREE.Quaternion(); // Player orientation
-        const joystickDir = new THREE.Vector3(); // Joystick direction
-        const gyroDir = new THREE.Vector3(); // Gyro-based direction
-
-        // Update gyro (if enabled)
         if (gyroEnabled && controlsRef.current) {
-            controlsRef.current.update(); // Update gyro rotation
+            controlsRef.current.update();
+            camera.getWorldDirection(cameraDirection);
+            cameraDirection.y = 0; // Keep movement flat on the ground
+            cameraDirection.normalize();
         }
-
-        // Get the player's current quaternion (orientation)
-        if (playerRef.current) {
-            playerRef.current.getWorldQuaternion(playerQuaternion);
-        }
-
-        // Handle joystick input
-        if (joystickInput.current.length() > 0) {
-            joystickDir.set(
-                joystickInput.current.x,
-                0,
-                -joystickInput.current.y
-            );
-            // Apply the player's orientation to the joystick direction
-            joystickDir.applyQuaternion(playerQuaternion);
-            joystickDir.y = 0; // Ground movement only
-            joystickDir.normalize();
-        }
-
-        // Handle gyro input
-        if (gyroEnabled) {
-            camera.getWorldDirection(gyroDir);
-            gyroDir.y = 0; // Ground movement only
-            gyroDir.normalize();
-        }
-
-        // Combine joystick and gyro inputs
-        movementDirection.current.copy(joystickDir).add(gyroDir).normalize();
-
-        // Apply the combined movement direction to the player
-        if (playerRef.current) {
-            playerRef.current.moveDir = movementDirection.current;
-        }
-
-        // Debugging logs
-        console.log("Joystick Direction:", joystickDir);
-        console.log("Gyro Direction:", gyroDir);
-        console.log("Combined Move Direction:", movementDirection.current);
     });
 
     return (
         <>
-            {/* Gyroscope Controls */}
+            {/* Enable DeviceOrientationControls for gyro */}
             {gyroEnabled && <DeviceOrientationControls ref={controlsRef} camera={camera} />}
 
-            {/* Keyboard and Joystick Controls */}
             <KeyboardControls map={keyboardMap}>
                 <Ecctrl
                     ref={playerRef}
@@ -787,12 +732,12 @@ export function Player({ gyroEnabled }) {
                     turnVelMultiplier={1}
                     turnSpeed={100}
                     mode="ThirdPersonControls"
-                    autoRotate={!gyroEnabled}
+                    autoRotate={!gyroEnabled} // Prevent auto-rotate when gyro is active
                     floatHeight={0}
                     position={[0, 0, -12]}
                     camTargetPos={{ x: 0, y: 3, z: 0 }}
-                    quaternion={gyroEnabled ? camera.quaternion : undefined} // Gyro rotation
-                    moveDir={new THREE.Vector3()} // Movement direction, updated each frame
+                    quaternion={gyroEnabled ? camera.quaternion : undefined} // Pass gyro rotation to Ecctrl
+                    moveDir={gyroEnabled ? cameraDirection.clone() : undefined} // Pass camera's forward direction for movement
                 >
                     <RigidBody type="dynamic" colliders="trimesh">
                         <mesh visible={false}>
@@ -805,7 +750,6 @@ export function Player({ gyroEnabled }) {
         </>
     );
 }
-
 
 
 export default function StoreScene({ openModal, isModalOpen }) {
