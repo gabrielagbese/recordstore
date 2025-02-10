@@ -691,7 +691,6 @@ function Room({ onLoad }) {
 }
 
 
-
 function Player({ gyroEnabled }) {
     const { camera } = useThree();
     const controlsRef = useRef();
@@ -753,6 +752,7 @@ function Player({ gyroEnabled }) {
         </>
     );
 }
+
 
 
 
