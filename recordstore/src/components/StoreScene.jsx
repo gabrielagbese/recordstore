@@ -696,19 +696,20 @@ export function Player({ gyroEnabled }) {
     const controlsRef = useRef(); // Reference for gyro controls
     const playerRef = useRef(); // Reference for the player object
     const [cameraDirection] = useState(new THREE.Vector3()); // Tracks camera direction
-    const joystickInput = useRef(new THREE.Vector2(0, 0)); // Tracks joystick movement
+    const internalJoystickInput = useRef(new THREE.Vector2(0, 0)); // Internal joystick state for this component
     const playerQuaternion = useRef(new THREE.Quaternion()); // Tracks player orientation
 
-    // Capture joystick input updates
-    // useJoystickControls((distance, angle) => {
-    //     joystickInput.current.set(
-    //         distance * Math.cos(angle), // X-component
-    //         distance * Math.sin(angle)  // Z-component
-    //     );
-    // });
+    // Hook into the existing joystick store
+    const { joystickDis, joystickAng } = useJoystickControls(); // Use values from the existing store
 
     useFrame(() => {
         const moveDirection = new THREE.Vector3(); // Final movement direction
+
+        // Update internal joystick input
+        internalJoystickInput.current.set(
+            joystickDis * Math.cos(joystickAng),
+            joystickDis * Math.sin(joystickAng)
+        );
 
         // Update gyro (if enabled)
         if (gyroEnabled && controlsRef.current) {
@@ -722,11 +723,11 @@ export function Player({ gyroEnabled }) {
         }
 
         // Handle joystick input
-        if (joystickInput.current.length() > 0) {
+        if (internalJoystickInput.current.length() > 0) {
             const joystickDir = new THREE.Vector3(
-                joystickInput.current.x,
+                internalJoystickInput.current.x,
                 0,
-                -joystickInput.current.y
+                -internalJoystickInput.current.y
             );
 
             // Transform joystick movement by the player's quaternion (updated by gyro)
