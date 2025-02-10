@@ -705,12 +705,13 @@ const keyboardMap = [
     { name: "run", keys: ["Shift"] },
 ];
 
-export function Player({ gyroEnabled }) {
+export default function Player({ gyroEnabled }) {
     const { camera } = useThree(); // Shared camera reference
     const controlsRef = useRef(); // Gyro controls reference
     const playerRef = useRef(); // Reference to the player object
     const [cameraDirection] = useState(new THREE.Vector3()); // Tracks camera direction
     const joystickInput = useRef(new THREE.Vector2(0, 0)); // Tracks joystick movement
+    const movementDirection = useRef(new THREE.Vector3()); // Final combined movement direction
 
     // Capture joystick input updates
     useJoystickControls((dis, ang) => {
@@ -721,12 +722,13 @@ export function Player({ gyroEnabled }) {
     });
 
     useFrame(() => {
-        const moveDirection = new THREE.Vector3(); // Movement direction
         const playerQuaternion = new THREE.Quaternion(); // Player orientation
+        const joystickDir = new THREE.Vector3(); // Joystick direction
+        const gyroDir = new THREE.Vector3(); // Gyro-based direction
 
         // Update gyro (if enabled)
         if (gyroEnabled && controlsRef.current) {
-            controlsRef.current.update();
+            controlsRef.current.update(); // Update gyro rotation
         }
 
         // Get the player's current quaternion (orientation)
@@ -736,7 +738,7 @@ export function Player({ gyroEnabled }) {
 
         // Handle joystick input
         if (joystickInput.current.length() > 0) {
-            const joystickDir = new THREE.Vector3(
+            joystickDir.set(
                 joystickInput.current.x,
                 0,
                 -joystickInput.current.y
@@ -745,26 +747,27 @@ export function Player({ gyroEnabled }) {
             joystickDir.applyQuaternion(playerQuaternion);
             joystickDir.y = 0; // Ground movement only
             joystickDir.normalize();
-
-            moveDirection.copy(joystickDir); // Final joystick direction
-        } else if (gyroEnabled) {
-            // Use gyro to determine direction
-            camera.getWorldDirection(cameraDirection);
-            cameraDirection.y = 0; // Ground movement only
-            cameraDirection.normalize();
-
-            moveDirection.copy(cameraDirection); // Final gyro direction
         }
+
+        // Handle gyro input
+        if (gyroEnabled) {
+            camera.getWorldDirection(gyroDir);
+            gyroDir.y = 0; // Ground movement only
+            gyroDir.normalize();
+        }
+
+        // Combine joystick and gyro inputs
+        movementDirection.current.copy(joystickDir).add(gyroDir).normalize();
 
         // Apply the combined movement direction to the player
         if (playerRef.current) {
-            playerRef.current.moveDir = moveDirection;
+            playerRef.current.moveDir = movementDirection.current;
         }
 
         // Debugging logs
-        console.log("Joystick Input:", joystickInput.current);
-        console.log("Gyro Camera Direction:", cameraDirection);
-        console.log("Final Move Direction:", moveDirection);
+        console.log("Joystick Direction:", joystickDir);
+        console.log("Gyro Direction:", gyroDir);
+        console.log("Combined Move Direction:", movementDirection.current);
     });
 
     return (
@@ -802,6 +805,7 @@ export function Player({ gyroEnabled }) {
         </>
     );
 }
+
 
 
 export default function StoreScene({ openModal, isModalOpen }) {
