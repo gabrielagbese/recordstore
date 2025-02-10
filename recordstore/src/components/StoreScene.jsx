@@ -708,17 +708,19 @@ function Player({ gyroEnabled }) {
     ];
 
     useFrame(() => {
-        if (gyroEnabled && controlsRef.current) {
+        if (gyroEnabled && controlsRef.current && playerRef.current) {
             controlsRef.current.update();
             camera.getWorldDirection(cameraDirection);
-            cameraDirection.y = 0; // Keep movement flat on the ground
+            cameraDirection.y = 0; // Keep movement level
             cameraDirection.normalize();
+
+            // Rotate player to match the camera direction
+            playerRef.current.rotateCharacterOnY(Math.atan2(cameraDirection.x, cameraDirection.z));
         }
     });
 
     return (
         <>
-            {/* Enable DeviceOrientationControls for gyro */}
             {gyroEnabled && <DeviceOrientationControls ref={controlsRef} camera={camera} />}
 
             <KeyboardControls map={keyboardMap}>
@@ -732,12 +734,10 @@ function Player({ gyroEnabled }) {
                     turnVelMultiplier={1}
                     turnSpeed={100}
                     mode="ThirdPersonControls"
-                    autoRotate={!gyroEnabled} // Prevent auto-rotate when gyro is active
+                    autoRotate={!gyroEnabled} // Disable auto-rotation if gyro is active
                     floatHeight={0}
                     position={[0, 0, -12]}
                     camTargetPos={{ x: 0, y: 3, z: 0 }}
-                    quaternion={gyroEnabled ? camera.quaternion : undefined} // Pass gyro rotation to Ecctrl
-                    moveDir={gyroEnabled ? cameraDirection.clone() : undefined} // Pass camera's forward direction for movement
                 >
                     <RigidBody type="dynamic" colliders="trimesh">
                         <mesh visible={false}>
@@ -747,6 +747,9 @@ function Player({ gyroEnabled }) {
                     </RigidBody>
                 </Ecctrl>
             </KeyboardControls>
+
+            {/* Keep Joystick functional */}
+            <EcctrlJoystick />
         </>
     );
 }
