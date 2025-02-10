@@ -1,4 +1,4 @@
-import { Canvas, useThree, useFrame, useLoader } from '@react-three/fiber'
+import { Canvas, useThree, useFrame, useLoader, extend } from '@react-three/fiber'
 import { FirstPersonControls, useHelper, PivotControls, OrbitControls, Box, Text, Html, Sky, Cylinder, AccumulativeShadows, RandomizedLight, SoftShadows, Text3D, KeyboardControls, useGLTF, Environment, Edges, DeviceOrientationControls, Loader } from '@react-three/drei'
 import { useState, useRef, useCallback, useEffect, Children, Suspense, useMemo } from 'react'
 import * as THREE from 'three'
@@ -713,13 +713,16 @@ function Player({ gyroEnabled }) {
             cameraDirection.y = 0; // Keep movement level
             cameraDirection.normalize();
 
-            // Rotate player to match the camera direction
-            playerRef.current.rotateCharacterOnY(Math.atan2(cameraDirection.x, cameraDirection.z));
+            // Ensure playerRef is valid before calling rotation function
+            if (playerRef.current?.rotateCharacterOnY) {
+                playerRef.current.rotateCharacterOnY(Math.atan2(cameraDirection.x, cameraDirection.z));
+            }
         }
     });
 
     return (
         <>
+            {/* Enable DeviceOrientationControls for gyro */}
             {gyroEnabled && <DeviceOrientationControls ref={controlsRef} camera={camera} />}
 
             <KeyboardControls map={keyboardMap}>
@@ -733,10 +736,12 @@ function Player({ gyroEnabled }) {
                     turnVelMultiplier={1}
                     turnSpeed={100}
                     mode="ThirdPersonControls"
-                    autoRotate={!gyroEnabled} // Disable auto-rotation if gyro is active
+                    autoRotate={!gyroEnabled}
                     floatHeight={0}
                     position={[0, 0, -12]}
                     camTargetPos={{ x: 0, y: 3, z: 0 }}
+                    quaternion={gyroEnabled ? camera.quaternion.clone() : undefined} // Clone quaternion for safety
+                    moveDir={gyroEnabled ? cameraDirection.clone() : undefined} // Clone movement direction
                 >
                     <RigidBody type="dynamic" colliders="trimesh">
                         <mesh visible={false}>
@@ -746,14 +751,9 @@ function Player({ gyroEnabled }) {
                     </RigidBody>
                 </Ecctrl>
             </KeyboardControls>
-
-            {/* Keep Joystick functional */}
-            <EcctrlJoystick />
         </>
     );
 }
-
-
 
 
 
