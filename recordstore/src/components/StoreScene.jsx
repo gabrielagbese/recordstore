@@ -705,7 +705,7 @@ const keyboardMap = [
     { name: "run", keys: ["Shift"] },
 ];
 
-export default function Player({ gyroEnabled }) {
+export function Player({ gyroEnabled }) {
     const { camera } = useThree(); // Shared camera reference
     const controlsRef = useRef(); // Gyro controls reference
     const playerRef = useRef(); // Reference to the player object
